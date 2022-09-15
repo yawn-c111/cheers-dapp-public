@@ -9,7 +9,5 @@ contract DaoPool is IDaoPool {
         string memory _daoName,
         string memory _daoProfile,
         string memory _daoIcon
-    ) {
-        address daoAddress = _daoAddress;
-    }
+    ) {}
 }
