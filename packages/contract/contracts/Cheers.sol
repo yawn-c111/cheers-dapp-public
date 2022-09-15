@@ -47,7 +47,9 @@ contract Cheers is ICheers {
         string memory _daoProfile,
         string memory _daoIcon
     ) private {
-        daos.push(Dao(_daoAddress, _daoName, _daoProfile, _daoIcon));
+        daos.push(
+            SharedStruct.Dao(_daoAddress, _daoName, _daoProfile, _daoIcon)
+        );
     }
 
     // 全DAO取得
@@ -61,22 +63,18 @@ contract Cheers is ICheers {
         string memory _userProfile,
         string memory _userIcon
     ) public returns (address) {
-        address _userAddress = msg.sender;
-        require(
-            address(userList[_userAddress]) == address(0),
-            "alredy created!"
-        );
+        require(address(userList[msg.sender]) == address(0), "alredy created!");
 
         UserPool userPool = new UserPool(
-            _userAddress,
+            msg.sender,
             _userName,
             _userProfile,
             _userIcon
         );
-        addUsers(_userAddress, _userName, _userProfile, _userIcon);
-        userList[_userAddress] = address(userPool);
+        addUsers(msg.sender, _userName, _userProfile, _userIcon);
+        userList[msg.sender] = address(userPool);
 
-        return userList[_userAddress];
+        return userList[msg.sender];
     }
 
     // User追加
@@ -86,7 +84,9 @@ contract Cheers is ICheers {
         string memory _userProfile,
         string memory _userIcon
     ) private {
-        users.push(User(_userAddress, _userName, _userProfile, _userIcon));
+        users.push(
+            SharedStruct.User(_userAddress, _userName, _userProfile, _userIcon)
+        );
     }
 
     // 全User取得
