@@ -124,12 +124,12 @@ contract DaoPool is IDaoPool {
     for (uint256 i = 0; i < cheerProjectlist.length; i++) {
       if (cheerProjectlist[i] == _cheerProjectPoolAddress) {
         isCheer[_cheerProjectPoolAddress] = true;
-        return isCheer[_cheerProjectPoolAddress];
+      } else {
+        cheerProjectlist.push(_cheerProjectPoolAddress);
+        isCheer[_cheerProjectPoolAddress] = true;
       }
-      cheerProjectlist.push(_cheerProjectPoolAddress);
-      isCheer[_cheerProjectPoolAddress] = true;
-      return isCheer[_cheerProjectPoolAddress];
     }
+    return isCheer[_cheerProjectPoolAddress];
   }
 
   // Cheerしているプロジェクトを脱退 ProjectPoolから叩く
