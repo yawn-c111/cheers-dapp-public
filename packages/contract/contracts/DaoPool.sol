@@ -17,8 +17,12 @@ contract DaoPool is IDaoPool {
   // Alchemy testnet goerli deploy
   address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
-  // PROJECT
+  // DAO's PROJECT
   SharedStruct.Project[] challengeProjects;
+  // cheerProjectリスト
+  address[] cheerProjectlist;
+  // cheerしているかないか
+  mapping(address => bool) isCheer;
   modifier onlyOwner() {
     require(owner == msg.sender);
     _;
@@ -93,10 +97,11 @@ contract DaoPool is IDaoPool {
       _projectContents,
       _projectReword
     );
-    addProject(address(this), address(this), _projectName, _projectContents, _projectReword);
+    addChaellnegeProjects(address(this), address(this), _projectName, _projectContents, _projectReword);
+    return address(projectPool);
   }
 
-  function addProject(
+  function addChaellnegeProjects(
     address _projectOwnerAddress,
     address _belongDaoAddress,
     string memory _projectName,
@@ -106,5 +111,31 @@ contract DaoPool is IDaoPool {
     challengeProjects.push(
       SharedStruct.Project(_projectOwnerAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
     );
+  }
+
+  // このDAOのChallenge全プロジェクトを取得
+  function getAllChallengeProjects() public view returns (SharedStruct.Project[] memory) {
+    return challengeProjects;
+  }
+
+  // このDAOがCheerしているプロジェクトを追加 ProjectPoolから叩く
+  function addCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+    require(!isCheer[_cheerProjectPoolAddress], 'alredy cheer');
+    for (uint256 i = 0; i < cheerProjectlist.length; i++) {
+      if (cheerProjectlist[i] == _cheerProjectPoolAddress) {
+        isCheer[_cheerProjectPoolAddress] = true;
+        return isCheer[_cheerProjectPoolAddress];
+      }
+      cheerProjectlist.push(_cheerProjectPoolAddress);
+      isCheer[_cheerProjectPoolAddress] = true;
+      return isCheer[_cheerProjectPoolAddress];
+    }
+  }
+
+  // Cheerしているプロジェクトを脱退 ProjectPoolから叩く
+  function removeCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+    require(isCheer[_cheerProjectPoolAddress], 'alredy not cheer');
+    isCheer[_cheerProjectPoolAddress] = false;
+    return isCheer[_cheerProjectPoolAddress];
   }
 }
