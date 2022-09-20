@@ -10,4 +10,15 @@ interface ICheers {
   // 全USER取得
   function getAllUserList() external view returns (SharedStruct.User[] memory);
 
+  // PROJECT追加
+  function addProjects(
+    address _projectOwnerAddress,
+    address _belongDaoAddress,
+    string memory _projectName,
+    string memory _projectContents,
+    string memory _projectReword
+  ) external;
+
+  // 全PROJECT追加
+  function getAllProjectList() external view returns (SharedStruct.Project[] memory);
 }

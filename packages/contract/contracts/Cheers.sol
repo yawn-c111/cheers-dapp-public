@@ -15,6 +15,9 @@ contract Cheers is ICheers {
   SharedStruct.User[] users;
   mapping(address => address) userList;
 
+  // PROJECT
+  SharedStruct.Project[] projects;
+
   constructor() {}
 
   // DAOプール作成
@@ -75,5 +78,23 @@ contract Cheers is ICheers {
   // 全User取得
   function getAllUserList() public view returns (SharedStruct.User[] memory) {
     return users;
+  }
+
+  // Project追加
+  function addProjects(
+    address _projectOwnerAddress,
+    address _belongDaoAddress,
+    string memory _projectName,
+    string memory _projectContents,
+    string memory _projectReword
+  ) external {
+    projects.push(
+      SharedStruct.Project(_projectOwnerAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
+    );
+  }
+
+  // 全Project取得
+  function getAllProjectList() public view returns (SharedStruct.Project[] memory) {
+    return projects;
   }
 }
