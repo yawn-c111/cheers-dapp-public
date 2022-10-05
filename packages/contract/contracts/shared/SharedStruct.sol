@@ -18,10 +18,17 @@ library SharedStruct {
   }
 
   struct Project {
-    address projectOwnerAddress;
+    // address projectOwnerAddress;
     address belongDaoAddress;
     string projectName;
     string projectContents;
     string projectReword;
+  }
+
+  struct Cheer {
+    address cheerPoolAddress;
+    uint256 timestamp;
+    string message;
+    uint256 cher;
   }
 }

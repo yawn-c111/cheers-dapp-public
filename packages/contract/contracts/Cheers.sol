@@ -9,30 +9,31 @@ import './shared/SharedStruct.sol';
 contract Cheers is ICheers {
   // DAO
   SharedStruct.Dao[] daos;
-  mapping(address => address) daoList;
 
   // USER
   SharedStruct.User[] users;
-  mapping(address => address) userList;
+
+  // POOL
+  mapping(address => address) poolList;
 
   // PROJECT
-  SharedStruct.Project[] projects;
+  // SharedStruct.Project[] projects;
+  mapping(address => SharedStruct.Project[]) public eachProjectsList;
 
   constructor() {}
 
   // DAOプール作成
   function newDaoPoolFactory(
-    address _daoAddress,
     string memory _daoName,
     string memory _daoProfile,
     string memory _daoIcon
   ) public returns (address) {
-    require(address(daoList[_daoAddress]) == address(0), 'already created!');
-    DaoPool daoPool = new DaoPool(_daoAddress, _daoName, _daoProfile, _daoIcon);
-    addDaos(_daoAddress, _daoName, _daoProfile, _daoIcon);
-    daoList[_daoAddress] = address(daoPool);
+    require(address(poolList[msg.sender]) == address(0), 'already created!');
+    DaoPool daoPool = new DaoPool(_daoName, _daoProfile, _daoIcon, address(this));
+    addDaos(msg.sender, _daoName, _daoProfile, _daoIcon);
+    poolList[msg.sender] = address(daoPool);
 
-    return daoList[_daoAddress];
+    return poolList[msg.sender];
   }
 
   // DAO追加
@@ -43,6 +44,10 @@ contract Cheers is ICheers {
     string memory _daoIcon
   ) private {
     daos.push(SharedStruct.Dao(_daoAddress, _daoName, _daoProfile, _daoIcon));
+  }
+
+  function getMyPoolAddress(address _ownerAddress) public view returns (address) {
+    return poolList[_ownerAddress];
   }
 
   // 全DAO取得
@@ -56,13 +61,13 @@ contract Cheers is ICheers {
     string memory _userProfile,
     string memory _userIcon
   ) public returns (address) {
-    require(address(userList[msg.sender]) == address(0), 'alredy created!');
+    require(address(poolList[msg.sender]) == address(0), 'alredy created!');
 
     UserPool userPool = new UserPool(msg.sender, _userName, _userProfile, _userIcon);
     addUsers(msg.sender, _userName, _userProfile, _userIcon);
-    userList[msg.sender] = address(userPool);
+    poolList[msg.sender] = address(userPool);
 
-    return userList[msg.sender];
+    return poolList[msg.sender];
   }
 
   // User追加
@@ -80,7 +85,7 @@ contract Cheers is ICheers {
     return users;
   }
 
-  // Project追加
+  // Project追加...DaoPool or UserPoolから叩く
   function addProjects(
     address _projectOwnerAddress,
     address _belongDaoAddress,
@@ -88,13 +93,16 @@ contract Cheers is ICheers {
     string memory _projectContents,
     string memory _projectReword
   ) external {
-    projects.push(
-      SharedStruct.Project(_projectOwnerAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
+    // projects.push(
+    //   SharedStruct.Project(_belongDaoAddress, _projectName, _projectContents, _projectReword)
+    // );
+    eachProjectsList[_projectOwnerAddress].push(
+      SharedStruct.Project(_belongDaoAddress, _projectName, _projectContents, _projectReword)
     );
   }
 
-  // 全Project取得
-  function getAllProjectList() public view returns (SharedStruct.Project[] memory) {
-    return projects;
+  // アドレスごとのProject取得
+  function getEachProjectList(address _projectOwnerAddress) public view returns (SharedStruct.Project[] memory) {
+    return eachProjectsList[_projectOwnerAddress];
   }
 }

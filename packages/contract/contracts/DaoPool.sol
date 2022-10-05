@@ -4,11 +4,13 @@ pragma solidity ^0.8.17;
 import './interfaces/IDaoPool.sol';
 import './interfaces/ICheers.sol';
 import './interfaces/IERC20.sol';
+import './shared/SharedStruct.sol';
 import './ProjectPool.sol';
 
 contract DaoPool is IDaoPool {
   IERC20 public cher;
-  ICheers public cheers;
+  ICheers public cheersDapp;
+  address cheersDappAddress;
   address owner;
   address public daoAddress;
   string public daoName;
@@ -17,8 +19,6 @@ contract DaoPool is IDaoPool {
   // Alchemy testnet goerli deploy
   address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
-  // DAO's PROJECT
-  SharedStruct.Project[] challengeProjects;
   // cheerProjectリスト
   address[] cheerProjectlist;
   // cheerしているかないか
@@ -29,19 +29,21 @@ contract DaoPool is IDaoPool {
   }
 
   constructor(
-    address _daoAddress,
     string memory _daoName,
     string memory _daoProfile,
-    string memory _daoIcon
+    string memory _daoIcon,
+    address _cheersDappAddress
   ) {
-    // poolのowner設定
-    owner = _daoAddress;
     // CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
-    daoAddress = _daoAddress;
+    // poolのowner設定
+    owner = msg.sender;
+    daoAddress = msg.sender;
     daoName = _daoName;
     daoProfile = _daoProfile;
     daoIcon = _daoIcon;
+    cheersDappAddress = _cheersDappAddress;
+    cheersDapp = ICheers(cheersDappAddress);
   }
 
   // DAO情報取得関連↓
@@ -92,30 +94,27 @@ contract DaoPool is IDaoPool {
   ) public returns (address) {
     ProjectPool projectPool = new ProjectPool(
       address(this),
-      address(this),
       _projectName,
       _projectContents,
-      _projectReword
+      _projectReword,
+      cheersDappAddress
     );
-    addChaellnegeProjects(address(this), address(this), _projectName, _projectContents, _projectReword);
+    addChaellnegeProjects(address(this), _projectName, _projectContents, _projectReword);
     return address(projectPool);
   }
 
   function addChaellnegeProjects(
-    address _projectOwnerAddress,
     address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
     string memory _projectReword
   ) private {
-    challengeProjects.push(
-      SharedStruct.Project(_projectOwnerAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
-    );
+    cheersDapp.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
   }
 
   // このDAOのChallenge全プロジェクトを取得
   function getAllChallengeProjects() public view returns (SharedStruct.Project[] memory) {
-    return challengeProjects;
+    return cheersDapp.getEachProjectList(address(this));
   }
 
   // このDAOがCheerしているプロジェクトを追加 ProjectPoolから叩く

@@ -7,6 +7,9 @@ interface ICheers {
   // 全DAO取得
   function getAllDaoList() external view returns (SharedStruct.Dao[] memory);
 
+  // walletに紐づいたdaoPoolAddress
+  function getMyPoolAddress(address _ownerAddress) external view returns (address);
+
   // 全USER取得
   function getAllUserList() external view returns (SharedStruct.User[] memory);
 
@@ -19,6 +22,6 @@ interface ICheers {
     string memory _projectReword
   ) external;
 
-  // 全PROJECT追加
-  function getAllProjectList() external view returns (SharedStruct.Project[] memory);
+  // アドレスごとのProject取得
+  function getEachProjectList(address _projectOwnerAdress) external view returns (SharedStruct.Project[] memory);
 }
