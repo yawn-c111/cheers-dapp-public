@@ -19,6 +19,7 @@ contract ProjectPool is IProjectPool {
   address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
   SharedStruct.Cheer[] cheers;
+  uint256 totalCher;
 
   modifier onlyOwner() {
     require(owner == msg.sender);
@@ -54,11 +55,16 @@ contract ProjectPool is IProjectPool {
   function cheer(uint256 _cher, string memory _cheerMessage) private {
     cher.transferFrom(cheersDapp.getMyPoolAddress(msg.sender), address(this), _cher);
     cheers.push(SharedStruct.Cheer(cheersDapp.getMyPoolAddress(msg.sender), block.timestamp, _cheerMessage, _cher));
-    applyDistributeCher(_cher);
+    distributeCher(_cher);
   }
 
-  function applyDistributeCher (uint256 _cher) private {
+  function distributeCher(uint256 _cher) private {
     // 分配の計算式・・・ムズ
+    // このProjectに投じられた分配前の合計
+    // totalCher += _cher;
+    // uint256 cheerDistribute = (_cher * 70) / 100;
+    // uint256 challengerDistribute = (_cher * 25) / 100;
+    // uint256 daoDistribute = (_cher * 5) / 100;
   }
 
   // Cheersのデータ参照

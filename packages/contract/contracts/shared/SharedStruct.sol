@@ -14,7 +14,7 @@ library SharedStruct {
     address userAddress;
     string userName;
     string userProfile;
-    string daoIcon;
+    string userIcon;
   }
 
   struct Project {
