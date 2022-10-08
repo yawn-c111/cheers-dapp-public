@@ -30,7 +30,7 @@ contract UserPool is IUserPool {
     }
 
     constructor(
-        address _userAddress,
+        address _daoAddress,
         string memory _userName,
         string memory _userProfile,
         string memory _userIcon
@@ -40,7 +40,7 @@ contract UserPool is IUserPool {
         cher = IERC20(CHER_CONTRACT_ADDRESS);
         // poolのowner設定
         owner = msg.sender;
-        userAddress = msg.sender;
+        daoAddress = _daoAddress;
         userName = _userName;
         userProfile = _userProfile;
         userIcon = _userIcon;
@@ -104,12 +104,12 @@ contract UserPool is IUserPool {
   }
 
   function addChaellnegeProjects(
-    address _belongUserAddress,
+    address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
     string memory _projectReword
   ) private {
-    cheersDapp.addProjects(address(this), _belongUserAddress, _projectName, _projectContents, _projectReword);
+    cheersDapp.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
   }
 
   // このuserのChallenge全プロジェクトを取得
