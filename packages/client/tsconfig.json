@@ -15,8 +15,10 @@
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": ".",
-    "@/*": ["./src/*"],
-    "@/contract/*": ["../contract/*"]
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/contract/*": ["../contract/*"]
+    }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
