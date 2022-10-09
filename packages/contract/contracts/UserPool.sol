@@ -1,50 +1,50 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import "./interfaces/IUserPool.sol";
-import "./interfaces/ICheers.sol";
-import "./interfaces/IERC20.sol";
-import "./shared/SharedStruct.sol";
-import "./ProjectPool.sol";
+import './interfaces/IUserPool.sol';
+import './interfaces/ICheers.sol';
+import './interfaces/IERC20.sol';
+import './shared/SharedStruct.sol';
+import './ProjectPool.sol';
 
 contract UserPool is IUserPool {
-    IERC20 public cher;
-    ICheers public cheersDapp;
-    address cheersDappAddress;
-    address owner;
-    address public userAddress;
-    string public userName;
-    string public userProfile;
-    string public userIcon;
-    // Alchemy testnet goerli deploy
-    address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
+  IERC20 public cher;
+  ICheers public cheersDapp;
+  address cheersDappAddress;
+  address owner;
+  address public userAddress;
+  string public userName;
+  string public userProfile;
+  string public userIcon;
+  // Alchemy testnet goerli deploy
+  address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
-    // cheerProjectリスト
-    address[] cheerProjectlist;
-    // cheerしているかないか
-    mapping(address => bool) isCheer;
+  // cheerProjectリスト
+  address[] cheerProjectlist;
+  // cheerしているかないか
+  mapping(address => bool) isCheer;
 
-    modifier onlyOwner() {
-        require(owner == msg.sender);
-        _;
-    }
+  modifier onlyOwner() {
+    require(owner == msg.sender);
+    _;
+  }
 
-    constructor(
-        address _daoAddress,
-        string memory _userName,
-        string memory _userProfile,
-        string memory _userIcon
-    ) {
-        address userAddress = _userAddress;
-        // CHERコントラクト接続
-        cher = IERC20(CHER_CONTRACT_ADDRESS);
-        // poolのowner設定
-        owner = msg.sender;
-        daoAddress = _daoAddress;
-        userName = _userName;
-        userProfile = _userProfile;
-        userIcon = _userIcon;
-    }
+  constructor(
+    string memory _userName,
+    string memory _userProfile,
+    string memory _userIcon,
+    address _cheersDappAddress
+  ) {
+    // CHERコントラクト接続
+    cher = IERC20(CHER_CONTRACT_ADDRESS);
+    // poolのowner設定
+    owner = msg.sender; // ⚠️このmsg.senderが何になるのか
+    userName = _userName;
+    userProfile = _userProfile;
+    userIcon = _userIcon;
+    cheersDappAddress = _cheersDappAddress;
+    cheersDapp = ICheers(cheersDappAddress);
+  }
 
   // user情報取得関連↓
   // userPoolアドレス取得
@@ -88,12 +88,14 @@ contract UserPool is IUserPool {
 
   // Projectプール作成
   function newProjectFactory(
+    address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
     string memory _projectReword
   ) public returns (address) {
     ProjectPool projectPool = new ProjectPool(
       address(this),
+      _belongDaoAddress,
       _projectName,
       _projectContents,
       _projectReword,

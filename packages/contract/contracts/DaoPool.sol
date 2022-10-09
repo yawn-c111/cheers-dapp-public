@@ -37,8 +37,8 @@ contract DaoPool is IDaoPool {
     // CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
     // poolのowner設定
-    owner = msg.sender;
-    daoAddress = msg.sender;
+    owner = msg.sender; // ⚠️このmsg.senderが何になるのか
+    daoAddress = msg.sender; // ⚠️このmsg.senderが何になるのか
     daoName = _daoName;
     daoProfile = _daoProfile;
     daoIcon = _daoIcon;
@@ -93,6 +93,7 @@ contract DaoPool is IDaoPool {
     string memory _projectReword
   ) public returns (address) {
     ProjectPool projectPool = new ProjectPool(
+      address(this),
       address(this),
       _projectName,
       _projectContents,
