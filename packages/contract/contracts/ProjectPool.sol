@@ -70,7 +70,7 @@ contract ProjectPool is IProjectPool {
     // challengerの分配分
     uint256 challengerDistribute = (_cher * 25) / 100;
     // daoの分配分
-    uint256 daoDistribute = (_cher * 5) / 100;
+    uint256 daoDistribute = _cher - cheerDistribute - challengerDistribute;
     // cheer全員の分配分を投じたcher割合に応じ分配
     for (uint256 i = 0; i < cheers.length; i++) {
       cher.transfer(cheers[i].cheerPoolAddress, (cheerDistribute * cheers[i].cher) / totalCher);
