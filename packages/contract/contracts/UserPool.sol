@@ -30,6 +30,7 @@ contract UserPool is IUserPool {
   }
 
   constructor(
+    address _poolOwnerAddress,
     string memory _userName,
     string memory _userProfile,
     string memory _userIcon,
@@ -38,7 +39,7 @@ contract UserPool is IUserPool {
     // CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
     // poolのowner設定
-    owner = msg.sender; // ⚠️このmsg.senderが何になるのか
+    owner = _poolOwnerAddress;
     userName = _userName;
     userProfile = _userProfile;
     userIcon = _userIcon;
