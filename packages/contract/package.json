@@ -6,7 +6,8 @@
   "private": true,
   "scripts": {
     "compile": "hardhat compile ",
-    "codegen-types": "typechain --target ethers-v5 '../client/src/libs/hardhat/artifacts/!(build-info)/**/+([a-zA-Z0-9_]).json' --out-dir '../client/src/libs/hardhat/types' && typechain --target ethers-v5 '../client/src/libs/hardhat/artifacts/!(build-info)/**/+([a-zA-Z0-9_]).json' --out-dir './types'"
+    "codegen-types": "typechain --target ethers-v5 '../client/src/libs/hardhat/artifacts/!(build-info)/**/+([a-zA-Z0-9_]).json' --out-dir '../client/src/libs/hardhat/types' && typechain --target ethers-v5 '../client/src/libs/hardhat/artifacts/!(build-info)/**/+([a-zA-Z0-9_]).json' --out-dir './types'",
+    "codegen-types-win": "typechain --target ethers-v5 '..\\client\\src\\libs\\hardhat\\artifacts\\!(build-info)\\**\\+([a-zA-Z0-9_]).json' --out-dir '..\\client\\src\\libs\\hardhat\\types' && typechain --target ethers-v5 '..\\client\\src\\libs\\hardhat\\artifacts\\!(build-info)\\**\\+([a-zA-Z0-9_]).json' --out-dir '.\\types'"
   },
   "devDependencies": {
     "@ethersproject/abi": "^5.6.4",
