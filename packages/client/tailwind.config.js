@@ -1,11 +1,24 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    colors: {
+      transparent: 'transparent',
+      current: 'currentColor',
+      primary: '#15142a',
+      secondary: '#272238',
+      cherYellow: '#f4c530',
+      cherPink: '#f39abb',
+      cherRed: '#e73245',
+      cherBulue: '#4169e2',
+      cherGreen: '#00a692',
+      white: '#ffffff',
+    },
+    extend: {
+      fontFamily:{
+        inter:["Inter"],
+      },
+    },
   },
   plugins: [],
 };
