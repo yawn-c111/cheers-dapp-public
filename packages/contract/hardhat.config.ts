@@ -1,9 +1,24 @@
 import { HardhatUserConfig } from 'hardhat/config';
+import '@typechain/hardhat'
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 
 const config: HardhatUserConfig = {
-  solidity: '0.8.17',
+  solidity:{
+    version: '0.8.17',
+    // settings:{
+    //   optimizer: {
+    //     enabled: true,
+    //     runs: 200,
+    //   },
+  },
+  typechain: {
+    outDir: "../client/src/libs/hardhat/types" && "./types", 
+    target: "ethers-v5",
+    alwaysGenerateOverloads: false,
+    externalArtifacts: ["externalArtifacts/*.json"],
+    dontOverrideCompile: false,
+  },
   paths: {
     artifacts: '../client/src/libs/hardhat/artifacts',
   },
