@@ -22,17 +22,18 @@ $ yarn client remove {PACKAGE_NAME}
 // 更新
 $ yarn client update {PACKAGE_NAME}
 ```
-## スクリプト
+## スクリト
+top directoryでの実行パターン
 ### contract
 #### hardhat compile
-hardhat.config.ts -> paths -> artifactsに設定しているclient側にコンパイルされる
+hardhat.config.ts に設定しているclient側にコンパイルされると同時にtypechainにより型生成
 ```bash
 $ yarn contract compile
 ```
-#### typechain
-package.json -> codegen-typesに設定しているcontract & clientに型生成
+#### hardhat test
+test用コマンド
 ```bash
-$ yarn contract codegen-types
+$ yarn contract test
 ```
 ### client
 #### dev
