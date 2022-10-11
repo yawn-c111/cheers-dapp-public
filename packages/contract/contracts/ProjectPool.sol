@@ -9,12 +9,13 @@ import './shared/SharedStruct.sol';
 contract ProjectPool is IProjectPool {
   IERC20 public cher;
   ICheers public cheersDapp;
+  address cheersDappAddress;
   address owner;
+  address ownerPoolAddress;
   address belongDaoAddress;
   string public projectName;
   string public projectContents;
   string public projectReword;
-  address cheersDappAddress;
   // Alchemy testnet goerli deploy
   address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
@@ -27,6 +28,7 @@ contract ProjectPool is IProjectPool {
   }
 
   constructor(
+    address _ownerPoolAddress,
     address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
@@ -38,6 +40,7 @@ contract ProjectPool is IProjectPool {
     // cheersDappコントラクト接続
     cheersDapp = ICheers(cheersDappAddress);
     owner = msg.sender;
+    ownerPoolAddress = _ownerPoolAddress;
     belongDaoAddress = _belongDaoAddress;
     projectName = _projectName;
     projectContents = _projectContents;
@@ -59,12 +62,23 @@ contract ProjectPool is IProjectPool {
   }
 
   function distributeCher(uint256 _cher) private {
-    // 分配の計算式・・・ムズ
+    // ⚠️端数処理がどうなるか？？？
     // このProjectに投じられた分配前の合計
-    // totalCher += _cher;
-    // uint256 cheerDistribute = (_cher * 70) / 100;
-    // uint256 challengerDistribute = (_cher * 25) / 100;
-    // uint256 daoDistribute = (_cher * 5) / 100;
+    totalCher += _cher;
+    // cheer全員の分配分
+    uint256 cheerDistribute = (_cher * 70) / 100;
+    // challengerの分配分
+    uint256 challengerDistribute = (_cher * 25) / 100;
+    // daoの分配分
+    uint256 daoDistribute = _cher - cheerDistribute - challengerDistribute;
+    // cheer全員の分配分を投じたcher割合に応じ分配
+    for (uint256 i = 0; i < cheers.length; i++) {
+      cher.transfer(cheers[i].cheerPoolAddress, (cheerDistribute * cheers[i].cher) / totalCher);
+    }
+    // challengerのPoolへ分配
+    cher.transfer(ownerPoolAddress, challengerDistribute);
+    // 所属するDAOへ分配
+    cher.transfer(belongDaoAddress, daoDistribute);
   }
 
   // Cheersのデータ参照

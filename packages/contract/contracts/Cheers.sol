@@ -29,7 +29,7 @@ contract Cheers is ICheers {
     string memory _daoIcon
   ) public returns (address) {
     require(address(poolList[msg.sender]) == address(0), 'already created!');
-    DaoPool daoPool = new DaoPool(_daoName, _daoProfile, _daoIcon, address(this));
+    DaoPool daoPool = new DaoPool(msg.sender, _daoName, _daoProfile, _daoIcon, address(this));
     addDaos(msg.sender, _daoName, _daoProfile, _daoIcon);
     poolList[msg.sender] = address(daoPool);
 
@@ -63,7 +63,7 @@ contract Cheers is ICheers {
   ) public returns (address) {
     require(address(poolList[msg.sender]) == address(0), 'alredy created!');
 
-    UserPool userPool = new UserPool(msg.sender, _userName, _userProfile, _userIcon);
+    UserPool userPool = new UserPool(msg.sender, _userName, _userProfile, _userIcon, address(this));
     addUsers(msg.sender, _userName, _userProfile, _userIcon);
     poolList[msg.sender] = address(userPool);
 
