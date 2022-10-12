@@ -1,0 +1,20 @@
+export const userMockData =[
+  {
+    walletAdress:'0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
+    name:'junya',
+    profile:'楽観的',
+    icon:'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png'
+  },
+  {
+    walletAdress:'0x8cB688A30D5Fd6f2e5025d8915eD95e770832933',
+    name:'katoten',
+    profile:'分析家',
+    icon:'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png'
+  },
+  {
+    walletAdress:'0xEef377Bdf67A227a744e386231fB3f264C158CDF',
+    name:'yawn',
+    profile:'知識人',
+    icon:'https://pbs.twimg.com/profile_images/1536317512752975872/vm8sIqlN_400x400.jpg'
+  }
+]
