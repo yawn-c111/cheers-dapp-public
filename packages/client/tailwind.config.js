@@ -15,8 +15,9 @@ module.exports = {
       white: '#ffffff',
     },
     extend: {
-      fontFamily:{
-        inter:["Inter"],
+      fontFamily: {
+        inter: ['Inter'],
+        mplus: ['M+PLUS+Rounded+1c'],
       },
     },
   },

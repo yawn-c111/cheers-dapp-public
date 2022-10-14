@@ -11,11 +11,11 @@ const Layout = ({ children }: Props) => {
   return (
     <div className="bg-primary">
       <Header />
-      <div className="grid grid-cols-8">
-        <div className="col-span-1">
+      <div className="flex">
+        <div>
           <Sidebar />
         </div>
-        <div className="col-span-7">
+        <div>
           {children}
           <Footer />
         </div>
