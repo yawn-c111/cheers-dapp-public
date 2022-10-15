@@ -1,11 +1,11 @@
 import { HardhatUserConfig } from 'hardhat/config';
-import '@typechain/hardhat'
-import 'hardhat-contract-sizer'
+import '@typechain/hardhat';
+import 'hardhat-contract-sizer';
 import '@nomiclabs/hardhat-ethers';
 import '@nomiclabs/hardhat-waffle';
 
 const config: HardhatUserConfig = {
-  solidity:{
+  solidity: {
     version: '0.8.17',
     // settings:{
     //   optimizer: {
@@ -14,10 +14,10 @@ const config: HardhatUserConfig = {
     //   },
   },
   typechain: {
-    outDir: "../client/src/libs/hardhat/types" && "./types", 
-    target: "ethers-v5",
+    outDir: '../client/src/libs/hardhat/types' && './types',
+    target: 'ethers-v5',
     alwaysGenerateOverloads: false,
-    externalArtifacts: ["externalArtifacts/*.json"],
+    externalArtifacts: ['externalArtifacts/*.json'],
     dontOverrideCompile: false,
   },
   paths: {
