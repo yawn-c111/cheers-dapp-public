@@ -3,11 +3,16 @@ pragma solidity ^0.8.17;
 
 import './interfaces/IDaoPool.sol';
 import './interfaces/ICheers.sol';
+import './interfaces/IProjectsData.sol';
 import './interfaces/IERC20.sol';
 import './shared/SharedStruct.sol';
 import './ProjectPool.sol';
 
 contract DaoPool is IDaoPool {
+  // PROJECT
+  address PROJECTSDATA_CONTRACT_ADDRESS; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
+  IProjectsData public projectsData;
+
   IERC20 public cher;
   ICheers public cheersDapp;
   address cheersDappAddress;
@@ -45,6 +50,7 @@ contract DaoPool is IDaoPool {
     daoIcon = _daoIcon;
     cheersDappAddress = _cheersDappAddress;
     cheersDapp = ICheers(cheersDappAddress);
+    projectsData = IProjectsData(PROJECTSDATA_CONTRACT_ADDRESS);
   }
 
   // DAO情報取得関連↓
@@ -111,12 +117,12 @@ contract DaoPool is IDaoPool {
     string memory _projectContents,
     string memory _projectReword
   ) private {
-    cheersDapp.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
+    projectsData.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
   }
 
   // このDAOのChallenge全プロジェクトを取得
   function getAllChallengeProjects() public view returns (SharedStruct.Project[] memory) {
-    return cheersDapp.getEachProjectList(address(this));
+    return projectsData.getEachProjectList(address(this));
   }
 
   // このDAOがCheerしているプロジェクトを追加 ProjectPoolから叩く
