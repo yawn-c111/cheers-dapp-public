@@ -3,4 +3,7 @@
 /* eslint-disable */
 export type { ICheers } from "./ICheers";
 export type { IDaoPool } from "./IDaoPool";
+export type { IDaosData } from "./IDaosData";
 export type { IERC20 } from "./IERC20";
+export type { IProjectsData } from "./IProjectsData";
+export type { IUsersData } from "./IUsersData";

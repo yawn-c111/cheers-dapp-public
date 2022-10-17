@@ -4,7 +4,6 @@
 import type {
   BaseContract,
   BigNumber,
-  BigNumberish,
   BytesLike,
   CallOverrides,
   ContractTransaction,
@@ -23,100 +22,25 @@ import type {
   PromiseOrValue,
 } from "./common";
 
-export declare namespace SharedStruct {
-  export type DaoStruct = {
-    daoAddres: PromiseOrValue<string>;
-    daoName: PromiseOrValue<string>;
-    daoProfile: PromiseOrValue<string>;
-    daoIcon: PromiseOrValue<string>;
-  };
-
-  export type DaoStructOutput = [string, string, string, string] & {
-    daoAddres: string;
-    daoName: string;
-    daoProfile: string;
-    daoIcon: string;
-  };
-
-  export type UserStruct = {
-    userAddress: PromiseOrValue<string>;
-    userName: PromiseOrValue<string>;
-    userProfile: PromiseOrValue<string>;
-    userIcon: PromiseOrValue<string>;
-  };
-
-  export type UserStructOutput = [string, string, string, string] & {
-    userAddress: string;
-    userName: string;
-    userProfile: string;
-    userIcon: string;
-  };
-
-  export type ProjectStruct = {
-    belongDaoAddress: PromiseOrValue<string>;
-    projectName: PromiseOrValue<string>;
-    projectContents: PromiseOrValue<string>;
-    projectReword: PromiseOrValue<string>;
-  };
-
-  export type ProjectStructOutput = [string, string, string, string] & {
-    belongDaoAddress: string;
-    projectName: string;
-    projectContents: string;
-    projectReword: string;
-  };
-}
-
 export interface CheersInterface extends utils.Interface {
   functions: {
-    "addProjects(address,address,string,string,string)": FunctionFragment;
-    "eachProjectsList(address,uint256)": FunctionFragment;
-    "getAllDaoList()": FunctionFragment;
-    "getAllUserList()": FunctionFragment;
-    "getEachProjectList(address)": FunctionFragment;
+    "daosData()": FunctionFragment;
     "getMyPoolAddress(address)": FunctionFragment;
     "newDaoPoolFactory(string,string,string)": FunctionFragment;
     "newUserPoolFactory(string,string,string)": FunctionFragment;
+    "usersData()": FunctionFragment;
   };
 
   getFunction(
     nameOrSignatureOrTopic:
-      | "addProjects"
-      | "eachProjectsList"
-      | "getAllDaoList"
-      | "getAllUserList"
-      | "getEachProjectList"
+      | "daosData"
       | "getMyPoolAddress"
       | "newDaoPoolFactory"
       | "newUserPoolFactory"
+      | "usersData"
   ): FunctionFragment;
 
-  encodeFunctionData(
-    functionFragment: "addProjects",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "eachProjectsList",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getAllDaoList",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getAllUserList",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getEachProjectList",
-    values: [PromiseOrValue<string>]
-  ): string;
+  encodeFunctionData(functionFragment: "daosData", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getMyPoolAddress",
     values: [PromiseOrValue<string>]
@@ -137,27 +61,9 @@ export interface CheersInterface extends utils.Interface {
       PromiseOrValue<string>
     ]
   ): string;
+  encodeFunctionData(functionFragment: "usersData", values?: undefined): string;
 
-  decodeFunctionResult(
-    functionFragment: "addProjects",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "eachProjectsList",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getAllDaoList",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getAllUserList",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "getEachProjectList",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "daosData", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getMyPoolAddress",
     data: BytesLike
@@ -170,6 +76,7 @@ export interface CheersInterface extends utils.Interface {
     functionFragment: "newUserPoolFactory",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "usersData", data: BytesLike): Result;
 
   events: {};
 }
@@ -201,40 +108,7 @@ export interface Cheers extends BaseContract {
   removeListener: OnEvent<this>;
 
   functions: {
-    addProjects(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      _belongDaoAddress: PromiseOrValue<string>,
-      _projectName: PromiseOrValue<string>,
-      _projectContents: PromiseOrValue<string>,
-      _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    eachProjectsList(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [string, string, string, string] & {
-        belongDaoAddress: string;
-        projectName: string;
-        projectContents: string;
-        projectReword: string;
-      }
-    >;
-
-    getAllDaoList(
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.DaoStructOutput[]]>;
-
-    getAllUserList(
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.UserStructOutput[]]>;
-
-    getEachProjectList(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.ProjectStructOutput[]]>;
+    daosData(overrides?: CallOverrides): Promise<[string]>;
 
     getMyPoolAddress(
       _ownerAddress: PromiseOrValue<string>,
@@ -254,42 +128,11 @@ export interface Cheers extends BaseContract {
       _userIcon: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
+
+    usersData(overrides?: CallOverrides): Promise<[string]>;
   };
 
-  addProjects(
-    _projectOwnerAddress: PromiseOrValue<string>,
-    _belongDaoAddress: PromiseOrValue<string>,
-    _projectName: PromiseOrValue<string>,
-    _projectContents: PromiseOrValue<string>,
-    _projectReword: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  eachProjectsList(
-    arg0: PromiseOrValue<string>,
-    arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [string, string, string, string] & {
-      belongDaoAddress: string;
-      projectName: string;
-      projectContents: string;
-      projectReword: string;
-    }
-  >;
-
-  getAllDaoList(
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.DaoStructOutput[]>;
-
-  getAllUserList(
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.UserStructOutput[]>;
-
-  getEachProjectList(
-    _projectOwnerAddress: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.ProjectStructOutput[]>;
+  daosData(overrides?: CallOverrides): Promise<string>;
 
   getMyPoolAddress(
     _ownerAddress: PromiseOrValue<string>,
@@ -310,41 +153,10 @@ export interface Cheers extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  usersData(overrides?: CallOverrides): Promise<string>;
+
   callStatic: {
-    addProjects(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      _belongDaoAddress: PromiseOrValue<string>,
-      _projectName: PromiseOrValue<string>,
-      _projectContents: PromiseOrValue<string>,
-      _projectReword: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    eachProjectsList(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [string, string, string, string] & {
-        belongDaoAddress: string;
-        projectName: string;
-        projectContents: string;
-        projectReword: string;
-      }
-    >;
-
-    getAllDaoList(
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.DaoStructOutput[]>;
-
-    getAllUserList(
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.UserStructOutput[]>;
-
-    getEachProjectList(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.ProjectStructOutput[]>;
+    daosData(overrides?: CallOverrides): Promise<string>;
 
     getMyPoolAddress(
       _ownerAddress: PromiseOrValue<string>,
@@ -364,34 +176,14 @@ export interface Cheers extends BaseContract {
       _userIcon: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    usersData(overrides?: CallOverrides): Promise<string>;
   };
 
   filters: {};
 
   estimateGas: {
-    addProjects(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      _belongDaoAddress: PromiseOrValue<string>,
-      _projectName: PromiseOrValue<string>,
-      _projectContents: PromiseOrValue<string>,
-      _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    eachProjectsList(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    getAllDaoList(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getAllUserList(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getEachProjectList(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    daosData(overrides?: CallOverrides): Promise<BigNumber>;
 
     getMyPoolAddress(
       _ownerAddress: PromiseOrValue<string>,
@@ -411,32 +203,12 @@ export interface Cheers extends BaseContract {
       _userIcon: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    usersData(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
   populateTransaction: {
-    addProjects(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      _belongDaoAddress: PromiseOrValue<string>,
-      _projectName: PromiseOrValue<string>,
-      _projectContents: PromiseOrValue<string>,
-      _projectReword: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    eachProjectsList(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    getAllDaoList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getAllUserList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    getEachProjectList(
-      _projectOwnerAddress: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    daosData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getMyPoolAddress(
       _ownerAddress: PromiseOrValue<string>,
@@ -456,5 +228,7 @@ export interface Cheers extends BaseContract {
       _userIcon: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
+
+    usersData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
   };
 }

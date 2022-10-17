@@ -3,4 +3,7 @@
 /* eslint-disable */
 export { ICheers__factory } from "./ICheers__factory";
 export { IDaoPool__factory } from "./IDaoPool__factory";
+export { IDaosData__factory } from "./IDaosData__factory";
 export { IERC20__factory } from "./IERC20__factory";
+export { IProjectsData__factory } from "./IProjectsData__factory";
+export { IUsersData__factory } from "./IUsersData__factory";

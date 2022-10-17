@@ -21,6 +21,18 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DaoPool__factory>;
     getContractFactory(
+      name: "DaosData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DaosData__factory>;
+    getContractFactory(
+      name: "ProjectsData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ProjectsData__factory>;
+    getContractFactory(
+      name: "UserData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.UserData__factory>;
+    getContractFactory(
       name: "ICheers",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ICheers__factory>;
@@ -29,9 +41,21 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IDaoPool__factory>;
     getContractFactory(
+      name: "IDaosData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IDaosData__factory>;
+    getContractFactory(
       name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
+      name: "IProjectsData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IProjectsData__factory>;
+    getContractFactory(
+      name: "IUsersData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IUsersData__factory>;
     getContractFactory(
       name: "ProjectPool",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -52,6 +76,21 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.DaoPool>;
     getContractAt(
+      name: "DaosData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DaosData>;
+    getContractAt(
+      name: "ProjectsData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ProjectsData>;
+    getContractAt(
+      name: "UserData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.UserData>;
+    getContractAt(
       name: "ICheers",
       address: string,
       signer?: ethers.Signer
@@ -62,10 +101,25 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.IDaoPool>;
     getContractAt(
+      name: "IDaosData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IDaosData>;
+    getContractAt(
       name: "IERC20",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "IProjectsData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IProjectsData>;
+    getContractAt(
+      name: "IUsersData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IUsersData>;
     getContractAt(
       name: "ProjectPool",
       address: string,

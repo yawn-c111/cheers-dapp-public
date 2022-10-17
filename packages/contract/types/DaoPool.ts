@@ -56,6 +56,7 @@ export interface DaoPoolInterface extends utils.Interface {
     "getDaoPoolAddress()": FunctionFragment;
     "getDaoProfile()": FunctionFragment;
     "newProjectFactory(string,string,string)": FunctionFragment;
+    "projectsData()": FunctionFragment;
     "removeCheerProject(address)": FunctionFragment;
     "withdrowCher(uint256)": FunctionFragment;
   };
@@ -77,6 +78,7 @@ export interface DaoPoolInterface extends utils.Interface {
       | "getDaoPoolAddress"
       | "getDaoProfile"
       | "newProjectFactory"
+      | "projectsData"
       | "removeCheerProject"
       | "withdrowCher"
   ): FunctionFragment;
@@ -137,6 +139,10 @@ export interface DaoPoolInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
+    functionFragment: "projectsData",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "removeCheerProject",
     values: [PromiseOrValue<string>]
   ): string;
@@ -176,6 +182,10 @@ export interface DaoPoolInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "newProjectFactory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectsData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -260,6 +270,8 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    projectsData(overrides?: CallOverrides): Promise<[string]>;
+
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -314,6 +326,8 @@ export interface DaoPool extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  projectsData(overrides?: CallOverrides): Promise<string>;
+
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -367,6 +381,8 @@ export interface DaoPool extends BaseContract {
       _projectReword: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    projectsData(overrides?: CallOverrides): Promise<string>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
@@ -423,6 +439,8 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    projectsData(overrides?: CallOverrides): Promise<BigNumber>;
+
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -477,6 +495,8 @@ export interface DaoPool extends BaseContract {
       _projectReword: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
+
+    projectsData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
