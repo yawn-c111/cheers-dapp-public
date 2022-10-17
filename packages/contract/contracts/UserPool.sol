@@ -9,7 +9,7 @@ import './shared/SharedStruct.sol';
 import './ProjectPool.sol';
 
 contract UserPool is IUserPool {
-    // PROJECT
+  // PROJECT
   address PROJECTSDATA_CONTRACT_ADDRESS; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
   IProjectsData public projectsData;
 
@@ -50,8 +50,7 @@ contract UserPool is IUserPool {
     userIcon = _userIcon;
     cheersDappAddress = _cheersDappAddress;
     cheersDapp = ICheers(cheersDappAddress);
-        projectsData = IProjectsData(PROJECTSDATA_CONTRACT_ADDRESS);
-
+    projectsData = IProjectsData(PROJECTSDATA_CONTRACT_ADDRESS);
   }
 
   // user情報取得関連↓
