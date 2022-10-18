@@ -2,6 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 export * as data from "./data";
+export * as factory from "./factory";
 export * as interfaces from "./interfaces";
 export { Cheers__factory } from "./Cheers__factory";
 export { DaoPool__factory } from "./DaoPool__factory";

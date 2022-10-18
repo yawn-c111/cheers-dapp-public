@@ -105,8 +105,7 @@ contract UserPool is IUserPool {
       _belongDaoAddress,
       _projectName,
       _projectContents,
-      _projectReword,
-      cheersDappAddress
+      _projectReword
     );
     addChaellnegeProjects(address(this), _projectName, _projectContents, _projectReword);
     return address(projectPool);

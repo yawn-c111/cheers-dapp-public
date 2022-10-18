@@ -104,8 +104,7 @@ contract DaoPool is IDaoPool {
       address(this),
       _projectName,
       _projectContents,
-      _projectReword,
-      cheersDappAddress
+      _projectReword
     );
     addChaellnegeProjects(address(this), _projectName, _projectContents, _projectReword);
     return address(projectPool);

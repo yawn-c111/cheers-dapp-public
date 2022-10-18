@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export { UserData__factory } from "./UserData__factory";
+export { UsersData__factory } from "./UsersData__factory";

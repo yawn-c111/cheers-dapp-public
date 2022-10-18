@@ -2,27 +2,7 @@
   "_format": "hh-sol-artifact-1",
   "contractName": "ICheers",
   "sourceName": "contracts/interfaces/ICheers.sol",
-  "abi": [
-    {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "_ownerAddress",
-          "type": "address"
-        }
-      ],
-      "name": "getMyPoolAddress",
-      "outputs": [
-        {
-          "internalType": "address",
-          "name": "",
-          "type": "address"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    }
-  ],
+  "abi": [],
   "bytecode": "0x",
   "deployedBytecode": "0x",
   "linkReferences": {},

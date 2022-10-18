@@ -5,7 +5,7 @@ import '../interfaces/IUsersData.sol';
 import '../shared/SharedStruct.sol';
 
 // USERデータ保存のためのコントラクト
-contract UserData is IUsersData {
+contract UsersData is IUsersData {
   // Userのデータ
   SharedStruct.User[] public users;
 

@@ -2,3 +2,4 @@
 /* tslint:disable */
 /* eslint-disable */
 export type { UserData } from "./UserData";
+export type { UsersData } from "./UsersData";
