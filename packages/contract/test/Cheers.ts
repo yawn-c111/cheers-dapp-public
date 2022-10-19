@@ -1,13 +1,34 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
+import { Cheers, DaoPoolFactory, UserPoolFactory } from '../types'
 
 describe('Cheers', function () {
+
+  let cheers: Cheers;
+  let daoPoolFactory: DaoPoolFactory;
+  let userPoolFactory: UserPoolFactory;
+
   async function fixture() {
     const [deployer, user1] = await ethers.getSigners();
 
     const cheersFactory = await ethers.getContractFactory('Cheers');
-    const cheers = await cheersFactory.deploy();
+    cheers = await cheersFactory.deploy();
+    await cheers.deployed();
+
+    const daoPoolFactoryFactory = await ethers.getContractFactory('DaoPoolFactory');
+    daoPoolFactory = await daoPoolFactoryFactory.deploy();
+    await daoPoolFactory.deployed();
+
+    const UserPoolFactoryFactory = await ethers.getContractFactory('UserPoolFactory');
+    userPoolFactory = await UserPoolFactoryFactory.deploy();
+    await userPoolFactory.deployed();
+
+    let setDaoPoolFactory = await cheers.setDaoPoolFactory(daoPoolFactory.address);
+    await setDaoPoolFactory.wait();
+
+    let setUserPoolFactory = await cheers.setUserPoolFactory(userPoolFactory.address);
+    await setUserPoolFactory.wait();
 
     return { cheers, deployer, user1 };
   }

@@ -35,4 +35,12 @@ contract Cheers is ICheers {
   ) public {
     userPoolFactory.newUserPoolFactory(_userName, _userProfile, _userIcon);
   }
+
+  function setDaoPoolFactory(address daoPoolFactoryAddress) public {
+    daoPoolFactory = IDaoPoolFactory(daoPoolFactoryAddress);
+  }
+
+  function setUserPoolFactory(address userPoolFactoryAddress) public {
+    userPoolFactory = IUserPoolFactory(userPoolFactoryAddress);
+  }
 }
