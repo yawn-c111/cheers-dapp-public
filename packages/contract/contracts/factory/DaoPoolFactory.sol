@@ -33,4 +33,8 @@ contract DaoPoolFactory {
 
     return poolListData.getMyPoolAddress(msg.sender);
   }
+
+  function setPoolListData(address poolListDataAddress) public {
+    poolListData = IPoolListData(poolListDataAddress);
+  }
 }
