@@ -27,6 +27,7 @@ export interface DaoPoolFactoryInterface extends utils.Interface {
     "daosData()": FunctionFragment;
     "newDaoPoolFactory(string,string,string)": FunctionFragment;
     "poolListData()": FunctionFragment;
+    "setDaosData(address)": FunctionFragment;
     "setPoolListData(address)": FunctionFragment;
   };
 
@@ -35,6 +36,7 @@ export interface DaoPoolFactoryInterface extends utils.Interface {
       | "daosData"
       | "newDaoPoolFactory"
       | "poolListData"
+      | "setDaosData"
       | "setPoolListData"
   ): FunctionFragment;
 
@@ -52,6 +54,10 @@ export interface DaoPoolFactoryInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "setDaosData",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "setPoolListData",
     values: [PromiseOrValue<string>]
   ): string;
@@ -63,6 +69,10 @@ export interface DaoPoolFactoryInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "poolListData",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setDaosData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -111,6 +121,11 @@ export interface DaoPoolFactory extends BaseContract {
 
     poolListData(overrides?: CallOverrides): Promise<[string]>;
 
+    setDaosData(
+      daosDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     setPoolListData(
       poolListDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -128,6 +143,11 @@ export interface DaoPoolFactory extends BaseContract {
 
   poolListData(overrides?: CallOverrides): Promise<string>;
 
+  setDaosData(
+    daosDataAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   setPoolListData(
     poolListDataAddress: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -144,6 +164,11 @@ export interface DaoPoolFactory extends BaseContract {
     ): Promise<string>;
 
     poolListData(overrides?: CallOverrides): Promise<string>;
+
+    setDaosData(
+      daosDataAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     setPoolListData(
       poolListDataAddress: PromiseOrValue<string>,
@@ -165,6 +190,11 @@ export interface DaoPoolFactory extends BaseContract {
 
     poolListData(overrides?: CallOverrides): Promise<BigNumber>;
 
+    setDaosData(
+      daosDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     setPoolListData(
       poolListDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -182,6 +212,11 @@ export interface DaoPoolFactory extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     poolListData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setDaosData(
+      daosDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     setPoolListData(
       poolListDataAddress: PromiseOrValue<string>,

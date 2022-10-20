@@ -37,4 +37,8 @@ contract DaoPoolFactory {
   function setPoolListData(address poolListDataAddress) public {
     poolListData = IPoolListData(poolListDataAddress);
   }
+
+  function setDaosData(address daosDataAddress) public {
+    daosData = IDaosData(daosDataAddress);
+  }
 }
