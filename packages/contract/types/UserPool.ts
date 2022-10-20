@@ -52,6 +52,7 @@ export interface UserPoolInterface extends utils.Interface {
     "getUserPoolAddress()": FunctionFragment;
     "getUserProfile()": FunctionFragment;
     "newProjectFactory(address,string,string,string)": FunctionFragment;
+    "projectsData()": FunctionFragment;
     "removeCheerProject(address)": FunctionFragment;
     "userAddress()": FunctionFragment;
     "userIcon()": FunctionFragment;
@@ -73,6 +74,7 @@ export interface UserPoolInterface extends utils.Interface {
       | "getUserPoolAddress"
       | "getUserProfile"
       | "newProjectFactory"
+      | "projectsData"
       | "removeCheerProject"
       | "userAddress"
       | "userIcon"
@@ -128,6 +130,10 @@ export interface UserPoolInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
+    functionFragment: "projectsData",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "removeCheerProject",
     values: [PromiseOrValue<string>]
   ): string;
@@ -179,6 +185,10 @@ export interface UserPoolInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "newProjectFactory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectsData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -266,6 +276,8 @@ export interface UserPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    projectsData(overrides?: CallOverrides): Promise<[string]>;
+
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -320,6 +332,8 @@ export interface UserPool extends BaseContract {
     _projectReword: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
+
+  projectsData(overrides?: CallOverrides): Promise<string>;
 
   removeCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
@@ -376,6 +390,8 @@ export interface UserPool extends BaseContract {
       overrides?: CallOverrides
     ): Promise<string>;
 
+    projectsData(overrides?: CallOverrides): Promise<string>;
+
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -431,6 +447,8 @@ export interface UserPool extends BaseContract {
       _projectReword: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
+
+    projectsData(overrides?: CallOverrides): Promise<BigNumber>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
@@ -489,6 +507,8 @@ export interface UserPool extends BaseContract {
       _projectReword: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
+
+    projectsData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     removeCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
