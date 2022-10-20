@@ -17,20 +17,8 @@ describe('DaosData', function () {
     return { daosData, deployer, user1, dao1, dao2 };
   }
 
-  describe('Run test', function () {
-    it('Should run', async () => {
-    });
-  }); 
-
   describe('Deploy test', function () {
     it('Should deploy', async () => {
-      const [deployer, user1, dao1, dao2] = await ethers.getSigners();
-  
-      const daosDataFactory = await ethers.getContractFactory('DaosData');
-      const daosData = await daosDataFactory.deploy();
-    });
-
-    it('Should load fixture', async () => {
       const { daosData, deployer, user1, dao1, dao2 } = await loadFixture(fixture);
     });
   });
@@ -58,7 +46,7 @@ describe('DaosData', function () {
       await addDaos.wait();
 
       getAllDaoList = await daosData.connect(user1.address).getAllDaoList();
-      
+
       expect(getAllDaoList.length).to.equal(1);
 
       expect(getAllDaoList[0][0]).to.equal(dao1.address);

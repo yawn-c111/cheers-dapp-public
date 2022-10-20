@@ -17,20 +17,8 @@ describe('PoolListData', function () {
     return { poolListData, deployer, user1, pool1, pool2 };
   }
 
-  describe('Run test', function () {
-    it('Should run', async () => {
-    });
-  }); 
-
   describe('Deploy test', function () {
     it('Should deploy', async () => {
-      const [deployer, user1, pool1, pool2] = await ethers.getSigners();
-  
-      const poolListDataFactory = await ethers.getContractFactory('PoolListData');
-      const poolListData = await poolListDataFactory.deploy();
-    });
-
-    it('Should load fixture', async () => {
       const { poolListData, deployer, user1, pool1, pool2 } = await loadFixture(fixture);
     });
   });
