@@ -24,11 +24,9 @@ describe('Cheers', function () {
     userPoolFactory = await UserPoolFactoryFactory.deploy();
     await userPoolFactory.deployed();
 
-    let setDaoPoolFactory = await cheers.setDaoPoolFactory(daoPoolFactory.address);
-    await setDaoPoolFactory.wait();
+    await (await cheers.setDaoPoolFactory(daoPoolFactory.address)).wait();
 
-    let setUserPoolFactory = await cheers.setUserPoolFactory(userPoolFactory.address);
-    await setUserPoolFactory.wait();
+    await (await cheers.setUserPoolFactory(userPoolFactory.address)).wait();
 
     return { cheers, deployer, user1 };
   }
@@ -40,9 +38,9 @@ describe('Cheers', function () {
   });
 
   // describe('newDaoPoolFactory test', function () {
-  //   it('Should newDaoPoolFactory', async () => {
-  //     const { cheers, deployer, user1 } = await loadFixture(fixture);
-  //     let newDaoPoolFactory = await cheers.newDaoPoolFactory("DAO1_Name", "DAO1_Profile", "DAO1_Icon");
+  //   it("Should create a new dao's pool", async () => {
+  //     const { cheers, user1 } = await loadFixture(fixture);
+  //     let newDaoPoolFactory = await cheers.connect(user1).newDaoPoolFactory("DAO1_Name", "DAO1_Profile", "DAO1_Icon");
   //     await newDaoPoolFactory.wait();
   //   });
   // });
