@@ -21,7 +21,7 @@ import type {
   TypedListener,
   OnEvent,
   PromiseOrValue,
-} from "../../common";
+} from "../common";
 
 export declare namespace SharedStruct {
   export type UserStruct = {
@@ -39,7 +39,7 @@ export declare namespace SharedStruct {
   };
 }
 
-export interface UserDataInterface extends utils.Interface {
+export interface UsersDataInterface extends utils.Interface {
   functions: {
     "addUsers(address,string,string,string)": FunctionFragment;
     "getAlluserList()": FunctionFragment;
@@ -78,12 +78,12 @@ export interface UserDataInterface extends utils.Interface {
   events: {};
 }
 
-export interface UserData extends BaseContract {
+export interface UsersData extends BaseContract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
 
-  interface: UserDataInterface;
+  interface: UsersDataInterface;
 
   queryFilter<TEvent extends TypedEvent>(
     event: TypedEventFilter<TEvent>,

@@ -27,6 +27,8 @@ export interface CheersInterface extends utils.Interface {
     "daoPoolFactory()": FunctionFragment;
     "newDaoPoolFactory(string,string,string)": FunctionFragment;
     "newUserPoolFactory(string,string,string)": FunctionFragment;
+    "setDaoPoolFactory(address)": FunctionFragment;
+    "setUserPoolFactory(address)": FunctionFragment;
     "userPoolFactory()": FunctionFragment;
   };
 
@@ -35,6 +37,8 @@ export interface CheersInterface extends utils.Interface {
       | "daoPoolFactory"
       | "newDaoPoolFactory"
       | "newUserPoolFactory"
+      | "setDaoPoolFactory"
+      | "setUserPoolFactory"
       | "userPoolFactory"
   ): FunctionFragment;
 
@@ -59,6 +63,14 @@ export interface CheersInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
+    functionFragment: "setDaoPoolFactory",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "setUserPoolFactory",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "userPoolFactory",
     values?: undefined
   ): string;
@@ -73,6 +85,14 @@ export interface CheersInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "newUserPoolFactory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setDaoPoolFactory",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "setUserPoolFactory",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -126,6 +146,16 @@ export interface Cheers extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    setDaoPoolFactory(
+      daoPoolFactoryAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
+    setUserPoolFactory(
+      userPoolFactoryAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     userPoolFactory(overrides?: CallOverrides): Promise<[string]>;
   };
 
@@ -145,6 +175,16 @@ export interface Cheers extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  setDaoPoolFactory(
+    daoPoolFactoryAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  setUserPoolFactory(
+    userPoolFactoryAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   userPoolFactory(overrides?: CallOverrides): Promise<string>;
 
   callStatic: {
@@ -161,6 +201,16 @@ export interface Cheers extends BaseContract {
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setDaoPoolFactory(
+      daoPoolFactoryAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setUserPoolFactory(
+      userPoolFactoryAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -186,6 +236,16 @@ export interface Cheers extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    setDaoPoolFactory(
+      daoPoolFactoryAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
+    setUserPoolFactory(
+      userPoolFactoryAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     userPoolFactory(overrides?: CallOverrides): Promise<BigNumber>;
   };
 
@@ -203,6 +263,16 @@ export interface Cheers extends BaseContract {
       _userName: PromiseOrValue<string>,
       _userProfile: PromiseOrValue<string>,
       _userIcon: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setDaoPoolFactory(
+      daoPoolFactoryAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setUserPoolFactory(
+      userPoolFactoryAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
