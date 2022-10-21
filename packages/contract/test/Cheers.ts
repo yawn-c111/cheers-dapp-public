@@ -47,6 +47,7 @@ describe('Cheers', function () {
     await (await cheers.setUserPoolFactory(userPoolFactory.address)).wait();
     await(await daoPoolFactory.setPoolListData(poolListData.address)).wait();
     await(await daoPoolFactory.setDaosData(daosData.address)).wait();
+    await(await userPoolFactory.setPoolListData(poolListData.address)).wait();
     await(await userPoolFactory.setUsersData(usersData.address)).wait();
 
     return { cheers, deployer, user1 };
