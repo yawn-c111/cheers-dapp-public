@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div className="sticky top-0 h-20 bg-primary z-50">
       <div className="flex justify-between items-center px-12 h-full">
-        <div className='px-4 py-2 bg-gradient-to-r from-cherGreen to-cherBulue'>CHEERS</div>
+        <div className='px-4 py-2 bg-gradient-to-r from-cherGreen to-cherBlue'>CHEERS</div>
         <div>
           <InputSerch />
         </div>

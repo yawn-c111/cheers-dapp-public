@@ -1,6 +1,6 @@
 import React from 'react';
-import { usersData } from '../../data';
-import { UserCard } from '../pages';
+import { usersData } from '../../../data';
+import { UserCard } from '../home';
 
 const UsersInfo = () => {
   return (

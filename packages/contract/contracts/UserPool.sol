@@ -3,11 +3,16 @@ pragma solidity ^0.8.17;
 
 import './interfaces/IUserPool.sol';
 import './interfaces/ICheers.sol';
+import './interfaces/IProjectsData.sol';
 import './interfaces/IERC20.sol';
 import './shared/SharedStruct.sol';
 import './ProjectPool.sol';
 
 contract UserPool is IUserPool {
+  // PROJECT
+  address PROJECTSDATA_CONTRACT_ADDRESS; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
+  IProjectsData public projectsData;
+
   IERC20 public cher;
   ICheers public cheersDapp;
   address cheersDappAddress;
@@ -45,6 +50,7 @@ contract UserPool is IUserPool {
     userIcon = _userIcon;
     cheersDappAddress = _cheersDappAddress;
     cheersDapp = ICheers(cheersDappAddress);
+    projectsData = IProjectsData(PROJECTSDATA_CONTRACT_ADDRESS);
   }
 
   // user情報取得関連↓
@@ -99,8 +105,7 @@ contract UserPool is IUserPool {
       _belongDaoAddress,
       _projectName,
       _projectContents,
-      _projectReword,
-      cheersDappAddress
+      _projectReword
     );
     addChaellnegeProjects(address(this), _projectName, _projectContents, _projectReword);
     return address(projectPool);
@@ -112,12 +117,12 @@ contract UserPool is IUserPool {
     string memory _projectContents,
     string memory _projectReword
   ) private {
-    cheersDapp.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
+    projectsData.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
   }
 
   // このuserのChallenge全プロジェクトを取得
   function getAllChallengeProjects() public view returns (SharedStruct.Project[] memory) {
-    return cheersDapp.getEachProjectList(address(this));
+    return projectsData.getEachProjectList(address(this));
   }
 
   // このuserがCheerしているプロジェクトを追加 ProjectPoolから叩く

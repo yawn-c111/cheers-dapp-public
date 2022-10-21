@@ -3,7 +3,7 @@ export const usersData: UserType[] = [
   {
     walletAddress: '0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
     name: 'junya',
-    profile: '楽観的でとりあえず特攻でいくCheersの零戦',
+    profile: '楽観的でとりあえず特攻でいくCheersの零戦',  
     daos: ['UNCHAIN', 'Cheers'],
     ex: 1111,
     icon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',

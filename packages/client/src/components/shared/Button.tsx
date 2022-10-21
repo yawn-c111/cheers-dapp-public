@@ -7,7 +7,7 @@ type Props = {
 
 const Button = ({ buttonName, fontSize }: Props) => {
   return (
-    <div className="rounded-xl bg-gradient-to-r from-cherGreen to-cherBulue p-[3px] ">
+    <div className="rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px] ">
       <div className='bg-primary rounded-xl '>
         <button className={`px-4 py-2 flex justify-center items-center ${fontSize}`}>
           <svg

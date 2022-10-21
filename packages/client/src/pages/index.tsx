@@ -1,4 +1,4 @@
-import { DaosInfo, UserInfo } from '@/components/pages';
+import { DaosInfo, UsersInfo } from '@/components/pages/home';
 import type { NextPage } from 'next';
 
 
@@ -9,9 +9,9 @@ const Home: NextPage = () => {
       
       <DaosInfo />
       <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT CHEERS</div>
-      <UserInfo />
+      <UsersInfo />
       <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT CHLLENGER</div>
-      <UserInfo />
+      <UsersInfo />
     </div>
   );
 };

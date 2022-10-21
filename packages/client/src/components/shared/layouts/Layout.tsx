@@ -15,7 +15,7 @@ const Layout = ({ children }: Props) => {
         <div>
           <Sidebar />
         </div>
-        <div>
+        <div className='w-full min-h-screen'>
           {children}
           <Footer />
         </div>

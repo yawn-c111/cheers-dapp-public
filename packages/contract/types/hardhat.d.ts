@@ -21,17 +21,61 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.DaoPool__factory>;
     getContractFactory(
-      name: "ICheers",
+      name: "DaosData",
       signerOrOptions?: ethers.Signer | FactoryOptions
-    ): Promise<Contracts.ICheers__factory>;
+    ): Promise<Contracts.DaosData__factory>;
+    getContractFactory(
+      name: "PoolListData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.PoolListData__factory>;
+    getContractFactory(
+      name: "ProjectsData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ProjectsData__factory>;
+    getContractFactory(
+      name: "UsersData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.UsersData__factory>;
+    getContractFactory(
+      name: "DaoPoolFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.DaoPoolFactory__factory>;
+    getContractFactory(
+      name: "UserPoolFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.UserPoolFactory__factory>;
     getContractFactory(
       name: "IDaoPool",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IDaoPool__factory>;
     getContractFactory(
+      name: "IDaoPoolFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IDaoPoolFactory__factory>;
+    getContractFactory(
+      name: "IDaosData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IDaosData__factory>;
+    getContractFactory(
       name: "IERC20",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
+      name: "IPoolListData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IPoolListData__factory>;
+    getContractFactory(
+      name: "IProjectsData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IProjectsData__factory>;
+    getContractFactory(
+      name: "IUserPoolFactory",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IUserPoolFactory__factory>;
+    getContractFactory(
+      name: "IUsersData",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IUsersData__factory>;
     getContractFactory(
       name: "ProjectPool",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -52,20 +96,75 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.DaoPool>;
     getContractAt(
-      name: "ICheers",
+      name: "DaosData",
       address: string,
       signer?: ethers.Signer
-    ): Promise<Contracts.ICheers>;
+    ): Promise<Contracts.DaosData>;
+    getContractAt(
+      name: "PoolListData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.PoolListData>;
+    getContractAt(
+      name: "ProjectsData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ProjectsData>;
+    getContractAt(
+      name: "UsersData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.UsersData>;
+    getContractAt(
+      name: "DaoPoolFactory",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.DaoPoolFactory>;
+    getContractAt(
+      name: "UserPoolFactory",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.UserPoolFactory>;
     getContractAt(
       name: "IDaoPool",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IDaoPool>;
     getContractAt(
+      name: "IDaoPoolFactory",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IDaoPoolFactory>;
+    getContractAt(
+      name: "IDaosData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IDaosData>;
+    getContractAt(
       name: "IERC20",
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.IERC20>;
+    getContractAt(
+      name: "IPoolListData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IPoolListData>;
+    getContractAt(
+      name: "IProjectsData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IProjectsData>;
+    getContractAt(
+      name: "IUserPoolFactory",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IUserPoolFactory>;
+    getContractAt(
+      name: "IUsersData",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IUsersData>;
     getContractAt(
       name: "ProjectPool",
       address: string,

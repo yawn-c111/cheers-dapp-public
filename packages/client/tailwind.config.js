@@ -10,7 +10,7 @@ module.exports = {
       cherYellow: '#f4c530',
       cherPink: '#f39abb',
       cherRed: '#e73245',
-      cherBulue: '#4169e2',
+      cherBlue: '#4169e2',
       cherGreen: '#00a692',
       white: '#ffffff',
     },
