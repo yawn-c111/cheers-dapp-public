@@ -1,5 +1,6 @@
 import { UserType } from '@/types/registration';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 import { Level } from '../../shared';
 
@@ -43,7 +44,9 @@ const UserCard = ({ userData }: Props) => {
         <Level ex={userData.ex} />
       </div>
       {/* to profiel */}
-      <button className="w-full h-12 rounded-md bg-cherGreen">Go to profiel</button>
+      <Link href="/userProfile">
+        <button className="w-full h-12 rounded-md bg-cherGreen">Go to profiel</button>
+      </Link>
     </div>
   );
 };

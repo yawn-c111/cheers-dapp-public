@@ -8,7 +8,7 @@ const ChallengeProjects = () => {
       <div className='text-4xl mb-12'>Challenge Projects</div>
       <div className='flex'>
       {projectsData.map((project,i)=>(
-        <ProjectCard key={i} belongDao={project.belongDao} projectName={project.projectName} projectContent={project.projectContent} reword={project.reword} />
+        <ProjectCard key={i} belongDao={project.belongDao} projectName={project.projectName} projectContent={project.projectContent} reword={project.reword} totalCher={project.totalCher} />
       ))}
       </div>
     </div>

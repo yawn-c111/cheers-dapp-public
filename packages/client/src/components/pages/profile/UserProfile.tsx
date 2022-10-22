@@ -6,7 +6,7 @@ const Profile = () => {
     <div className="flex justify-center items-center w-full">
       <div className="w-[800px] h-[500px] my-12">
         <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
-          <div className="w-full h-full bg-primary rounded-xl grid grid-cols-4 grid-rows-4">
+          <div className="w-full h-full bg-secondary rounded-xl grid grid-cols-4 grid-rows-4">
             <div className="col-span-2 row-span-2 py-8 px-12">
               <div className="w-full h-full bg-cherBlue"></div>
             </div>
