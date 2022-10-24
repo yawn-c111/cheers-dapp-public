@@ -2,7 +2,7 @@ import { UserType } from '@/types/registration';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { Level } from '../../shared';
+import { Level } from '@/components/shared/parts';
 
 type Props = {
   userData: UserType;

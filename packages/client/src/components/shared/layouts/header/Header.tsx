@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import React from 'react';
-import { Button, InputSerch } from '../../../shared';
+import { Button, InputSerch } from '@/components/shared/parts';
 
 const Header = () => {
   return (

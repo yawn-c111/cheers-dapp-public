@@ -1,6 +1,6 @@
 import React from 'react';
-import { usersData } from '../../../data';
-import { UserCard } from '../home';
+import { usersData } from '@/data';
+import { UserCard } from '@/components/shared/card';
 
 const UsersInfo = () => {
   return (

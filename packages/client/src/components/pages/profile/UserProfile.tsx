@@ -1,5 +1,5 @@
-import { Level } from '@/components/shared';
 import React from 'react';
+import { Level } from '@/components/shared/parts';
 
 const Profile = () => {
   return (
