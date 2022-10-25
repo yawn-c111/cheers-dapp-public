@@ -3,13 +3,14 @@ import React from 'react';
 type Props = {
   buttonName: string;
   fontSize: string;
+  onClick?:() => void;
 };
 
-const Button = ({ buttonName, fontSize }: Props) => {
+const Button = ({ buttonName, fontSize,onClick }: Props) => {
   return (
     <div className="rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px] ">
       <div className='bg-primary rounded-xl '>
-        <button className={`px-4 py-2 flex justify-center items-center ${fontSize}`}>
+        <button className={`px-4 py-2 flex justify-center items-center ${fontSize}`} onClick={onClick}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
