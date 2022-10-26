@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const DaosInfo = () => {
-  return (
-    <div>DaosInfo</div>
-  )
-}
+  return <div>DaosInfo</div>;
+};
 
-export default DaosInfo
+export default DaosInfo;

@@ -1,14 +1,14 @@
 export const sideMenus = [
   {
-    icon:"📈",
+    icon: '📈',
     menuName: 'TREND PROJECTS',
   },
   {
-    icon:"📣",
-    menuName:"HOT CHEERS"
+    icon: '📣',
+    menuName: 'HOT CHEERS',
   },
   {
-    icon:"❤️‍🔥",
-    menuName:"HOT CHALLENGERS"
-  }
+    icon: '❤️‍🔥',
+    menuName: 'HOT CHALLENGERS',
+  },
 ];

@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import { DaosInfo, UsersInfo } from '@/components/pages/home';
 
 const AfterLogin = () => {
@@ -10,7 +11,7 @@ const AfterLogin = () => {
       <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT CHLLENGER</div>
       <UsersInfo />
     </div>
-  )
-}
+  );
+};
 
-export default AfterLogin
+export default AfterLogin;

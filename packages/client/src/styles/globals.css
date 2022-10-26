@@ -6,5 +6,7 @@
 @tailwind utilities;
 
 @layer base {
-  html {@apply text-white font-inter;}
+  html {
+    @apply text-white font-inter;
+  }
 }

@@ -1,8 +1,10 @@
-import { UserType } from '@/types/registration';
+import React from 'react';
+
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+
 import { Level } from '@/components/shared/parts';
+import { UserType } from '@/types/registration';
 
 type Props = {
   userData: UserType;
@@ -44,7 +46,7 @@ const UserCard = ({ userData }: Props) => {
         <Level ex={userData.ex} />
       </div>
       {/* to profiel */}
-      <Link href="/userProfile">
+      <Link href={`/userProfile/${userData.walletAddress}`}>
         <button className="w-full h-12 rounded-md bg-cherGreen">Go to profiel</button>
       </Link>
     </div>

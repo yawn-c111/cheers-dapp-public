@@ -1,6 +1,7 @@
+import React from 'react';
+
 import { CheerCard } from '@/components/shared/card';
 import { cheersData } from '@/data';
-import React from 'react';
 
 const CheerProjects = () => {
   return (

@@ -54,44 +54,44 @@ export const projectsData = [
 ];
 
 export const cheersData = [
-  { 
-    challengerName:'katoten',
-    challengerIcon:'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
-    belongDao:'UNCHAIN',
-    projectName:'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
-    comment:'これは学習したい❤️‍🔥',
-    throwCher:1000,
+  {
+    challengerName: 'katoten',
+    challengerIcon: 'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
+    belongDao: 'UNCHAIN',
+    projectName: 'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
+    comment: 'これは学習したい❤️‍🔥',
+    throwCher: 1000,
   },
-  { 
-    challengerName:'junya',
-    challengerIcon:'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',
-    belongDao:'cheers',
-    projectName:'Cheersのアバターを使用できるメタバース空間の開発',
-    comment:'アバター装備で入れる仮想空間に興味があります！全力応援させてください',
-    throwCher:99999999000000,
+  {
+    challengerName: 'junya',
+    challengerIcon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',
+    belongDao: 'cheers',
+    projectName: 'Cheersのアバターを使用できるメタバース空間の開発',
+    comment: 'アバター装備で入れる仮想空間に興味があります！全力応援させてください',
+    throwCher: 99999999000000,
   },
-  { 
-    challengerName:'katoten',
-    challengerIcon:'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
-    belongDao:'UNCHAIN',
-    projectName:'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
-    comment:'これは学習したい❤️‍🔥',
-    throwCher:1000,
+  {
+    challengerName: 'katoten',
+    challengerIcon: 'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
+    belongDao: 'UNCHAIN',
+    projectName: 'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
+    comment: 'これは学習したい❤️‍🔥',
+    throwCher: 1000,
   },
-  { 
-    challengerName:'katoten',
-    challengerIcon:'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
-    belongDao:'UNCHAIN',
-    projectName:'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
-    comment:'これは学習したい❤️‍🔥',
-    throwCher:1000,
+  {
+    challengerName: 'katoten',
+    challengerIcon: 'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
+    belongDao: 'UNCHAIN',
+    projectName: 'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
+    comment: 'これは学習したい❤️‍🔥',
+    throwCher: 1000,
   },
-  { 
-    challengerName:'katoten',
-    challengerIcon:'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
-    belongDao:'UNCHAIN',
-    projectName:'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
-    comment:'これは学習したい❤️‍🔥',
-    throwCher:1000,
+  {
+    challengerName: 'katoten',
+    challengerIcon: 'https://pbs.twimg.com/profile_images/1123789833112096769/V2unG2JE_400x400.png',
+    belongDao: 'UNCHAIN',
+    projectName: 'Solidityの学習証明書を発行するコントラクト開発学習コンテンツ開発',
+    comment: 'これは学習したい❤️‍🔥',
+    throwCher: 1000,
   },
-]
+];

@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+
 import Footer from './footer/Footer';
 import Header from './header/Header';
 import Sidebar from './sidebar/Sidebar';
@@ -15,7 +16,7 @@ const Layout = ({ children }: Props) => {
         <div>
           <Sidebar />
         </div>
-        <div className='w-full min-h-screen'>
+        <div className="w-full min-h-screen">
           {children}
           <Footer />
         </div>

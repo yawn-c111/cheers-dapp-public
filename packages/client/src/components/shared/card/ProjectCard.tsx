@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Link from 'next/link';
 
 type Props = {
@@ -26,7 +27,7 @@ const ProjectCard = ({ belongDao, projectName, projectContent, reword, totalCher
           <div className="flex items-center text-lg">
             <div>💰</div>
             <div className="flex items-end">
-              <div className='translate-y-0.5'>{totalCher.toLocaleString()}</div>
+              <div className="translate-y-0.5">{totalCher.toLocaleString()}</div>
               <div className="ml-1 text-sm">CHER</div>
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { sideMenus } from '@/constants/sideMenus';
 
 const Sidebar = () => {
