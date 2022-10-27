@@ -14,7 +14,7 @@ const ProjectCard = ({ belongDao, projectName, projectContent, reword, totalCher
   return (
     <>
       <Link href="#">
-        <div className="w-80 p-4 mx-4 rounded-lg bg-secondary cursor-pointer">
+        <div className="w-80 p-4 mx-4 my-4 rounded-lg bg-secondary cursor-pointer">
           <div className="flex items-center text-xs mb-2">
             <div className="p-1 bg-cherBlue rounded-lg">{belongDao}</div>
           </div>

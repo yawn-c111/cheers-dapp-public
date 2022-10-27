@@ -3,9 +3,10 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { BeforLogin } from '@/components/pages/home';
+import { MyProfileCard } from '@/components/pages/myProfile';
 import { useWalletContext } from '@/context/state';
 
-const MyProfile = () => {
+const Profile = () => {
   const walletContext = useWalletContext();
   const router = useRouter();
   const id = router.query.id?.toString() || '';
@@ -21,7 +22,7 @@ const MyProfile = () => {
             </>
           ) : (
             <>
-              <div>{id}</div>;
+              <MyProfileCard id={id} />
             </>
           )}
         </>
@@ -30,4 +31,4 @@ const MyProfile = () => {
   );
 };
 
-export default MyProfile;
+export default Profile;

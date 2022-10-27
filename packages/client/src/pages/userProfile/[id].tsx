@@ -1,8 +1,9 @@
-import { ChallengeProjects, CheerProjects, Profile } from '@/components/pages/profile';
-import { PageTitle } from '@/components/shared/parts';
 import React from 'react';
-import { useWalletContext } from '@/context/state';
+
 import { BeforLogin } from '@/components/pages/home';
+import { UserProfileCard } from '@/components/pages/userProfile';
+import { ChallengeProjects, CheerProjects, PageTitle } from '@/components/shared/parts';
+import { useWalletContext } from '@/context/state';
 
 const UserProfile = () => {
   const walletContext = useWalletContext();
@@ -13,7 +14,7 @@ const UserProfile = () => {
       ) : (
         <>
           <PageTitle title="USER PROFILE" />
-          <Profile />
+          <UserProfileCard />
           <ChallengeProjects />
           <CheerProjects />
         </>

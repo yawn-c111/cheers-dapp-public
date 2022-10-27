@@ -2,11 +2,15 @@ import React from 'react';
 
 import Link from 'next/link';
 
-import { Button, InputSerch, LinkButton } from '@/components/shared/parts';
+import { InputSerch } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
+
+import ConnectedWalletButton from './ConnectedWalletButton';
+import ConnectWalletButton from './ConnectWalletButton';
 
 const Header = () => {
   const walletContext = useWalletContext();
+
   return (
     <div className="sticky top-0 h-20 bg-primary z-50">
       <div className="flex justify-between items-center px-12 h-full">
@@ -18,9 +22,9 @@ const Header = () => {
         </div>
         <div>
           {!walletContext?.currentAccount ? (
-            <Button buttonName="CONECT WALLET" fontSize="text-sm" onClick={walletContext?.connectWallet} />
+            <ConnectWalletButton />
           ) : (
-            <LinkButton buttonName="MY PROFILE!" fontSize="text-sm" url={walletContext?.currentAccount} />
+            <ConnectedWalletButton url={walletContext?.currentAccount} />
           )}
         </div>
       </div>

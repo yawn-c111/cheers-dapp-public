@@ -1,14 +1,11 @@
-import { AfterLogin } from '@/components/pages/home';
+import { AfterLogin, BeforLogin } from '@/components/pages/home';
 import { useWalletContext } from '@/context/state';
 
 import type { NextPage } from 'next';
 
 const Home: NextPage = () => {
-  return (
-    <>
-      <AfterLogin />
-    </>
-  );
+  const walletContext = useWalletContext();
+  return <>{!walletContext?.currentAccount ? <BeforLogin /> : <AfterLogin />}</>;
 };
 
 export default Home;
