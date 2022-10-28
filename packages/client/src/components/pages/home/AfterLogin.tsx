@@ -8,7 +8,7 @@ const AfterLogin = () => {
       <DaosInfo />
       <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT CHEERS</div>
       <UsersInfo />
-      <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT CHLLENGER</div>
+      <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT CHALLENGER</div>
       <UsersInfo />
     </div>
   );

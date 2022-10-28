@@ -1,4 +1,4 @@
-export { default as InputSerch } from './InputSerch';
+export { default as InputSearch } from './InputSearch';
 export { default as Level } from './Level';
 export { default as PageTitle } from './PageTitle';
 export { default as Button } from './Button';

@@ -9,7 +9,7 @@ const Sidebar = () => {
         <ul>
           {sideMenus.map((menu, i) => (
             <li key={i} className="group w-44 h-10 mb-12">
-              <a href="#" className="flex items-center w-full h-full text-sm group-hover:text-cherBulue">
+              <a href="#" className="flex items-center w-full h-full text-sm group-hover:text-cherBlue">
                 <p>
                   {menu.icon}
                   {menu.menuName}

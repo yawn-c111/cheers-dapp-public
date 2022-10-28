@@ -45,9 +45,9 @@ const UserCard = ({ userData }: Props) => {
         </div>
         <Level ex={userData.ex} />
       </div>
-      {/* to profiel */}
+      {/* to profile */}
       <Link href={`/userProfile/${userData.walletAddress}`}>
-        <button className="w-full h-12 rounded-md bg-cherGreen">Go to profiel</button>
+        <button className="w-full h-12 rounded-md bg-cherGreen">Go to profile</button>
       </Link>
     </div>
   );

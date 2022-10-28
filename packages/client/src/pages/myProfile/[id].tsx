@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRouter } from 'next/router';
 
-import { BeforLogin } from '@/components/pages/home';
+import { BeforeLogin } from '@/components/pages/home';
 import { MyProfileCard } from '@/components/pages/myProfile';
 import { useWalletContext } from '@/context/state';
 
@@ -13,12 +13,12 @@ const Profile = () => {
   return (
     <>
       {!walletContext?.currentAccount ? (
-        <BeforLogin />
+        <BeforeLogin />
       ) : (
         <>
           {id != walletContext?.currentAccount ? (
             <>
-              <BeforLogin />
+              <BeforeLogin />
             </>
           ) : (
             <>
