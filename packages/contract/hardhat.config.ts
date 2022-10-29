@@ -14,7 +14,7 @@ const config: HardhatUserConfig = {
     //   },
   },
   typechain: {
-    outDir: '../client/src/libs/hardhat/types' && './types',
+    outDir: './types',
     target: 'ethers-v5',
     alwaysGenerateOverloads: false,
     externalArtifacts: ['externalArtifacts/*.json'],
