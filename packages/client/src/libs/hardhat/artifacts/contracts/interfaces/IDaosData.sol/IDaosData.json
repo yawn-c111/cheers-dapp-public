@@ -39,7 +39,7 @@
           "components": [
             {
               "internalType": "address",
-              "name": "daoAddress",
+              "name": "daoAddres",
               "type": "address"
             },
             {
