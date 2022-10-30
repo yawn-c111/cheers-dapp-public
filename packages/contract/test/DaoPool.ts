@@ -10,11 +10,14 @@ describe('DaoPool', function () {
   let CHER: CHERToken;
 
   async function fixture() {
-    const [deployer, dao1] = await ethers.getSigners();
+    const [deployer, CHERDeployer, dao1] = await ethers.getSigners();
 
     const CHERFactory = await ethers.getContractFactory('CHERToken');
-    CHER = await CHERFactory.deploy(100);
+    CHER = await CHERFactory.connect(CHERDeployer).deploy(100);
     await CHER.deployed();
+
+    const transfer = await CHER.transfer(dao1.address, 50);
+    await transfer.wait();
 
     const cheersFactory = await ethers.getContractFactory('Cheers');
     cheers = await cheersFactory.deploy();
@@ -78,6 +81,24 @@ describe('DaoPool', function () {
 
       const getDaoIcon = await daoPool.getDaoIcon();
       expect(getDaoIcon).to.equal("DAO1_Icon");
+    });
+  });
+
+  describe('balance of Dao1 test', function () {
+    it("Should charge CHER to dao's pool", async () => {
+      const { CHER, dao1 } = await loadFixture(fixture);
+
+      const ownerOf = await CHER.balanceOf(dao1.address);
+      expect(ownerOf).to.equal(50);
+    });
+  });
+
+  describe('cher address test', function () {
+    it("Should cher address be CHER's address", async () => {
+      const { daoPool } = await loadFixture(fixture);
+
+      const cherAddress = await daoPool.cher();
+      expect(cherAddress).to.equal(CHER.address);
     });
   });
 });
