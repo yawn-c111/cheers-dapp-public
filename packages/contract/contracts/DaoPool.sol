@@ -144,4 +144,8 @@ contract DaoPool is IDaoPool {
     isCheer[_cheerProjectPoolAddress] = false;
     return isCheer[_cheerProjectPoolAddress];
   }
+
+  function setCHER(address CHERAddress) public {
+    cher = IERC20(CHERAddress);
+  }
 }

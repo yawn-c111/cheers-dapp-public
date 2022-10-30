@@ -1,15 +1,20 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { DaoPool, Cheers } from '../types'
+import { DaoPool, Cheers, CHERToken } from '../types'
 
 describe('DaoPool', function () {
 
   let daoPool: DaoPool;
   let cheers: Cheers;
+  let CHER: CHERToken;
 
   async function fixture() {
     const [deployer, dao1] = await ethers.getSigners();
+
+    const CHERFactory = await ethers.getContractFactory('CHERToken');
+    CHER = await CHERFactory.deploy(100);
+    await CHER.deployed();
 
     const cheersFactory = await ethers.getContractFactory('Cheers');
     cheers = await cheersFactory.deploy();
@@ -19,12 +24,15 @@ describe('DaoPool', function () {
     daoPool = await daoPoolFactory.deploy(dao1.address, "DAO1_Name", "DAO1_Profile", "DAO1_Icon", cheers.address);
     await daoPool.deployed();
 
-    return { daoPool, cheers, deployer, dao1 };
+    const setCHER = await daoPool.setCHER(CHER.address);
+    await setCHER.wait();
+
+    return { CHER, daoPool, cheers, deployer, dao1 };
   }
 
   describe('Deploy test', function () {
     it('Should deploy', async () => {
-      const { daoPool, cheers, deployer, dao1 } = await loadFixture(fixture);
+      const { CHER, daoPool, cheers, deployer, dao1 } = await loadFixture(fixture);
     });
   });
 
@@ -39,7 +47,7 @@ describe('DaoPool', function () {
 
   describe('getDaoAddress test', function () {
     it("Should get dao's address", async () => {
-      const { daoPool, dao1 } = await loadFixture(fixture);
+      const { CHER, daoPool, dao1 } = await loadFixture(fixture);
 
       const getDaoAddress = await daoPool.getDaoAddress();
       expect(getDaoAddress).to.equal(dao1.address);
