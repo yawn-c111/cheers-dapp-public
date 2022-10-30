@@ -99,4 +99,8 @@ contract ProjectPool is IProjectPool {
   function setCHER(address CHERAddress) public {
     cher = IERC20(CHERAddress);
   }
+
+  function setPoolListData(address poolListDataAddress) public {
+    poolListData = IPoolListData(poolListDataAddress);
+  }
 }

@@ -1,11 +1,12 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { ProjectPool, Cheers, CHERToken } from '../types'
+import { ProjectPool, PoolListData, CHERToken } from '../types'
 
 describe('ProjectPool', function () {
 
   let projectPool: ProjectPool;
+  let poolListData: PoolListData;
 //   let cheers: Cheers;
   let CHER: CHERToken;
 
@@ -19,6 +20,10 @@ describe('ProjectPool', function () {
     const transfer = await CHER.transfer(user1.address, 50);
     await transfer.wait();
 
+    const poolListDataFactory = await ethers.getContractFactory('PoolListData');
+    poolListData = await poolListDataFactory.deploy();
+    await poolListData.deployed();
+
     // const cheersFactory = await ethers.getContractFactory('Cheers');
     // cheers = await cheersFactory.deploy();
     // await cheers.deployed();
@@ -30,7 +35,10 @@ describe('ProjectPool', function () {
     const setCHER = await projectPool.setCHER(CHER.address);
     await setCHER.wait();
 
-    return { CHER, projectPool, deployer, user1, dao1 };
+    const setPoolListData = await projectPool.setPoolListData(poolListData.address);
+    await setPoolListData.wait();
+
+    return { CHER, projectPool, poolListData, deployer, user1, dao1 };
   }
 
   describe('Deploy test', function () {
@@ -45,6 +53,15 @@ describe('ProjectPool', function () {
 
       const cherAddress = await projectPool.cher();
       expect(cherAddress).to.equal(CHER.address);
+    });
+  });
+
+  describe('poolListData address test', function () {
+    it("Should cher address be CHER's address", async () => {
+      const { projectPool } = await loadFixture(fixture);
+
+      const poolListDataAddress = await projectPool.poolListData();
+      expect(poolListDataAddress).to.equal(poolListData.address);
     });
   });
 });
