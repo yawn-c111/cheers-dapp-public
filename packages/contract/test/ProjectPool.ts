@@ -64,4 +64,22 @@ describe('ProjectPool', function () {
       expect(poolListDataAddress).to.equal(poolListData.address);
     });
   });
+
+  describe('getAllCheers test', function () {
+    it("Should get all cheers", async () => {
+      const { projectPool } = await loadFixture(fixture);
+
+      const getAllCheers = await projectPool.getAllCheers();
+      expect(getAllCheers).to.deep.equal([]);
+    });
+  });
+
+  describe('getTotalCher test', function () {
+    it("Should get all cheers", async () => {
+      const { projectPool } = await loadFixture(fixture);
+
+      const getTotalCher = await projectPool.getTotalCher();
+      expect(getTotalCher).to.equal(0);
+    });
+  });
 });
