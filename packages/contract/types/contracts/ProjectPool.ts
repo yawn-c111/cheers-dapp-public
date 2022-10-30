@@ -50,6 +50,7 @@ export interface ProjectPoolInterface extends utils.Interface {
     "projectContents()": FunctionFragment;
     "projectName()": FunctionFragment;
     "projectReword()": FunctionFragment;
+    "setCHER(address)": FunctionFragment;
   };
 
   getFunction(
@@ -63,6 +64,7 @@ export interface ProjectPoolInterface extends utils.Interface {
       | "projectContents"
       | "projectName"
       | "projectReword"
+      | "setCHER"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -98,6 +100,10 @@ export interface ProjectPoolInterface extends utils.Interface {
     functionFragment: "projectReword",
     values?: undefined
   ): string;
+  encodeFunctionData(
+    functionFragment: "setCHER",
+    values: [PromiseOrValue<string>]
+  ): string;
 
   decodeFunctionResult(functionFragment: "cheersDapp", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
@@ -126,6 +132,7 @@ export interface ProjectPoolInterface extends utils.Interface {
     functionFragment: "projectReword",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
 
   events: {};
 }
@@ -180,6 +187,11 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<[string]>;
 
     projectReword(overrides?: CallOverrides): Promise<[string]>;
+
+    setCHER(
+      CHERAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
   };
 
   cheersDapp(overrides?: CallOverrides): Promise<string>;
@@ -206,6 +218,11 @@ export interface ProjectPool extends BaseContract {
 
   projectReword(overrides?: CallOverrides): Promise<string>;
 
+  setCHER(
+    CHERAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   callStatic: {
     cheersDapp(overrides?: CallOverrides): Promise<string>;
 
@@ -230,6 +247,11 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<string>;
 
     projectReword(overrides?: CallOverrides): Promise<string>;
+
+    setCHER(
+      CHERAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
   };
 
   filters: {};
@@ -256,6 +278,11 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<BigNumber>;
 
     projectReword(overrides?: CallOverrides): Promise<BigNumber>;
+
+    setCHER(
+      CHERAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
   };
 
   populateTransaction: {
@@ -280,5 +307,10 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     projectReword(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    setCHER(
+      CHERAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
   };
 }

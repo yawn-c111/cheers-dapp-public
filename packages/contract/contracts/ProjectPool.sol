@@ -95,4 +95,8 @@ contract ProjectPool is IProjectPool {
   function getTotalCher() public view returns (uint256) {
     return cher.balanceOf(address(this));
   }
+
+  function setCHER(address CHERAddress) public {
+    cher = IERC20(CHERAddress);
+  }
 }
