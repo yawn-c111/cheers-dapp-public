@@ -106,7 +106,7 @@ contract UserPool is IUserPool {
       _projectContents,
       _projectReword
     );
-    addChallengeProjects(address(projectPool), address(this), _projectName, _projectContents, _projectReword);
+    addChallengeProjects(address(projectPool), _belongDaoAddress, _projectName, _projectContents, _projectReword);
     return address(projectPool);
   }
 

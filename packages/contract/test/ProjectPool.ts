@@ -1,7 +1,7 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { ProjectPool, PoolListData, DaoPool, CHERToken } from '../types'
+import { ProjectPool, PoolListData, DaoPool, CHERToken, ProjectPool__factory } from '../types'
 
 describe('ProjectPool', function () {
 
@@ -20,16 +20,16 @@ describe('ProjectPool', function () {
     await CHER.deployed();
 
     let transfer;
-    transfer = await CHER.transfer(user1.address, 200);
+    // transfer = await CHER.transfer(user1.address, 100);
+    // await transfer.wait();
+
+    // transfer = await CHER.transfer(dao1.address, 100);
+    // await transfer.wait();
+
+    transfer = await CHER.transfer(dao2.address, 100);
     await transfer.wait();
 
-    transfer = await CHER.transfer(dao1.address, 200);
-    await transfer.wait();
-
-    transfer = await CHER.transfer(dao2.address, 200);
-    await transfer.wait();
-
-    transfer = await CHER.transfer(dao3.address, 200);
+    transfer = await CHER.transfer(dao3.address, 100);
     await transfer.wait();
 
     const poolListDataFactory = await ethers.getContractFactory('PoolListData');
@@ -114,65 +114,79 @@ describe('ProjectPool', function () {
       const { projectPool, daoPool2, poolListData, user1, dao1, dao2, dao3 } = await loadFixture(fixture);
 
       let transfer;
-      transfer = await CHER.connect(dao2).transfer(daoPool2.address, 200);
-      await transfer.wait();
-      transfer = await CHER.connect(dao3).transfer(daoPool3.address, 200);
+      transfer = await CHER.connect(dao2).transfer(daoPool2.address, 100);
       await transfer.wait();
 
       let approve;
-      approve = await daoPool2.connect(dao2).approveCherToProjectPool(projectPool.address, 200);
-      await approve.wait();
-      approve = await daoPool3.connect(dao3).approveCherToProjectPool(projectPool.address, 200);
+      approve = await daoPool2.connect(dao2).approveCherToProjectPool(projectPool.address, 100);
       await approve.wait();
 
       let allowance;
       allowance = await CHER.allowance(daoPool2.address, projectPool.address);
-      expect(allowance).to.equal(200);
-      allowance = await CHER.allowance(daoPool3.address, projectPool.address);
-      expect(allowance).to.equal(200);
+      expect(allowance).to.equal(100);
 
       let addMyPoolAddress;
       addMyPoolAddress = await poolListData.addMyPoolAddress(dao2.address, daoPool2.address);
       await addMyPoolAddress.wait();
       expect(await poolListData.getMyPoolAddress(dao2.address)).to.equal(daoPool2.address);
-      addMyPoolAddress = await poolListData.addMyPoolAddress(dao3.address, daoPool3.address);
-      await addMyPoolAddress.wait();
-      expect(await poolListData.getMyPoolAddress(dao3.address)).to.equal(daoPool3.address);
 
       let mintCheer;
       mintCheer = await projectPool.connect(dao2).mintCheer(100, "ガンバッテ！");
-      await mintCheer.wait();
-      mintCheer = await projectPool.connect(dao3).mintCheer(100, "ファイト！");
       await mintCheer.wait();
 
       let balanceOf;
       balanceOf = await CHER.balanceOf(projectPool.address);
       expect(balanceOf).to.equal(0);
 
-      const getAllCheers = await projectPool.getAllCheers();
+      let getAllCheers;
+      getAllCheers = await projectPool.getAllCheers();
 
-      expect(getAllCheers.length).to.equal(2);
+      expect(getAllCheers.length).to.equal(1);
 
       expect(getAllCheers[0].cheerPoolAddress).to.equal(daoPool2.address);
       expect(getAllCheers[0].message).to.equal("ガンバッテ！");
       expect(getAllCheers[0].cher).to.equal(100);
 
+      let totalCher;
+      totalCher = await projectPool.totalCher();
+      expect(totalCher).to.equal(100);
+
+      balanceOf = await CHER.balanceOf(daoPool2.address);
+      expect(balanceOf).to.equal(70);
+      balanceOf = await CHER.balanceOf(user1.address);
+      expect(balanceOf).to.equal(25);
+      balanceOf = await CHER.balanceOf(dao1.address);
+      expect(balanceOf).to.equal(5);
+
+      transfer = await CHER.connect(dao3).transfer(daoPool3.address, 100);
+      await transfer.wait();
+
+      approve = await daoPool3.connect(dao3).approveCherToProjectPool(projectPool.address, 100);
+      await approve.wait();
+
+      allowance = await CHER.allowance(daoPool3.address, projectPool.address);
+      expect(allowance).to.equal(100);
+
+      addMyPoolAddress = await poolListData.addMyPoolAddress(dao3.address, daoPool3.address);
+      await addMyPoolAddress.wait();
+      expect(await poolListData.getMyPoolAddress(dao3.address)).to.equal(daoPool3.address);
+
+      mintCheer = await projectPool.connect(dao3).mintCheer(100, "ファイト！");
+      await mintCheer.wait();
+
+      totalCher = await projectPool.totalCher();
+      expect(totalCher).to.equal(200);
+
+      balanceOf = await CHER.balanceOf(projectPool.address);
+      expect(balanceOf).to.equal(0);
+
+      getAllCheers = await projectPool.getAllCheers();
+
+      expect(getAllCheers.length).to.equal(2);
+
       expect(getAllCheers[1].cheerPoolAddress).to.equal(daoPool3.address);
       expect(getAllCheers[1].message).to.equal("ファイト！");
       expect(getAllCheers[1].cher).to.equal(100);
-
-      balanceOf = await CHER.balanceOf(daoPool2.address);
-      console.log(balanceOf);
-      balanceOf = await CHER.balanceOf(daoPool3.address);
-      console.log(balanceOf);
-      balanceOf = await CHER.balanceOf(user1.address);
-      console.log(balanceOf);
-      balanceOf = await CHER.balanceOf(dao1.address);
-      console.log(balanceOf);
-
-      // let getTotalCher;
-      // getTotalCher = await projectPool.getTotalCher();
-      // expect(getTotalCher).to.equal(200);
     });
   });
 });
