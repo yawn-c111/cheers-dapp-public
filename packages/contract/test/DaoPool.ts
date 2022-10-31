@@ -1,12 +1,13 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { DaoPool, Cheers, CHERToken } from '../types'
+import { DaoPool, Cheers, ProjectsData, CHERToken } from '../types'
 
 describe('DaoPool', function () {
 
   let daoPool: DaoPool;
   let cheers: Cheers;
+  let projectsData: ProjectsData;
   let CHER: CHERToken;
 
   async function fixture() {
@@ -23,12 +24,19 @@ describe('DaoPool', function () {
     cheers = await cheersFactory.deploy();
     await cheers.deployed();
 
+    const projectsDataFactory = await ethers.getContractFactory('ProjectsData');
+    projectsData = await projectsDataFactory.deploy();
+    await projectsData.deployed();
+
     const daoPoolFactory = await ethers.getContractFactory('DaoPool');
     daoPool = await daoPoolFactory.deploy(dao1.address, "DAO1_Name", "DAO1_Profile", "DAO1_Icon", cheers.address);
     await daoPool.deployed();
 
     const setCHER = await daoPool.setCHER(CHER.address);
     await setCHER.wait();
+
+    const setProjectsData = await daoPool.setProjectsData(projectsData.address);
+    await setProjectsData.wait();
 
     return { CHER, daoPool, cheers, deployer, dao1 };
   }
@@ -99,6 +107,15 @@ describe('DaoPool', function () {
 
       const cherAddress = await daoPool.cher();
       expect(cherAddress).to.equal(CHER.address);
+    });
+  });
+
+  describe('getAllChallengeProjects test', function () {
+    it("Should get all projects supported by DaoPool", async () => {
+      const { daoPool } = await loadFixture(fixture);
+
+      const getAllChallengeProjects = await daoPool.getAllChallengeProjects();
+      expect(getAllChallengeProjects).to.deep.equal([]);
     });
   });
 });

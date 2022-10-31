@@ -59,6 +59,7 @@ export interface DaoPoolInterface extends utils.Interface {
     "projectsData()": FunctionFragment;
     "removeCheerProject(address)": FunctionFragment;
     "setCHER(address)": FunctionFragment;
+    "setProjectsData(address)": FunctionFragment;
     "withdrawCher(uint256)": FunctionFragment;
   };
 
@@ -82,6 +83,7 @@ export interface DaoPoolInterface extends utils.Interface {
       | "projectsData"
       | "removeCheerProject"
       | "setCHER"
+      | "setProjectsData"
       | "withdrawCher"
   ): FunctionFragment;
 
@@ -153,6 +155,10 @@ export interface DaoPoolInterface extends utils.Interface {
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
+    functionFragment: "setProjectsData",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "withdrawCher",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -199,6 +205,10 @@ export interface DaoPoolInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
+  decodeFunctionResult(
+    functionFragment: "setProjectsData",
+    data: BytesLike
+  ): Result;
   decodeFunctionResult(
     functionFragment: "withdrawCher",
     data: BytesLike
@@ -289,6 +299,11 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    setProjectsData(
+      projectsDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -350,6 +365,11 @@ export interface DaoPool extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
+  setProjectsData(
+    projectsDataAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   withdrawCher(
     _cherAmount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -408,6 +428,11 @@ export interface DaoPool extends BaseContract {
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
+
+    setProjectsData(
+      projectsDataAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -473,6 +498,11 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    setProjectsData(
+      projectsDataAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     withdrawCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -532,6 +562,11 @@ export interface DaoPool extends BaseContract {
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    setProjectsData(
+      projectsDataAddress: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

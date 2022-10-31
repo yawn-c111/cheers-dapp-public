@@ -148,4 +148,9 @@ contract DaoPool is IDaoPool {
   function setCHER(address CHERAddress) public {
     cher = IERC20(CHERAddress);
   }
+
+  function setProjectsData(address projectsDataAddress) public {
+    PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
+    projectsData = IProjectsData(projectsDataAddress);
+  }
 }
