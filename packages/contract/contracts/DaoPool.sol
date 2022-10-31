@@ -28,6 +28,7 @@ contract DaoPool is IDaoPool {
   address[] cheerProjectList;
   // cheerしているかないか
   mapping(address => bool) public isCheer;
+
   modifier onlyOwner() {
     require(owner == msg.sender);
     _;
@@ -82,7 +83,6 @@ contract DaoPool is IDaoPool {
   // DAOウォレットからDAOプールにCHERチャージ
   function chargeCher(uint256 _cherAmount) public onlyOwner {
     require(cher.balanceOf(daoAddress) >= _cherAmount, 'not insufficient');
-    cher.approve(daoAddress, _cherAmount);
     cher.transferFrom(daoAddress, address(this), _cherAmount);
   }
 
@@ -148,8 +148,6 @@ contract DaoPool is IDaoPool {
         }
       }
     }
-
-    // require(isCheer[_cheerProjectPoolAddress], 'OMG');
     return isCheer[_cheerProjectPoolAddress];
   }
 

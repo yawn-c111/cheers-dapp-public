@@ -21,7 +21,7 @@ contract ProjectPool is IProjectPool {
   address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
   SharedStruct.Cheer[] cheers;
-  uint256 totalCher;
+  uint256 public totalCher;
 
   modifier onlyOwner() {
     require(owner == msg.sender);
@@ -55,7 +55,7 @@ contract ProjectPool is IProjectPool {
 
   // このProjectをCheerする
   function mintCheer(uint256 _cher, string memory _cheerMessage) public {
-    require(cher.balanceOf(poolListData.getMyPoolAddress(msg.sender)) > _cher, 'Not enough');
+    require(cher.balanceOf(poolListData.getMyPoolAddress(msg.sender)) >= _cher, 'Not enough');
     cheer(_cher, _cheerMessage);
   }
 
