@@ -16,6 +16,8 @@ export type { IERC20 } from "./@openzeppelin/contracts/token/ERC20/IERC20";
 export { IERC20__factory } from "./factories/@openzeppelin/contracts/token/ERC20/IERC20__factory";
 export type { Cheers } from "./contracts/Cheers";
 export { Cheers__factory } from "./factories/contracts/Cheers__factory";
+export type { CherFaucet } from "./contracts/CherFaucet";
+export { CherFaucet__factory } from "./factories/contracts/CherFaucet__factory";
 export type { DaoPool } from "./contracts/DaoPool";
 export { DaoPool__factory } from "./factories/contracts/DaoPool__factory";
 export type { DaosData } from "./contracts/data/DaosData";
