@@ -175,10 +175,11 @@ describe('DaoPool', function () {
 
       expect(getAllChallengeProjects.length).to.equal(1);
 
-      expect(getAllChallengeProjects[0][0]).to.equal(daoPool.address);
-      expect(getAllChallengeProjects[0][1]).to.equal("Project1_Name");
-      expect(getAllChallengeProjects[0][2]).to.equal("Project1_Contents");
-      expect(getAllChallengeProjects[0][3]).to.equal("Project1_Reword");
+      // expect(getAllChallengeProjects[0][0]).to.equal(newProjectFactory);
+      expect(getAllChallengeProjects[0][1]).to.equal(daoPool.address);
+      expect(getAllChallengeProjects[0][2]).to.equal("Project1_Name");
+      expect(getAllChallengeProjects[0][3]).to.equal("Project1_Contents");
+      expect(getAllChallengeProjects[0][4]).to.equal("Project1_Reword");
     });
   });
 });

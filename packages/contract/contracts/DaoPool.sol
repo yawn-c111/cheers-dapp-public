@@ -105,17 +105,25 @@ contract DaoPool is IDaoPool {
       _projectContents,
       _projectReword
     );
-    addChallengeProjects(address(this), _projectName, _projectContents, _projectReword);
+    addChallengeProjects(address(projectPool), address(this), _projectName, _projectContents, _projectReword);
     return address(projectPool);
   }
 
   function addChallengeProjects(
+    address projectAddress,
     address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
     string memory _projectReword
   ) private {
-    projectsData.addProjects(address(this), _belongDaoAddress, _projectName, _projectContents, _projectReword);
+    projectsData.addProjects(
+      address(this),
+      projectAddress,
+      _belongDaoAddress,
+      _projectName,
+      _projectContents,
+      _projectReword
+    );
   }
 
   // このDAOのChallenge全プロジェクトを取得

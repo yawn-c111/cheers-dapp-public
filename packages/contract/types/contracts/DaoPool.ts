@@ -25,13 +25,15 @@ import type {
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
+    projectAddress: PromiseOrValue<string>;
     belongDaoAddress: PromiseOrValue<string>;
     projectName: PromiseOrValue<string>;
     projectContents: PromiseOrValue<string>;
     projectReword: PromiseOrValue<string>;
   };
 
-  export type ProjectStructOutput = [string, string, string, string] & {
+  export type ProjectStructOutput = [string, string, string, string, string] & {
+    projectAddress: string;
     belongDaoAddress: string;
     projectName: string;
     projectContents: string;

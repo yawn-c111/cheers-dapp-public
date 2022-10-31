@@ -13,16 +13,19 @@ contract ProjectsData is IProjectsData {
   // Project追加...DaoPool or UserPoolから叩く
   function addProjects(
     address _projectOwnerAddress,
+    address _projectPoolAddress,
     address _belongDaoAddress,
     string memory _projectName,
     string memory _projectContents,
     string memory _projectReword
   ) external {
     eachProjectsList[_projectOwnerAddress].push(
-      SharedStruct.Project(_belongDaoAddress, _projectName, _projectContents, _projectReword)
+      SharedStruct.Project(_projectPoolAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
     );
 
-    allProjectsList.push(SharedStruct.Project(_belongDaoAddress, _projectName, _projectContents, _projectReword));
+    allProjectsList.push(
+      SharedStruct.Project(_projectPoolAddress, _belongDaoAddress, _projectName, _projectContents, _projectReword)
+    );
   }
 
   // アドレスごとのProject取得
