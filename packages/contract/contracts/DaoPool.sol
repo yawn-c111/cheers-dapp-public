@@ -89,7 +89,6 @@ contract DaoPool is IDaoPool {
   // DAOプールからDAOウォレットにCHER引出し
   function withdrawCher(uint256 _cherAmount) public onlyOwner {
     require(cher.balanceOf(address(this)) >= _cherAmount, 'not insufficient');
-    cher.approve(address(this), _cherAmount);
     cher.transfer(daoAddress, _cherAmount);
   }
 
