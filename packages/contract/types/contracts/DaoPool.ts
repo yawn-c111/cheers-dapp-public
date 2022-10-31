@@ -44,6 +44,7 @@ export declare namespace SharedStruct {
 export interface DaoPoolInterface extends utils.Interface {
   functions: {
     "addCheerProject(address)": FunctionFragment;
+    "approveCherToProjectPool(address,uint256)": FunctionFragment;
     "chargeCher(uint256)": FunctionFragment;
     "cheersDapp()": FunctionFragment;
     "cher()": FunctionFragment;
@@ -68,6 +69,7 @@ export interface DaoPoolInterface extends utils.Interface {
   getFunction(
     nameOrSignatureOrTopic:
       | "addCheerProject"
+      | "approveCherToProjectPool"
       | "chargeCher"
       | "cheersDapp"
       | "cher"
@@ -92,6 +94,10 @@ export interface DaoPoolInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "addCheerProject",
     values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "approveCherToProjectPool",
+    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
     functionFragment: "chargeCher",
@@ -167,6 +173,10 @@ export interface DaoPoolInterface extends utils.Interface {
 
   decodeFunctionResult(
     functionFragment: "addCheerProject",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "approveCherToProjectPool",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "chargeCher", data: BytesLike): Result;
@@ -251,6 +261,12 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
+    approveCherToProjectPool(
+      _projectPoolAddress: PromiseOrValue<string>,
+      _cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     chargeCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -314,6 +330,12 @@ export interface DaoPool extends BaseContract {
 
   addCheerProject(
     _cheerProjectPoolAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
+  approveCherToProjectPool(
+    _projectPoolAddress: PromiseOrValue<string>,
+    _cherAmount: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -382,6 +404,12 @@ export interface DaoPool extends BaseContract {
       _cheerProjectPoolAddress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<boolean>;
+
+    approveCherToProjectPool(
+      _projectPoolAddress: PromiseOrValue<string>,
+      _cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     chargeCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
@@ -452,6 +480,12 @@ export interface DaoPool extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
+    approveCherToProjectPool(
+      _projectPoolAddress: PromiseOrValue<string>,
+      _cherAmount: PromiseOrValue<BigNumberish>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     chargeCher(
       _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
@@ -514,6 +548,12 @@ export interface DaoPool extends BaseContract {
   populateTransaction: {
     addCheerProject(
       _cheerProjectPoolAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
+
+    approveCherToProjectPool(
+      _projectPoolAddress: PromiseOrValue<string>,
+      _cherAmount: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 

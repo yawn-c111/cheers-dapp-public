@@ -11,7 +11,7 @@ describe('DaoPool', function () {
   let CHER: CHERToken;
 
   async function fixture() {
-    const [deployer, CHERDeployer, dao1, dao2] = await ethers.getSigners();
+    const [deployer, CHERDeployer, dao1, dao2, projectPool1] = await ethers.getSigners();
 
     const CHERFactory = await ethers.getContractFactory('CHERToken');
     CHER = await CHERFactory.connect(CHERDeployer).deploy(200);
@@ -38,7 +38,7 @@ describe('DaoPool', function () {
     const setProjectsData = await daoPool.setProjectsData(projectsData.address);
     await setProjectsData.wait();
 
-    return { CHER, daoPool, cheers, deployer, dao1, dao2 };
+    return { CHER, daoPool, cheers, deployer, dao1, dao2, projectPool1 };
   }
 
   describe('Deploy test', function () {
@@ -180,6 +180,30 @@ describe('DaoPool', function () {
       expect(getAllChallengeProjects[0][2]).to.equal("Project1_Name");
       expect(getAllChallengeProjects[0][3]).to.equal("Project1_Contents");
       expect(getAllChallengeProjects[0][4]).to.equal("Project1_Reword");
+    });
+  });
+
+  describe('approveCherToProjectPool test', function () {
+    it("Should approve CHER transfer by project pool", async () => {
+      const { daoPool, dao1, projectPool1 } = await loadFixture(fixture);
+
+      let transfer;
+      transfer = await CHER.connect(dao1).transfer(daoPool.address, 10);
+
+      let balanceOf;
+      balanceOf = await CHER.balanceOf(daoPool.address);
+      expect(balanceOf).to.equal(10);
+
+      balanceOf = await CHER.balanceOf(projectPool1.address);
+      expect(balanceOf).to.equal(0);
+
+      const approveCherToProjectPool = await daoPool.connect(dao1).approveCherToProjectPool(projectPool1.address, 10);
+      await approveCherToProjectPool.wait();
+
+      transfer = await CHER.connect(projectPool1).transferFrom(daoPool.address, projectPool1.address, 10);
+
+      balanceOf = await CHER.balanceOf(projectPool1.address);
+      expect(balanceOf).to.equal(10);
     });
   });
 });

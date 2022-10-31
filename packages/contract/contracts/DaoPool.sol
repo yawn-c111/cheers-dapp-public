@@ -132,7 +132,7 @@ contract DaoPool is IDaoPool {
   }
 
   // このDAOがCheerしているプロジェクトを追加 ProjectPoolから叩く
-  function addCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+  function addCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(!isCheer[_cheerProjectPoolAddress], 'already cheer');
     for (uint256 i = 0; i < cheerProjectList.length; i++) {
       if (cheerProjectList[i] == _cheerProjectPoolAddress) {
@@ -160,5 +160,10 @@ contract DaoPool is IDaoPool {
   function setProjectsData(address projectsDataAddress) public {
     PROJECTSDATA_CONTRACT_ADDRESS = projectsDataAddress;
     projectsData = IProjectsData(projectsDataAddress);
+  }
+
+  function approveCherToProjectPool(address _projectPoolAddress, uint256 _cherAmount) external onlyOwner {
+    require(cher.balanceOf(address(this)) >= _cherAmount, 'not insufficient');
+    cher.approve(_projectPoolAddress, _cherAmount);
   }
 }

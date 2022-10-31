@@ -134,7 +134,7 @@ contract UserPool is IUserPool {
   }
 
   // このuserがCheerしているプロジェクトを追加 ProjectPoolから叩く
-  function addCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+  function addCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(!isCheer[_cheerProjectPoolAddress], 'already cheer');
     for (uint256 i = 0; i < cheerProjectList.length; i++) {
       if (cheerProjectList[i] == _cheerProjectPoolAddress) {
