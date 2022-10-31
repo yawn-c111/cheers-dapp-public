@@ -148,7 +148,7 @@ contract UserPool is IUserPool {
   }
 
   // Cheerしているプロジェクトを脱退 ProjectPoolから叩く
-  function removeCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+  function removeCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(isCheer[_cheerProjectPoolAddress], 'already not cheer');
     isCheer[_cheerProjectPoolAddress] = false;
     return isCheer[_cheerProjectPoolAddress];

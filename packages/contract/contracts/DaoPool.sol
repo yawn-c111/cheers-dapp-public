@@ -27,7 +27,7 @@ contract DaoPool is IDaoPool {
   // cheerProjectリスト
   address[] cheerProjectList;
   // cheerしているかないか
-  mapping(address => bool) isCheer;
+  mapping(address => bool) public isCheer;
   modifier onlyOwner() {
     require(owner == msg.sender);
     _;
@@ -134,19 +134,27 @@ contract DaoPool is IDaoPool {
   // このDAOがCheerしているプロジェクトを追加 ProjectPoolから叩く
   function addCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(!isCheer[_cheerProjectPoolAddress], 'already cheer');
-    for (uint256 i = 0; i < cheerProjectList.length; i++) {
-      if (cheerProjectList[i] == _cheerProjectPoolAddress) {
-        isCheer[_cheerProjectPoolAddress] = true;
-      } else {
-        cheerProjectList.push(_cheerProjectPoolAddress);
-        isCheer[_cheerProjectPoolAddress] = true;
+
+    if (cheerProjectList.length == 0) {
+      cheerProjectList.push(_cheerProjectPoolAddress);
+      isCheer[_cheerProjectPoolAddress] = true;
+    } else {
+      for (uint256 i = 0; i < cheerProjectList.length; i++) {
+        if (cheerProjectList[i] == _cheerProjectPoolAddress) {
+          isCheer[_cheerProjectPoolAddress] = true;
+        } else {
+          cheerProjectList.push(_cheerProjectPoolAddress);
+          isCheer[_cheerProjectPoolAddress] = true;
+        }
       }
     }
+
+    // require(isCheer[_cheerProjectPoolAddress], 'OMG');
     return isCheer[_cheerProjectPoolAddress];
   }
 
   // Cheerしているプロジェクトを脱退 ProjectPoolから叩く
-  function removeCheerProject(address _cheerProjectPoolAddress) public returns (bool) {
+  function removeCheerProject(address _cheerProjectPoolAddress) external returns (bool) {
     require(isCheer[_cheerProjectPoolAddress], 'already not cheer');
     isCheer[_cheerProjectPoolAddress] = false;
     return isCheer[_cheerProjectPoolAddress];

@@ -183,6 +183,33 @@ describe('DaoPool', function () {
     });
   });
 
+  describe('addCheerProject test', function () {
+    it("Should add a CheerProject by DaoPool", async () => {
+      const { daoPool, projectPool1 } = await loadFixture(fixture);
+
+      const addCheerProject = await daoPool.addCheerProject(projectPool1.address);
+      await addCheerProject.wait();
+
+      const isCheer = await daoPool.isCheer(projectPool1.address);
+      expect(isCheer).to.equal(true);
+    });
+  });
+
+  describe('removeCheerProject test', function () {
+    it("Should remove a CheerProject by DaoPool", async () => {
+      const { daoPool, projectPool1 } = await loadFixture(fixture);
+
+      const addCheerProject = await daoPool.addCheerProject(projectPool1.address);
+      await addCheerProject.wait();
+
+      const removeCheerProject = await daoPool.removeCheerProject(projectPool1.address);
+      await removeCheerProject.wait();
+
+      const isCheer = await daoPool.isCheer(projectPool1.address);
+      expect(isCheer).to.equal(false);
+    });
+  });
+
   describe('approveCherToProjectPool test', function () {
     it("Should approve CHER transfer by project pool", async () => {
       const { daoPool, dao1, projectPool1 } = await loadFixture(fixture);
