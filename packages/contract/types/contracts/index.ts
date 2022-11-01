@@ -10,6 +10,7 @@ export type { interfaces };
 import type * as mock from "./mock";
 export type { mock };
 export type { Cheers } from "./Cheers";
+export type { CherFaucet } from "./CherFaucet";
 export type { DaoPool } from "./DaoPool";
 export type { ProjectPool } from "./ProjectPool";
 export type { UserPool } from "./UserPool";

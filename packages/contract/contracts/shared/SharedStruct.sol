@@ -18,7 +18,7 @@ library SharedStruct {
   }
 
   struct Project {
-    // address projectOwnerAddress;
+    address projectAddress;
     address belongDaoAddress;
     string projectName;
     string projectContents;
