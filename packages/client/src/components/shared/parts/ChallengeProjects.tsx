@@ -9,7 +9,7 @@ const ChallengeProjects = () => {
       <div className="text-4xl mb-12">Challenge Projects</div>
       <div className="flex flex-wrap">
         {projectsData.map((project, i) => (
-          <ProjectCard project={project} />
+          <ProjectCard key={i} project={project} />
         ))}
       </div>
     </div>
