@@ -12,7 +12,9 @@ const CONTRACT_ABI = DaosDataContractABI.abi;
 
 type Props = {};
 
-type ReturnUseDaosDataContract = {};
+type ReturnUseDaosDataContract = {
+  allDaoList: SharedStruct.DaoStruct[] | undefined;
+};
 
 export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
   const [allDaoList, setAllDaoList] = useState<SharedStruct.DaoStruct[]>();
@@ -29,15 +31,15 @@ export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
   const handleGetAllDaoList = useCallback(async () => {
     try {
       if (!daosDataContract) return;
-      const getAllDaoList =await daosDataContract.getAllDaoList();
-      const allDaoListOrganize =(getAllDaoList).map((dao)=>{
-        return{
-          daoAddress:dao.daoAddress,
-          daoName:dao.daoName,
-          daoProfile:dao.daoProfile,
-          daoIcon:dao.daoIcon
-        }
-      })
+      const getAllDaoList = await daosDataContract.getAllDaoList();
+      const allDaoListOrganize = getAllDaoList.map((dao) => {
+        return {
+          daoAddress: dao.daoAddress,
+          daoName: dao.daoName,
+          daoProfile: dao.daoProfile,
+          daoIcon: dao.daoIcon,
+        };
+      });
       setAllDaoList(allDaoListOrganize);
     } catch (error) {
       console.error(error);

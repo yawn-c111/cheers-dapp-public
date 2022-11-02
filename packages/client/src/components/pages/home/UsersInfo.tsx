@@ -1,9 +1,13 @@
 import React from 'react';
 
 import { UserCard } from '@/components/shared/card';
-import { usersData } from '@/data';
+import { UserType } from '@/types/struct';
 
-const UsersInfo = () => {
+type Props = {
+  usersData: UserType[];
+};
+
+const UsersInfo = ({ usersData }: Props) => {
   return (
     <div className="flex justify-start w-full pl-12">
       {usersData.map((userData, i) => (
