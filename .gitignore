@@ -16,7 +16,7 @@ yarn-error.log
 
 # hardhat
 cache
-/packages/client/src/libs/hardhat/artifacts/
+/packages/client/src/libs/hardhat/artifacts/*
 !/packages/client/src/libs/hardhat/artifacts/contracts
 
 # client
