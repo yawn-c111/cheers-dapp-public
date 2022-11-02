@@ -10,9 +10,9 @@ const AfterLogin = () => {
   return (
     <div className="w-full min-h-screen">
       <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT USER</div>
-      {/* {allUserList ? <UsersInfo usersData={allUserList} /> : <Nodata />} */}
+      {allUserList ? <UsersInfo usersData={allUserList} /> : <Nodata />}
       <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT DAO</div>
-      {/* {allUserList ? <DaosInfo daosData={allDaoList} /> : <Nodata />} */}
+      {allUserList ? <DaosInfo daosData={allDaoList} /> : <Nodata />}
     </div>
   );
 };
