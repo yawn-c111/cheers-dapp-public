@@ -5,6 +5,7 @@ import './interfaces/IProjectPool.sol';
 import './interfaces/IERC20.sol';
 import './interfaces/ICheers.sol';
 import './interfaces/IPoolListData.sol';
+import './interfaces/IProjectsData.sol';
 import './shared/SharedStruct.sol';
 
 contract ProjectPool is IProjectPool {
@@ -20,7 +21,6 @@ contract ProjectPool is IProjectPool {
   // Alchemy testnet goerli deploy
   address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
 
-  SharedStruct.Cheer[] cheers;
   uint256 public totalCher;
 
   modifier onlyOwner() {
@@ -31,6 +31,8 @@ contract ProjectPool is IProjectPool {
   // POOl
   address POOLLISTDATA_CONTRACT_ADDRESS; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
+  address PROJECTSDATA_CONTRACT_ADDRESS;
+  IProjectsData public projectsData;
 
   constructor(
     address _ownerPoolAddress,
@@ -40,6 +42,7 @@ contract ProjectPool is IProjectPool {
     string memory _projectReword
   ) {
     poolListData = IPoolListData(POOLLISTDATA_CONTRACT_ADDRESS);
+    projectsData = IProjectsData(PROJECTSDATA_CONTRACT_ADDRESS);
 
     //CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
@@ -62,7 +65,13 @@ contract ProjectPool is IProjectPool {
   // cheerの処理
   function cheer(uint256 _cher, string memory _cheerMessage) private {
     cher.transferFrom(poolListData.getMyPoolAddress(msg.sender), address(this), _cher);
-    cheers.push(SharedStruct.Cheer(poolListData.getMyPoolAddress(msg.sender), block.timestamp, _cheerMessage, _cher));
+    projectsData.addEachProjectCheerList(
+      address(this),
+      poolListData.getMyPoolAddress(msg.sender),
+      block.timestamp,
+      _cheerMessage,
+      _cher
+    );
     distributeCher(_cher);
   }
 
@@ -77,18 +86,16 @@ contract ProjectPool is IProjectPool {
     // daoの分配分
     uint256 daoDistribute = _cher - cheerDistribute - challengerDistribute;
     // cheer全員の分配分を投じたcher割合に応じ分配
-    for (uint256 i = 0; i < cheers.length; i++) {
-      cher.transfer(cheers[i].cheerPoolAddress, (cheerDistribute * cheers[i].cher) / totalCher);
+    for (uint256 i = 0; i < projectsData.getEachProjectCheerList(address(this)).length; i++) {
+      cher.transfer(
+        projectsData.getEachProjectCheerList(address(this))[i].cheerPoolAddress,
+        (cheerDistribute * projectsData.getEachProjectCheerList(address(this))[i].cher) / totalCher
+      );
     }
     // challengerのPoolへ分配
     cher.transfer(ownerPoolAddress, challengerDistribute);
     // 所属するDAOへ分配
     cher.transfer(belongDaoAddress, daoDistribute);
-  }
-
-  // Cheersのデータ参照
-  function getAllCheers() public view returns (SharedStruct.Cheer[] memory) {
-    return cheers;
   }
 
   // このプールのcher総量

@@ -23,33 +23,17 @@ import type {
   PromiseOrValue,
 } from "../common";
 
-export declare namespace SharedStruct {
-  export type CheerStruct = {
-    cheerPoolAddress: PromiseOrValue<string>;
-    timestamp: PromiseOrValue<BigNumberish>;
-    message: PromiseOrValue<string>;
-    cher: PromiseOrValue<BigNumberish>;
-  };
-
-  export type CheerStructOutput = [string, BigNumber, string, BigNumber] & {
-    cheerPoolAddress: string;
-    timestamp: BigNumber;
-    message: string;
-    cher: BigNumber;
-  };
-}
-
 export interface ProjectPoolInterface extends utils.Interface {
   functions: {
     "cheersDapp()": FunctionFragment;
     "cher()": FunctionFragment;
-    "getAllCheers()": FunctionFragment;
     "getTotalCher()": FunctionFragment;
     "mintCheer(uint256,string)": FunctionFragment;
     "poolListData()": FunctionFragment;
     "projectContents()": FunctionFragment;
     "projectName()": FunctionFragment;
     "projectReword()": FunctionFragment;
+    "projectsData()": FunctionFragment;
     "setCHER(address)": FunctionFragment;
     "setPoolListData(address)": FunctionFragment;
     "totalCher()": FunctionFragment;
@@ -59,13 +43,13 @@ export interface ProjectPoolInterface extends utils.Interface {
     nameOrSignatureOrTopic:
       | "cheersDapp"
       | "cher"
-      | "getAllCheers"
       | "getTotalCher"
       | "mintCheer"
       | "poolListData"
       | "projectContents"
       | "projectName"
       | "projectReword"
+      | "projectsData"
       | "setCHER"
       | "setPoolListData"
       | "totalCher"
@@ -76,10 +60,6 @@ export interface ProjectPoolInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(functionFragment: "cher", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "getAllCheers",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "getTotalCher",
     values?: undefined
@@ -105,6 +85,10 @@ export interface ProjectPoolInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "projectsData",
+    values?: undefined
+  ): string;
+  encodeFunctionData(
     functionFragment: "setCHER",
     values: [PromiseOrValue<string>]
   ): string;
@@ -116,10 +100,6 @@ export interface ProjectPoolInterface extends utils.Interface {
 
   decodeFunctionResult(functionFragment: "cheersDapp", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "cher", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "getAllCheers",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "getTotalCher",
     data: BytesLike
@@ -139,6 +119,10 @@ export interface ProjectPoolInterface extends utils.Interface {
   ): Result;
   decodeFunctionResult(
     functionFragment: "projectReword",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "projectsData",
     data: BytesLike
   ): Result;
   decodeFunctionResult(functionFragment: "setCHER", data: BytesLike): Result;
@@ -182,10 +166,6 @@ export interface ProjectPool extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<[string]>;
 
-    getAllCheers(
-      overrides?: CallOverrides
-    ): Promise<[SharedStruct.CheerStructOutput[]]>;
-
     getTotalCher(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     mintCheer(
@@ -201,6 +181,8 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<[string]>;
 
     projectReword(overrides?: CallOverrides): Promise<[string]>;
+
+    projectsData(overrides?: CallOverrides): Promise<[string]>;
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
@@ -219,10 +201,6 @@ export interface ProjectPool extends BaseContract {
 
   cher(overrides?: CallOverrides): Promise<string>;
 
-  getAllCheers(
-    overrides?: CallOverrides
-  ): Promise<SharedStruct.CheerStructOutput[]>;
-
   getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
   mintCheer(
@@ -238,6 +216,8 @@ export interface ProjectPool extends BaseContract {
   projectName(overrides?: CallOverrides): Promise<string>;
 
   projectReword(overrides?: CallOverrides): Promise<string>;
+
+  projectsData(overrides?: CallOverrides): Promise<string>;
 
   setCHER(
     CHERAddress: PromiseOrValue<string>,
@@ -256,10 +236,6 @@ export interface ProjectPool extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<string>;
 
-    getAllCheers(
-      overrides?: CallOverrides
-    ): Promise<SharedStruct.CheerStructOutput[]>;
-
     getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
     mintCheer(
@@ -275,6 +251,8 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<string>;
 
     projectReword(overrides?: CallOverrides): Promise<string>;
+
+    projectsData(overrides?: CallOverrides): Promise<string>;
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
@@ -296,8 +274,6 @@ export interface ProjectPool extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<BigNumber>;
 
-    getAllCheers(overrides?: CallOverrides): Promise<BigNumber>;
-
     getTotalCher(overrides?: CallOverrides): Promise<BigNumber>;
 
     mintCheer(
@@ -313,6 +289,8 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<BigNumber>;
 
     projectReword(overrides?: CallOverrides): Promise<BigNumber>;
+
+    projectsData(overrides?: CallOverrides): Promise<BigNumber>;
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,
@@ -332,8 +310,6 @@ export interface ProjectPool extends BaseContract {
 
     cher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    getAllCheers(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     getTotalCher(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     mintCheer(
@@ -349,6 +325,8 @@ export interface ProjectPool extends BaseContract {
     projectName(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     projectReword(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    projectsData(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     setCHER(
       CHERAddress: PromiseOrValue<string>,

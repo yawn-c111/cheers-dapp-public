@@ -6,23 +6,23 @@ import { useUsersDataContract } from '@/hooks/contracts/data';
 import { UserType } from '@/types/struct';
 
 type Props = {
-  ownerAddress: string;
+  userOwnerAddress: string;
 };
 
-const UserProfileCard = ({ ownerAddress }: Props) => {
+const UserProfileCard = ({ userOwnerAddress }: Props) => {
   const { allUserList } = useUsersDataContract({});
-  const { userPoolAddress, totalCher } = useUserPoolContract({ ownerAddress });
+  const { totalCher } = useUserPoolContract({ userOwnerAddress });
 
   const [userList, setUserList] = useState<UserType>();
 
   const getUserData = useCallback(async () => {
     if (!allUserList) return;
     allUserList.map((user) => {
-      if (ownerAddress == user.userAddress) {
+      if (userOwnerAddress == user.userAddress) {
         setUserList(user);
       }
     });
-  }, [allUserList, ownerAddress]);
+  }, [allUserList, userOwnerAddress]);
 
   useEffect(() => {
     getUserData();

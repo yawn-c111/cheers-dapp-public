@@ -13,35 +13,36 @@ import { usePoolListDataContract } from './data/usePoolListDataContract';
 const CONTRACT_ABI = DaoPoolContractABI.abi;
 
 type Props = {
-  ownerAddress: string;
+  daoOwnerAddress: string;
 };
 
 type ReturnUseDaoPoolContract = {
-  daoPoolAddress: string | undefined;
-  daoAddress: string | undefined;
-  daoName: string | undefined;
-  daoProfile: string | undefined;
-  daoIcon: string | undefined;
-  allChallengeProjects: ProjectType[] | undefined;
-  totalCher: string | undefined;
+  daoPoolAddress: string;
+  daoAddress: string;
+  daoName: string;
+  daoProfile: string;
+  daoIcon: string;
+  allChallengeProjects: ProjectType[];
+  totalCher:  string;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
   handleNewProjectFactory: (_inputProject: DaoProjectFactory) => Promise<void>;
 };
 
-export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolContract => {
+export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPoolContract => {
+  const ownerAddress = daoOwnerAddress;
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
 
   const CONTRACT_ADDRESS = myPoolAddress;
 
-  const [daoPoolAddress, setDaoPoolAddress] = useState<string>();
-  const [daoAddress, setDaoAddress] = useState<string>();
-  const [daoName, setDaoName] = useState<string>();
-  const [daoProfile, setDaoProfile] = useState<string>();
-  const [daoIcon, setDaoIcon] = useState<string>();
-  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
-  const [totalCher,setTotalCher] =useState<string>();
+  const [daoPoolAddress, setDaoPoolAddress] = useState<string>('');
+  const [daoAddress, setDaoAddress] = useState<string>('');
+  const [daoName, setDaoName] = useState<string>('');
+  const [daoProfile, setDaoProfile] = useState<string>('');
+  const [daoIcon, setDaoIcon] = useState<string>('');
+  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>([]);
+  const [totalCher, setTotalCher] = useState<string>('');
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -159,6 +160,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
       const getAllChallengeProjects = await daoPoolContract.getAllChallengeProjects();
       const allChallengeProjectsOrganize = getAllChallengeProjects.map((challengeProject) => {
         return {
+          projectOwnerAddress: challengeProject.projectOwnerAddress,
           projectAddress: challengeProject.projectAddress,
           belongDaoAddress: challengeProject.belongDaoAddress,
           projectName: challengeProject.projectName,
@@ -199,7 +201,7 @@ export const useDaoPoolContract = ({ ownerAddress }: Props): ReturnUseDaoPoolCon
     handleGetDaoName,
     handleGetDaoPoolAddress,
     handleGetDaoProfile,
-    handleGetTotalCher
+    handleGetTotalCher,
   ]);
 
   return {

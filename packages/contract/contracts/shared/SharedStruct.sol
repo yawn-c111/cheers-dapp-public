@@ -31,7 +31,7 @@ library SharedStruct {
 
   struct Cheer {
     address cheerPoolAddress;
-    uint256 timestamp;
+    uint256 creationTime;
     string message;
     uint256 cher;
   }

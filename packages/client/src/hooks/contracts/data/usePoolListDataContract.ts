@@ -10,15 +10,18 @@ const CONTRACT_ADDRESS = '';
 const CONTRACT_ABI = PoolListDataContractABI.abi;
 
 type Props = {
-  ownerAddress: string;
+  ownerAddress?: string;
+  poolAddress?: string;
 };
 
 type ReturnPoolListDataContract = {
-  myPoolAddress:string|undefined;
+  myPoolAddress: string;
+  myWalletAddress: string;
 };
 
-export const usePoolListDataContract = ({ ownerAddress }: Props): ReturnPoolListDataContract => {
-  const [myPoolAddress, setMyPoolAddress] = useState<string>();
+export const usePoolListDataContract = ({ ownerAddress, poolAddress }: Props): ReturnPoolListDataContract => {
+  const [myPoolAddress, setMyPoolAddress] = useState<string>('');
+  const [myWalletAddress, setMyWalletAddress] = useState<string>('');
   const ethereum = getEthereumSafety();
 
   const poolListDataContract: PoolListDataType | null = useMemo(() => {
@@ -32,18 +35,32 @@ export const usePoolListDataContract = ({ ownerAddress }: Props): ReturnPoolList
   const handleGetMyPoolAddress = useCallback(async () => {
     try {
       if (!poolListDataContract) return;
-      const getMyPoolAddress = poolListDataContract.getMyPoolAddress(ownerAddress);
-      setMyPoolAddress(await getMyPoolAddress);
+      if (!ownerAddress) return;
+      const getMyPoolAddress = await poolListDataContract.getMyPoolAddress(ownerAddress);
+      setMyPoolAddress(getMyPoolAddress);
     } catch (error) {
       console.error(error);
     }
   }, [ownerAddress, poolListDataContract]);
 
+  const handleGetSearchWalletAddress = useCallback(async () => {
+    try {
+      if (!poolListDataContract) return;
+      if (!poolAddress) return;
+      const getSearchWalletAddress = await poolListDataContract.getSearchWalletAddress(poolAddress);
+      setMyWalletAddress(getSearchWalletAddress);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [poolAddress, poolListDataContract]);
+
   useEffect(() => {
-    handleGetMyPoolAddress()
-  },[handleGetMyPoolAddress])
+    handleGetMyPoolAddress();
+    handleGetSearchWalletAddress();
+  }, [handleGetMyPoolAddress, handleGetSearchWalletAddress]);
 
   return {
-    myPoolAddress
+    myPoolAddress,
+    myWalletAddress,
   };
 };

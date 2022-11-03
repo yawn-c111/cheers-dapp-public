@@ -7,6 +7,7 @@ import '../shared/SharedStruct.sol';
 // Projectデータ保存のためのコントラクト
 contract ProjectsData is IProjectsData {
   // pool
+  mapping(address => SharedStruct.Cheer[]) public eachProjectCheerList;
   mapping(address => SharedStruct.Project[]) public eachProjectsList;
   SharedStruct.Project[] public allProjectsList;
 
@@ -46,13 +47,31 @@ contract ProjectsData is IProjectsData {
     );
   }
 
+  // 各プロジェクトのcheerの追加
+  function addEachProjectCheerList(
+    address _projectPoolAddress,
+    address _cheerPoolAddres,
+    uint256 _creationTime,
+    string memory _message,
+    uint256 _cher
+  ) external {
+    eachProjectCheerList[_projectPoolAddress].push(
+      SharedStruct.Cheer(_cheerPoolAddres, _creationTime, _message, _cher)
+    );
+  }
+
   // アドレスごとのProject取得
   function getEachProjectList(address _projectOwnerAddress) public view returns (SharedStruct.Project[] memory) {
     return eachProjectsList[_projectOwnerAddress];
   }
 
-  //
+  // 全てのProject取得
   function getAllProjectList() public view returns (SharedStruct.Project[] memory) {
     return allProjectsList;
+  }
+
+  // ProjectごとのCheer取得
+  function getEachProjectCheerList(address _projectPoolAddress) public view returns(SharedStruct.Cheer[] memory) {
+    return eachProjectCheerList[_projectPoolAddress];
   }
 }

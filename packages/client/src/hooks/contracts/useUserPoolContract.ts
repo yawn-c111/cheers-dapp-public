@@ -13,35 +13,36 @@ import { usePoolListDataContract } from './data/usePoolListDataContract';
 const CONTRACT_ABI = UserPoolContractABI.abi;
 
 type Props = {
-  ownerAddress: string;
+  userOwnerAddress: string;
 };
 
 type ReturnUseUserPoolContract = {
-  userPoolAddress: string | undefined;
-  userAddress: string | undefined;
-  userName: string | undefined;
-  userProfile: string | undefined;
-  userIcon: string | undefined;
-  allChallengeProjects: ProjectType[] | undefined;
-  totalCher: string | undefined;
+  userPoolAddress: string;
+  userAddress: string;
+  userName: string;
+  userProfile: string;
+  userIcon: string;
+  allChallengeProjects: ProjectType[];
+  totalCher: string;
   mining: boolean;
   handleChargeCher: (_amount: string) => Promise<void>;
   handleWithdrawCher: (_mount: string) => Promise<void>;
   handleNewProjectFactory: (_inputProject: UserProjectFactory) => Promise<void>;
 };
 
-export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolContract => {
+export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserPoolContract => {
+  const ownerAddress = userOwnerAddress;
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
 
   const CONTRACT_ADDRESS = myPoolAddress;
 
-  const [userPoolAddress, setUserPoolAddress] = useState<string>();
-  const [userAddress, setUserAddress] = useState<string>();
-  const [userName, setUserName] = useState<string>();
-  const [userProfile, setUserProfile] = useState<string>();
-  const [userIcon, setUserIcon] = useState<string>();
-  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>();
-  const [totalCher, setTotalCher] = useState<string>();
+  const [userPoolAddress, setUserPoolAddress] = useState<string>('');
+  const [userAddress, setUserAddress] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+  const [userProfile, setUserProfile] = useState<string>('');
+  const [userIcon, setUserIcon] = useState<string>('');
+  const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>([]);
+  const [totalCher, setTotalCher] = useState<string>('');
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -160,6 +161,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
       const getAllChallengeProjects = await userPoolContract.getAllChallengeProjects();
       const allChallengeProjectsOrganize = getAllChallengeProjects.map((challengeProject) => {
         return {
+          projectOwnerAddress:challengeProject.projectOwnerAddress,
           projectAddress: challengeProject.projectAddress,
           belongDaoAddress: challengeProject.belongDaoAddress,
           projectName: challengeProject.projectName,
@@ -168,7 +170,7 @@ export const useUserPoolContract = ({ ownerAddress }: Props): ReturnUseUserPoolC
           timestamp: new Date(challengeProject.creationTime.toNumber() * 1000),
         };
       });
-      setAllChallengeProjects(allChallengeProjectsOrganize);
+      setAllChallengeProjects(allChallengeProjectsOrganize); 
     } catch (error) {
       console.error(error);
     }

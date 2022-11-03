@@ -15,13 +15,13 @@ type Props = {
 };
 
 type ReturnProjectsDataContract = {
-  eachProjectList: ProjectType[] | undefined;
-  allProjectList: ProjectType[] | undefined;
+  eachProjectList: ProjectType[];
+  allProjectList: ProjectType[];
 };
 
 export const useProjectsDataContract = ({ projectOwnerAddress }: Props): ReturnProjectsDataContract => {
-  const [eachProjectList, setEachProjectList] = useState<ProjectType[]>();
-  const [allProjectList, setAllProjectList] = useState<ProjectType[]>();
+  const [eachProjectList, setEachProjectList] = useState<ProjectType[]>([]);
+  const [allProjectList, setAllProjectList] = useState<ProjectType[]>([]);
 
   const ethereum = getEthereumSafety();
 

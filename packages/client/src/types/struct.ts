@@ -15,6 +15,7 @@ export type DaoType = {
 };
 
 export type ProjectType = {
+  projectOwnerAddress:string;
   projectAddress:string;
   belongDaoAddress:string;
   projectName:string;

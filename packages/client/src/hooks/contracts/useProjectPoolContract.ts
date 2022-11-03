@@ -58,7 +58,7 @@ export const useProjectPoolContract = ({ projectPoolAddress }: Props): ReturnPro
       const getAllCheersOrganize = getAllCheers.map((cheer) => {
         return {
           cheerPoolAddress: cheer.cheerPoolAddress,
-          timestamp: new Date(cheer.timestamp.toNumber() * 1000),
+          timestamp: new Date(cheer.creationTime.toNumber() * 1000),
           message: cheer.message,
           cher: ethers.utils.formatEther(cheer.cher),
         };
