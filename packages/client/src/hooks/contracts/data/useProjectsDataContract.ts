@@ -40,6 +40,7 @@ export const useProjectsDataContract = ({ projectOwnerAddress }: Props): ReturnP
       const getEachProjectList = await projectsDataContract.getEachProjectList(projectOwnerAddress);
       const eachProjectListOrganize = getEachProjectList.map((project) => {
         return {
+          projectOwnerAddress:project.projectOwnerAddress,
           projectAddress: project.projectAddress,
           belongDaoAddress: project.belongDaoAddress,
           projectName: project.projectName,
@@ -60,6 +61,7 @@ export const useProjectsDataContract = ({ projectOwnerAddress }: Props): ReturnP
       const getAllProjectList = await projectsDataContract.getAllProjectList();
       const allProjectListOrganize = getAllProjectList.map((project) => {
         return {
+          projectOwnerAddress:project.projectOwnerAddress,
           projectAddress: project.projectAddress,
           belongDaoAddress: project.belongDaoAddress,
           projectName: project.projectName,

@@ -18,9 +18,9 @@ const UserProfile = () => {
       ) : (
         <>
           <PageTitle title="USER PROFILE" />
-          <UserProfileCard id={id} />
-          <ChallengeProjects />
-          <CheerProjects />
+          <UserProfileCard ownerAddress={id} />
+          <ChallengeProjects projectOwnerAddress={id} />
+          <CheerProjects ownerAddress={id} />
         </>
       )}
     </>

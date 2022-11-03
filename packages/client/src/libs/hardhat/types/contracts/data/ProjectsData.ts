@@ -25,6 +25,7 @@ import type {
 
 export declare namespace SharedStruct {
   export type ProjectStruct = {
+    projectOwnerAddress: PromiseOrValue<string>;
     projectAddress: PromiseOrValue<string>;
     belongDaoAddress: PromiseOrValue<string>;
     projectName: PromiseOrValue<string>;
@@ -39,8 +40,10 @@ export declare namespace SharedStruct {
     string,
     string,
     string,
+    string,
     BigNumber
   ] & {
+    projectOwnerAddress: string;
     projectAddress: string;
     belongDaoAddress: string;
     projectName: string;
@@ -161,7 +164,8 @@ export interface ProjectsData extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string, string, BigNumber] & {
+      [string, string, string, string, string, string, BigNumber] & {
+        projectOwnerAddress: string;
         projectAddress: string;
         belongDaoAddress: string;
         projectName: string;
@@ -176,7 +180,8 @@ export interface ProjectsData extends BaseContract {
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string, string, BigNumber] & {
+      [string, string, string, string, string, string, BigNumber] & {
+        projectOwnerAddress: string;
         projectAddress: string;
         belongDaoAddress: string;
         projectName: string;
@@ -210,7 +215,8 @@ export interface ProjectsData extends BaseContract {
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [string, string, string, string, string, BigNumber] & {
+    [string, string, string, string, string, string, BigNumber] & {
+      projectOwnerAddress: string;
       projectAddress: string;
       belongDaoAddress: string;
       projectName: string;
@@ -225,7 +231,8 @@ export interface ProjectsData extends BaseContract {
     arg1: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
-    [string, string, string, string, string, BigNumber] & {
+    [string, string, string, string, string, string, BigNumber] & {
+      projectOwnerAddress: string;
       projectAddress: string;
       belongDaoAddress: string;
       projectName: string;
@@ -259,7 +266,8 @@ export interface ProjectsData extends BaseContract {
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string, string, BigNumber] & {
+      [string, string, string, string, string, string, BigNumber] & {
+        projectOwnerAddress: string;
         projectAddress: string;
         belongDaoAddress: string;
         projectName: string;
@@ -274,7 +282,8 @@ export interface ProjectsData extends BaseContract {
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
-      [string, string, string, string, string, BigNumber] & {
+      [string, string, string, string, string, string, BigNumber] & {
+        projectOwnerAddress: string;
         projectAddress: string;
         belongDaoAddress: string;
         projectName: string;

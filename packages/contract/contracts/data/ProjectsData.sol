@@ -23,6 +23,7 @@ contract ProjectsData is IProjectsData {
 
     eachProjectsList[_projectOwnerAddress].push(
       SharedStruct.Project(
+        _projectOwnerAddress,
         _projectPoolAddress,
         _belongDaoAddress,
         _projectName,
@@ -34,6 +35,7 @@ contract ProjectsData is IProjectsData {
 
     allProjectsList.push(
       SharedStruct.Project(
+        _projectOwnerAddress,
         _projectPoolAddress,
         _belongDaoAddress,
         _projectName,
