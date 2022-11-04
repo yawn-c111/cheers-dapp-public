@@ -103,13 +103,13 @@ contract ProjectPool is IProjectPool {
     return cher.balanceOf(address(this));
   }
 
-  function setCHER(address CHERAddress) public {
-    CHER_CONTRACT_ADDRESS = CHERAddress;
-    cher = IERC20(CHERAddress);
-  }
+  // function setCHER(address CHERAddress) public {
+  //   CHER_CONTRACT_ADDRESS = CHERAddress;
+  //   cher = IERC20(CHERAddress);
+  // }
 
-  function setPoolListData(address poolListDataAddress) public {
-    POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
-    poolListData = IPoolListData(poolListDataAddress);
-  }
+  // function setPoolListData(address poolListDataAddress) public {
+  //   POOLLISTDATA_CONTRACT_ADDRESS = poolListDataAddress;
+  //   poolListData = IPoolListData(poolListDataAddress);
+  // }
 }
