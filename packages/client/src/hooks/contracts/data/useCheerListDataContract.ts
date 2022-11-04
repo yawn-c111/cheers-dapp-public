@@ -27,7 +27,9 @@ export const useCheerListDataContract = ({}: Props): ReturnCheerListDataContract
     return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer) as CheerListDataTypes;
   }, [ethereum]);
 
-  const handleGet
+  const handleGetMyPoolCheerDataList = () => {
+    
+  }
 
   return {};
 };
