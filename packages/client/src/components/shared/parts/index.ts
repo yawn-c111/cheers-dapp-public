@@ -7,3 +7,4 @@ export {default as InputNumber} from './InputNumber';
 export {default as ChallengeProjects} from './ChallengeProjects';
 export {default as CheerProjects} from './CheerProjects';
 export {default as Nodata} from './Nodata';
+export {default as ChangeBelongDaoName} from './ChangeBelongDaoName';
