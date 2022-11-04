@@ -11,7 +11,7 @@ type Props = {
 const ProjectCard = ({ project }: Props) => {
   return (
     <>
-      <Link href="#">
+      <Link href={`./project/${project.projectAddress}`}>
         <div className="w-80 p-4 mx-4 my-4 rounded-lg bg-secondary cursor-pointer">
           <div className="flex items-center text-xs mb-2">
             <div className="p-1 bg-cherBlue rounded-lg">{project.belongDaoAddress}</div>

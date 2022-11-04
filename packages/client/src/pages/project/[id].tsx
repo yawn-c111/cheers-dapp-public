@@ -1,16 +1,30 @@
 import React from 'react';
 
+import { useRouter } from 'next/router';
+
+import { BeforeLogin } from '@/components/pages/home';
+import { ProjectMainCard } from '@/components/shared/card';
+import { ProjectCheers } from '@/components/shared/parts';
+import { useWalletContext } from '@/context/state';
+import { useProjectsDataContract } from '@/hooks/contracts/data';
+
 const Project = () => {
+  const walletContext = useWalletContext();
+  const router = useRouter();
+  const id = router.query.id?.toString() || '';
+  const projectPoolAddress = id;
+  const { projectAddressToProjectData } = useProjectsDataContract({ projectPoolAddress });
   return (
-    <div className='flex justify-center'>
-      <div className="w-[800px] h-[500px] my-12">
-        <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
-          <div className="w-full h-full bg-secondary rounded-xl grid grid-cols-4 grid-rows-4">
-            
-          </div>
-        </div>
-      </div>
-    </div>
+    <>
+      {!walletContext?.currentAccount ? (
+        <BeforeLogin />
+      ) : (
+        <>
+          <ProjectMainCard projectData={projectAddressToProjectData} />
+          <ProjectCheers projectPoolAddress={projectPoolAddress} />
+        </>
+      )}
+    </>
   );
 };
 
