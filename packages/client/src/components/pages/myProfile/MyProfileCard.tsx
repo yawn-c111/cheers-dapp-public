@@ -3,10 +3,10 @@ import React from 'react';
 import { ChallengeProjects, CheerProjects, NumberSubmitForm } from '@/components/shared/parts';
 
 type Props = {
-  id: string;
+  ownerAddress: string;
 };
 
-const MyProfileCard = ({ id }: Props) => {
+const MyProfileCard = ({ ownerAddress }: Props) => {
   return (
     <>
       <div className="m-12">
