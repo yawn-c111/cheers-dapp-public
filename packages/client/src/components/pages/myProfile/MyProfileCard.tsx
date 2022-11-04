@@ -40,23 +40,28 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   return (
     <>
       <div className="m-12">
-        <div>Type: {poolAddressType.type}</div>
-        <div>Name: {poolAddressType.name}</div>
-        <div>Wallet Address: {ownerAddress}</div>
-        <div>Pool Address: {poolAddressType.poolAddress}</div>
-        <div>Total CHER: 100,000</div>
-        <div className="my-8">
-          <BuyCher />
+        <div className="flex flex-wrap">
+          <div>
+            <div>Type: {poolAddressType.type}</div>
+            <div>Name: {poolAddressType.name}</div>
+            <div>Wallet Address: {ownerAddress}</div>
+            <div>Pool Address: {poolAddressType.poolAddress}</div>
+            <div>Total CHER: {}</div>
+            <div className="my-8">
+              <BuyCher />
+            </div>
+            <div className="my-8">
+              <SendCher />
+            </div>
+            <div className="my-8">
+              <Withdraw id={poolAddressType.poolAddress} />
+            </div>
+            <div className="my-8">
+              <SellCher />
+            </div>
+          </div>
         </div>
-        <div className="my-8">
-          <SendCher />
-        </div>
-        <div className="my-8">
-          <Withdraw id={poolAddressType.poolAddress} />
-        </div>
-        <div className="my-8">
-          <SellCher />
-        </div>
+        <div></div>
       </div>
       <div className="col-span-1">
         <ChallengeProjects projectOwnerAddress={projectOwnerAddress} />

@@ -3,6 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { BeforeLogin } from '@/components/pages/home';
+import { CheerThisProject } from '@/components/pages/project'
 import { ProjectMainCard } from '@/components/shared/card';
 import { ProjectCheers } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
@@ -21,6 +22,7 @@ const Project = () => {
       ) : (
         <>
           <ProjectMainCard projectData={projectAddressToProjectData} />
+          <CheerThisProject projectPoolAddress={projectPoolAddress} />
           <ProjectCheers projectPoolAddress={projectPoolAddress} />
         </>
       )}

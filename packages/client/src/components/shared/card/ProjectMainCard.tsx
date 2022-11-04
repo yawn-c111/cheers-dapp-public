@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import dayjs from 'dayjs';
 
+import { DaoPoolToName } from '@/components/shared/parts'
+import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { ProjectType } from '@/types/struct'
 
 type Props = {
@@ -10,21 +12,40 @@ type Props = {
 
 
 const ProjectMainCard = ({projectData}:Props) => {
+  const [name,setName] =useState<string>('')
+  const userOwnerAddress = projectData.projectOwnerAddress
+  const daoOwnerAddress = projectData.projectOwnerAddress
+  const {userName,userPoolAddress} = useUserPoolContract({userOwnerAddress})
+  const {daoName,daoPoolAddress} = useDaoPoolContract({daoOwnerAddress})
+
+  const setProjectOwnerName = useCallback(async() =>{
+    if(userPoolAddress!= '') {
+      setName(userName);
+    }else if(daoPoolAddress!=''){
+      setName(daoName);
+    } else {
+      setName('')
+    }
+  },[daoName, daoPoolAddress, userName, userPoolAddress])
+
+  useEffect(()=>{
+    setProjectOwnerName()
+  },[setProjectOwnerName])
+
   return (
     <div className="flex justify-center">
       <div className="w-[800px] h-[500px] my-12">
         <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
           <div className="w-full h-full bg-secondary rounded-xl p-4">
-            <div> </div>
             <div className="flex">
               <div className="mr-2">Project Address:</div>
               <div>{projectData.projectAddress}</div>
             </div>
             <div className="flex">
               <div>Project Owner:</div>
-              <div>{projectData.projectOwnerAddress}</div>
+              <div>{name}</div>
             </div>
-            <div>Belong Dao: {projectData.belongDaoAddress}</div>
+            <div>Belong Dao: <DaoPoolToName poolAddress= {projectData.belongDaoAddress} /></div>
             <div>Project Name: {projectData.projectName}</div>
             <div>Project Contents: {projectData.projectContents}</div>
             <div>Project Reword: {projectData.projectReword}</div>
