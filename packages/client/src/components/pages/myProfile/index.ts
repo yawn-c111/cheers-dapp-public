@@ -1,1 +1,1 @@
-export {default as MyProfileCard} from './MyProfileCard'
+export { default as MyProfileCard } from './MyProfileCard';

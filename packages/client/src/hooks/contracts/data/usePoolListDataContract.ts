@@ -14,7 +14,7 @@ type Props = {
 };
 
 type ReturnPoolListDataContract = {
-  myPoolAddress:string|undefined;
+  myPoolAddress: string | undefined;
 };
 
 export const usePoolListDataContract = ({ ownerAddress }: Props): ReturnPoolListDataContract => {
@@ -40,10 +40,10 @@ export const usePoolListDataContract = ({ ownerAddress }: Props): ReturnPoolList
   }, [ownerAddress, poolListDataContract]);
 
   useEffect(() => {
-    handleGetMyPoolAddress()
-  },[handleGetMyPoolAddress])
+    handleGetMyPoolAddress();
+  }, [handleGetMyPoolAddress]);
 
   return {
-    myPoolAddress
+    myPoolAddress,
   };
 };
