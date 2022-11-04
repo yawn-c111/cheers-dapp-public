@@ -6,7 +6,7 @@ type Props ={
 id:string;
 }
 
-const Withdraw = ({id}) => {
+const Withdraw = ({id}:Props) => {
   return (
     <div className="flex flex-col justify-center items-start">
       <div className="mb-2">
