@@ -2,7 +2,6 @@ import React from 'react';
 
 import dayjs from 'dayjs';
 
-import { projectData } from '@/mock';
 import { ProjectType } from '@/types/struct'
 
 type Props = {
@@ -10,7 +9,7 @@ type Props = {
 }
 
 
-const ProjectMainCard = () => {
+const ProjectMainCard = ({projectData}:Props) => {
   return (
     <div className="flex justify-center">
       <div className="w-[800px] h-[500px] my-12">

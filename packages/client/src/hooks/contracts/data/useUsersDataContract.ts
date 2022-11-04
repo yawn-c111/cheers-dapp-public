@@ -12,11 +12,13 @@ const CONTRACT_ABI = UsersDataContractABI.abi;
 
 type Props = {};
 type ReturnUsersDataContract = {
-  allUserList: UserType[] | undefined;
+  allUserList: UserType[];
 };
 
 export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
-  const [allUserList, setAllUserList] = useState<UserType[]>();
+  const [allUserList, setAllUserList] = useState<UserType[]>([
+    { userAddress: '', userName: '', userProfile: '', userIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
+  ]);
   const ethereum = getEthereumSafety();
 
   const usersDataContract: UsersDataType | null = useMemo(() => {

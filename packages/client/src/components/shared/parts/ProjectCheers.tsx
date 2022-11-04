@@ -2,6 +2,7 @@ import React from 'react';
 
 import { CheerCardForProject } from '@/components/shared/card';
 import { useCheerListDataContract } from '@/hooks/contracts/data';
+// import { cheersData } from '@/mock/index';
 
 type Props = {
   projectPoolAddress: string;
