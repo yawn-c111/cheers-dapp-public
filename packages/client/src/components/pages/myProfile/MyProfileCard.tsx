@@ -16,7 +16,7 @@ const MyProfileCard = ({ id }: Props) => {
         <div>Total CHER: 100,000</div>
         <div className="my-8">
           <div className="flex flex-col justify-center items-start">
-            <div className='mb-2'>
+            <div className="mb-2">
               CHERを購入する <span className="text-sm text-cherGreen">Change ETH</span>
             </div>
             <NumberSubmitForm buttonName="BUY CHER !" />
@@ -24,7 +24,7 @@ const MyProfileCard = ({ id }: Props) => {
         </div>
         <div className="my-8">
           <div className="flex flex-col justify-center items-start">
-            <div  className='mb-2'>
+            <div className="mb-2">
               CHERをプールに送る
               <span className="text-sm text-cherBlue">
                 To Pool <span className="bg-cherBlue text-white">{id}</span>
@@ -35,7 +35,7 @@ const MyProfileCard = ({ id }: Props) => {
         </div>
         <div className="my-8">
           <div className="flex flex-col justify-center items-start">
-            <div  className='mb-2'>
+            <div className="mb-2">
               CHERをプールから引き出す
               <span className="text-sm text-cherYellow">
                 From Pool <span className="bg-cherYellow text-white">{id}</span>
@@ -46,7 +46,7 @@ const MyProfileCard = ({ id }: Props) => {
         </div>
         <div className="my-8">
           <div className="flex flex-col justify-center items-start">
-            <div  className='mb-2'>
+            <div className="mb-2">
               CHERをETHと交換する
               <span className="text-sm text-cherPink">Change CHER</span>
             </div>
