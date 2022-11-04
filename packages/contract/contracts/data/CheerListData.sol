@@ -9,7 +9,7 @@ contract CheerListData is ICheerListData {
   // userやDAOの各PoolがCheerしたデータ
   mapping(address => SharedStruct.Cheer[]) public myPoolCheerDataList;
   // projectごとのCheerデータ
-  mapping(address => SharedStruct.Cheer[]) public myProjectCheerList;
+  mapping(address => SharedStruct.Cheer[]) public myProjectCheerDataList;
 
   constructor() {}
 
@@ -43,7 +43,7 @@ contract CheerListData is ICheerListData {
     string memory _message,
     uint256 _cher
   ) private {
-    myProjectCheerList[_projectPoolAddress].push(
+    myProjectCheerDataList[_projectPoolAddress].push(
       SharedStruct.Cheer(_projectPoolAddress, _cheerPoolAddres, _creationTime, _message, _cher)
     );
   }
