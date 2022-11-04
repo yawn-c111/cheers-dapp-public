@@ -5,7 +5,7 @@ import './interfaces/IProjectPool.sol';
 import './interfaces/IERC20.sol';
 import './interfaces/ICheers.sol';
 import './interfaces/IPoolListData.sol';
-import './interfaces/IProjectsData.sol';
+import './interfaces/ICheerListData.sol';
 import './shared/SharedStruct.sol';
 
 contract ProjectPool is IProjectPool {
@@ -31,8 +31,8 @@ contract ProjectPool is IProjectPool {
   // POOl
   address POOLLISTDATA_CONTRACT_ADDRESS; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
-  address PROJECTSDATA_CONTRACT_ADDRESS;
-  IProjectsData public projectsData;
+  address CHEERLISTDATA_CONTRACT_ADDRESS; // = cheerDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  ICheerListData public cheerListData;
 
   constructor(
     address _ownerPoolAddress,
@@ -42,7 +42,7 @@ contract ProjectPool is IProjectPool {
     string memory _projectReword
   ) {
     poolListData = IPoolListData(POOLLISTDATA_CONTRACT_ADDRESS);
-    projectsData = IProjectsData(PROJECTSDATA_CONTRACT_ADDRESS);
+    cheerListData = ICheerListData(CHEERLISTDATA_CONTRACT_ADDRESS);
 
     //CHERコントラクト接続
     cher = IERC20(CHER_CONTRACT_ADDRESS);
@@ -65,7 +65,7 @@ contract ProjectPool is IProjectPool {
   // cheerの処理
   function cheer(uint256 _cher, string memory _cheerMessage) private {
     cher.transferFrom(poolListData.getMyPoolAddress(msg.sender), address(this), _cher);
-    projectsData.addEachProjectCheerList(
+    cheerListData.addCheerDataList(
       address(this),
       poolListData.getMyPoolAddress(msg.sender),
       block.timestamp,
@@ -86,10 +86,10 @@ contract ProjectPool is IProjectPool {
     // daoの分配分
     uint256 daoDistribute = _cher - cheerDistribute - challengerDistribute;
     // cheer全員の分配分を投じたcher割合に応じ分配
-    for (uint256 i = 0; i < projectsData.getEachProjectCheerList(address(this)).length; i++) {
+    for (uint256 i = 0; i < cheerListData.getMyProjectCheerList(address(this)).length; i++) {
       cher.transfer(
-        projectsData.getEachProjectCheerList(address(this))[i].cheerPoolAddress,
-        (cheerDistribute * projectsData.getEachProjectCheerList(address(this))[i].cher) / totalCher
+        cheerListData.getMyProjectCheerList(address(this))[i].cheerPoolAddress,
+        (cheerDistribute * cheerListData.getMyProjectCheerList(address(this))[i].cher) / totalCher
       );
     }
     // challengerのPoolへ分配

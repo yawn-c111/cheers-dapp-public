@@ -95,6 +95,11 @@ const _abi = [
         components: [
           {
             internalType: "address",
+            name: "projectAddress",
+            type: "address",
+          },
+          {
+            internalType: "address",
             name: "cheerPoolAddress",
             type: "address",
           },

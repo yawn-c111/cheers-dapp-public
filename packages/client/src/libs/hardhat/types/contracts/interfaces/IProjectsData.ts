@@ -25,13 +25,21 @@ import type {
 
 export declare namespace SharedStruct {
   export type CheerStruct = {
+    projectAddress: PromiseOrValue<string>;
     cheerPoolAddress: PromiseOrValue<string>;
     creationTime: PromiseOrValue<BigNumberish>;
     message: PromiseOrValue<string>;
     cher: PromiseOrValue<BigNumberish>;
   };
 
-  export type CheerStructOutput = [string, BigNumber, string, BigNumber] & {
+  export type CheerStructOutput = [
+    string,
+    string,
+    BigNumber,
+    string,
+    BigNumber
+  ] & {
+    projectAddress: string;
     cheerPoolAddress: string;
     creationTime: BigNumber;
     message: string;

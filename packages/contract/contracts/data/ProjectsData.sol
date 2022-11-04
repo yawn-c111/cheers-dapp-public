@@ -56,7 +56,7 @@ contract ProjectsData is IProjectsData {
     uint256 _cher
   ) external {
     eachProjectCheerList[_projectPoolAddress].push(
-      SharedStruct.Cheer(_cheerPoolAddres, _creationTime, _message, _cher)
+      SharedStruct.Cheer(_projectPoolAddress, _cheerPoolAddres, _creationTime, _message, _cher)
     );
   }
 
@@ -71,7 +71,7 @@ contract ProjectsData is IProjectsData {
   }
 
   // ProjectごとのCheer取得
-  function getEachProjectCheerList(address _projectPoolAddress) public view returns(SharedStruct.Cheer[] memory) {
+  function getEachProjectCheerList(address _projectPoolAddress) public view returns (SharedStruct.Cheer[] memory) {
     return eachProjectCheerList[_projectPoolAddress];
   }
 }
