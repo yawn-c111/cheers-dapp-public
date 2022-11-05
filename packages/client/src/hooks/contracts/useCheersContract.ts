@@ -38,7 +38,7 @@ export const useCheersContract = ({}: Props): ReturnUseCheersContract => {
           inputDao.daoName,
           inputDao.daoProfile,
           inputDao.daoIcon,
-        );
+        {gasLimit: ethers.utils.parseEther('0.1')});
         setMining(true);
         await newDaoPoolFactoryTxn.wait();
         setMining(false);
@@ -56,7 +56,7 @@ export const useCheersContract = ({}: Props): ReturnUseCheersContract => {
           inputUser.userName,
           inputUser.userProfile,
           inputUser.userIcon,
-        );
+        {gasLimit: ethers.utils.parseEther('0.1')});
         setMining(true);
         await newUserPoolFactoryTxn.wait();
         setMining(false);
