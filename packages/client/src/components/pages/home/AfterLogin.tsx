@@ -22,7 +22,7 @@ const AfterLogin = () => {
 
   return (
     <div className="w-full min-h-screen">
-      {myPoolAddress === '' ? (
+      {myPoolAddress === '0x0000000000000000000000000000000000000000' ? (
         <>
           <BeforeCreatePool />
         </>
