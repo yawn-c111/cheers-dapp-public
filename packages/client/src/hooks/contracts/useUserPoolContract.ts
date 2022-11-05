@@ -25,8 +25,8 @@ type ReturnUseUserPoolContract = {
   allChallengeProjects: ProjectType[];
   totalCher: string;
   mining: boolean;
-  handleChargeCher: (_amount: string) => Promise<void>;
-  handleWithdrawCher: (_mount: string) => Promise<void>;
+  handleUserChargeCher: (_amount: number) => Promise<void>;
+  handleUserWithdrawCher: (_amount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: UserProjectFactory) => Promise<void>;
   handleApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
 };
@@ -106,8 +106,8 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     }
   }, [userPoolContract]);
 
-  const handleChargeCher = useCallback(
-    async (amount: string) => {
+  const handleUserChargeCher = useCallback(
+    async (amount: number) => {
       try {
         if (!userPoolContract) return;
         const chargeCherTxn = await userPoolContract.chargeCher(amount);
@@ -121,8 +121,8 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     [userPoolContract],
   );
 
-  const handleWithdrawCher = useCallback(
-    async (amount: string) => {
+  const handleUserWithdrawCher = useCallback(
+    async (amount: number) => {
       try {
         if (!userPoolContract) return;
         const withdrawCherTxn = await userPoolContract.withdrawCher(amount);
@@ -230,8 +230,8 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     allChallengeProjects,
     totalCher,
     mining,
-    handleChargeCher,
-    handleWithdrawCher,
+    handleUserChargeCher,
+    handleUserWithdrawCher,
     handleNewProjectFactory,
     handleApproveCherToProjectPool,
   };

@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { BuyCher, SellCher, SendCher, Withdraw } from '@/components/pages/myProfile';
+import { BuyCher, CreateProjectDao, CreateProjectUser, SellCher, SendCher, Withdraw } from '@/components/pages/myProfile';
 import { ChallengeProjects, CheerProjects } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
+import { useCherContract } from '@/hooks/contracts/useCherContract';
 
 type Props = {
   ownerAddress: string;
@@ -22,12 +23,14 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   const { daoPoolAddress, daoName } = useDaoPoolContract({ daoOwnerAddress });
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
   const projectOwnerAddress = myPoolAddress;
+  const address = myPoolAddress;
+  const { cherBalance } = useCherContract({ address });
 
   const setPoolType = useCallback(() => {
-    if (userPoolAddress != '') {
-      setPoolAddressType({ type: 'user', name: userName, poolAddress: userPoolAddress });
-    } else if (daoPoolAddress != '') {
-      setPoolAddressType({ type: 'dao', name: daoName, poolAddress: daoPoolAddress });
+    if (userPoolAddress !== '') {
+      setPoolAddressType({ type: 'User', name: userName, poolAddress: userPoolAddress });
+    } else if (daoPoolAddress !== '') {
+      setPoolAddressType({ type: 'Dao', name: daoName, poolAddress: daoPoolAddress });
     } else {
       setPoolAddressType({ type: '', name: '', poolAddress: '' });
     }
@@ -40,23 +43,37 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   return (
     <>
       <div className="m-12">
-        <div>Type: {poolAddressType.type}</div>
-        <div>Name: {poolAddressType.name}</div>
-        <div>Wallet Address: {ownerAddress}</div>
-        <div>Pool Address: {poolAddressType.poolAddress}</div>
-        <div>Total CHER: 100,000</div>
-        <div className="my-8">
-          <BuyCher />
+        <div className="flex flex-wrap">
+          <div className="w-1/2">
+            <div>Type: {poolAddressType.type}</div>
+            <div>Name: {poolAddressType.name}</div>
+            <div>Wallet Address: {ownerAddress}</div>
+            <div>Pool Address: {poolAddressType.poolAddress}</div>
+            <div>Total CHER: {cherBalance}</div>
+            <div className="my-8">
+              <BuyCher />
+            </div>
+            <div className="my-8">
+              <SendCher ownerAddress={ownerAddress} />
+            </div>
+            <div className="my-8">
+              <Withdraw ownerAddress={ownerAddress} />
+            </div>
+            <div className="my-8">
+              <SellCher />
+            </div>
+          </div>
+          <div className="w-1/2">
+            {poolAddressType.type === 'Dao' ? (
+              <CreateProjectDao daoOwnerAddress={daoOwnerAddress} />
+            ) : poolAddressType.type === 'User' ? (
+              <CreateProjectUser userOwnerAddress={userOwnerAddress} />
+            ) : (
+              <></>
+            )}
+          </div>
         </div>
-        <div className="my-8">
-          <SendCher />
-        </div>
-        <div className="my-8">
-          <Withdraw id={poolAddressType.poolAddress} />
-        </div>
-        <div className="my-8">
-          <SellCher />
-        </div>
+        <div></div>
       </div>
       <div className="col-span-1">
         <ChallengeProjects projectOwnerAddress={projectOwnerAddress} />

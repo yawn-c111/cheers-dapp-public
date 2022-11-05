@@ -1,14 +1,54 @@
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 
-import { NumberSubmitForm } from '@/components/shared/parts';
+import { Button, InputNumber } from '@/components/shared/parts';
+import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
+import { Form, FormErrors } from '@/types/form';
 
-const SendCher = () => {
+type Props = {
+  ownerAddress: string;
+};
+
+const SendCher = ({ ownerAddress }: Props) => {
+  const userOwnerAddress = ownerAddress;
+  const { userPoolAddress, handleUserChargeCher } = useUserPoolContract({ userOwnerAddress });
+  const daoOwnerAddress = ownerAddress;
+  const { daoPoolAddress, handleDaoChargeCher } = useDaoPoolContract({ daoOwnerAddress });
+
+  const [errors, setErrors] = useState<FormErrors>();
+  const [form, setForm] = useState<Form>({
+    amount: 0,
+  });
+
+  const handleChangeAmount = (value: number) => {
+    setErrors({});
+    setForm({ amount: value });
+  };
+
+  const handleInvalidAmount = (_value: string) => {
+    setErrors({ amount: '数値のみを入力してください' });
+  };
+
+  const onClickEvent = useCallback(async () => {
+    if (userPoolAddress !== '') {
+      handleUserChargeCher(form.amount);
+    } else if (daoPoolAddress !== '') {
+      handleDaoChargeCher(form.amount);
+    }
+  }, [daoPoolAddress, form.amount, handleDaoChargeCher, handleUserChargeCher, userPoolAddress]);
+
   return (
     <div className="flex flex-col justify-center items-start">
       <div className="mb-2">
-        CHERを購入する <span className="text-sm text-cherGreen">Change ETH</span>
+        CHERをPOOLにチャージする <span className="text-sm text-cherBlue">Charge Pool</span>
       </div>
-      <NumberSubmitForm buttonName="BUY CHER !" />
+      <div className="flex justify-center items-center">
+        <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
+        {errors?.amount ? (
+          <p className="text-cherRed">{errors.amount}</p>
+        ) : (
+          <Button buttonName="CHARGE POOL!" onClickEvent={onClickEvent} />
+        )}
+      </div>
     </div>
   );
 };

@@ -13,11 +13,13 @@ const CONTRACT_ABI = DaosDataContractABI.abi;
 type Props = {};
 
 type ReturnUseDaosDataContract = {
-  allDaoList: DaoType[] | undefined;
+  allDaoList: DaoType[];
 };
 
 export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
-  const [allDaoList, setAllDaoList] = useState<DaoType[]>();
+  const [allDaoList, setAllDaoList] = useState<DaoType[]>([
+    { daoWalletAddress: '', daoName: '', daoProfile: '', daoIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
+  ]);
   const ethereum = getEthereumSafety();
 
   const daosDataContract: DaosDataType | null = useMemo(() => {
@@ -34,7 +36,7 @@ export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
       const getAllDaoList = await daosDataContract.getAllDaoList();
       const allDaoListOrganize = getAllDaoList.map((dao) => {
         return {
-          daoAddress: dao.daoAddress,
+          daoWalletAddress: dao.daoAddress,
           daoName: dao.daoName,
           daoProfile: dao.daoProfile,
           daoIcon: dao.daoIcon,

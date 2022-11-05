@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
-import { NumberSubmitForm } from '@/components/shared/parts';
+import { Button } from '@/components/shared/parts';
+import { useCherFaucetContract } from '@/hooks/contracts'
 
 const BuyCher = () => {
+  const {handleFaucet} = useCherFaucetContract({})
+
+  const onClickEvent = useCallback(async()=> {
+    handleFaucet()
+  },[handleFaucet])
+
   return (
     <div className="flex flex-col justify-center items-start">
       <div className="mb-2">
-        CHERを購入する <span className="text-sm text-cherGreen">Change ETH</span>
+        CHERに交換する <span className="text-sm text-cherGreen">Change TOKEN</span>
       </div>
-      <NumberSubmitForm buttonName="BUY CHER !" />
+      <Button buttonName="CHANGE TOKEN" onClickEvent={onClickEvent} />
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { Level, Nodata } from '@/components/shared/parts';
+import { ChangeBelongDaoName, Level, Nodata } from '@/components/shared/parts';
 import { useUserPoolContract } from '@/hooks/contracts';
-import { useUsersDataContract } from '@/hooks/contracts/data';
+import { useUsersDataContract, useProjectsDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
 import { UserType } from '@/types/struct';
 
 type Props = {
@@ -12,13 +12,26 @@ type Props = {
 const UserProfileCard = ({ userOwnerAddress }: Props) => {
   const { allUserList } = useUsersDataContract({});
   const { totalCher } = useUserPoolContract({ userOwnerAddress });
+  const ownerAddress = userOwnerAddress;
+  const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
+  const projectOwnerAddress = myPoolAddress;
+  const { eachProjectList } = useProjectsDataContract({ projectOwnerAddress });
 
   const [userList, setUserList] = useState<UserType>();
+  const [belongDaoAddressList, setBelongDaoAddressList] = useState<string[]>([]);
+
+  const setBelongDaos = useCallback(async () => {
+    const projectList: string[] = [];
+    eachProjectList.map((project) => {
+      projectList.push(project.belongDaoAddress);
+    });
+    setBelongDaoAddressList(projectList);
+  }, [eachProjectList]);
 
   const getUserData = useCallback(async () => {
     if (!allUserList) return;
     allUserList.map((user) => {
-      if (userOwnerAddress == user.userAddress) {
+      if (userOwnerAddress == user.userWalletAddress) {
         setUserList(user);
       }
     });
@@ -26,11 +39,12 @@ const UserProfileCard = ({ userOwnerAddress }: Props) => {
 
   useEffect(() => {
     getUserData();
-  }, [getUserData]);
+    setBelongDaos();
+  }, [getUserData, setBelongDaos]);
 
   return (
     <div className="flex justify-center items-center w-full">
-      {userList && totalCher ? (
+      {userList ? (
         <div className="w-[800px] h-[500px] my-12">
           <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
             <div className="w-full h-full bg-secondary rounded-xl grid grid-cols-4 grid-rows-4">
@@ -74,12 +88,9 @@ const UserProfileCard = ({ userOwnerAddress }: Props) => {
               <div className="col-start-3 row-start-3 col-span-2 row-span-2 flex flex-col justify-start items-left py-8 px-12">
                 <div className="text-xl mb-2">Belong DAO:</div>
                 <div className="flex">
-                  <div className="flex justify-center items-center p-2 rounded-md bg-cherBlue mr-2">
-                    <div className="text-xs">UNCHAIN</div>
-                  </div>
-                  <div className="flex justify-center items-center p-2 rounded-md bg-cherBlue">
-                    <div className="text-xs">cheers</div>
-                  </div>
+                  {belongDaoAddressList.map((belongDaoAddress, i) => (
+                    <ChangeBelongDaoName key={i} belongDaoAddress={belongDaoAddress} />
+                  ))}
                 </div>
               </div>
             </div>
