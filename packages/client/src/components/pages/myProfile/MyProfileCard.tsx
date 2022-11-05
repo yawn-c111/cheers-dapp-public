@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { BuyCher, SellCher, SendCher, Withdraw } from '@/components/pages/myProfile';
+import { BuyCher, CreateProjectDao, CreateProjectUser, SellCher, SendCher, Withdraw } from '@/components/pages/myProfile';
 import { ChallengeProjects, CheerProjects } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
@@ -32,7 +32,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
     } else if (daoPoolAddress !== '') {
       setPoolAddressType({ type: 'Dao', name: daoName, poolAddress: daoPoolAddress });
     } else {
-      setPoolAddressType({ type: '', name: '', poolAddress: '' });
+      setPoolAddressType({ type: 'User', name: '', poolAddress: '' });
     }
   }, [daoName, daoPoolAddress, userName, userPoolAddress]);
 
@@ -44,7 +44,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
     <>
       <div className="m-12">
         <div className="flex flex-wrap">
-          <div>
+          <div className="w-1/2">
             <div>Type: {poolAddressType.type}</div>
             <div>Name: {poolAddressType.name}</div>
             <div>Wallet Address: {ownerAddress}</div>
@@ -62,6 +62,15 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
             <div className="my-8">
               <SellCher />
             </div>
+          </div>
+          <div className="w-1/2">
+            {poolAddressType.type === 'Dao' ? (
+              <CreateProjectDao />
+            ) : poolAddressType.type === 'User' ? (
+              <CreateProjectUser userOwnerAddress={userOwnerAddress} />
+            ) : (
+              <></>
+            )}
           </div>
         </div>
         <div></div>
