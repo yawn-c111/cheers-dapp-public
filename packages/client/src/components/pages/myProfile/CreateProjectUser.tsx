@@ -64,8 +64,9 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
   }, [createDaoNameList, handleSetBelongDaoAddress]);
 
   return (
-    <div className="flex flex-col justify-start items-start pt-12">
-      <div className="text-4xl text-cherRed">PROJECT FACTORY</div>
+    <div className="flex justify-start items-start pt-12">
+       <div className='flex flex-col justify-center items-center'>
+      <div className="text-4xl text-cherBlue">PROJECT FACTORY</div>
       <div className="flex flex-col justify-center items-center mt-12">
         <div>SELECT BELONG DAO:</div>
         <select onChange={handleSetBelongDaoName} className="w-96 text-primary p-2 mx-2 rounded-lg">
@@ -107,7 +108,9 @@ const CreateProjectUser = ({ userOwnerAddress }: Props) => {
           placeholder="Project Reward"
         />
       </div>
+     
       <Button buttonName="CREATE POOL" onClickEvent={onClickEvent} />
+      </div>
     </div>
   );
 };

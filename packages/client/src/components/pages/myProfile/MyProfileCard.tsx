@@ -32,7 +32,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
     } else if (daoPoolAddress !== '') {
       setPoolAddressType({ type: 'Dao', name: daoName, poolAddress: daoPoolAddress });
     } else {
-      setPoolAddressType({ type: 'User', name: '', poolAddress: '' });
+      setPoolAddressType({ type: '', name: '', poolAddress: '' });
     }
   }, [daoName, daoPoolAddress, userName, userPoolAddress]);
 
@@ -65,7 +65,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
           </div>
           <div className="w-1/2">
             {poolAddressType.type === 'Dao' ? (
-              <CreateProjectDao />
+              <CreateProjectDao daoOwnerAddress={daoOwnerAddress} />
             ) : poolAddressType.type === 'User' ? (
               <CreateProjectUser userOwnerAddress={userOwnerAddress} />
             ) : (
