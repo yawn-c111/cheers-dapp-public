@@ -25,8 +25,8 @@ type ReturnUseDaoPoolContract = {
   allChallengeProjects: ProjectType[];
   totalCher: string;
   mining: boolean;
-  handleChargeCher: (_amount: string) => Promise<void>;
-  handleWithdrawCher: (_mount: string) => Promise<void>;
+  handleDaoChargeCher: (_amount: number) => Promise<void>;
+  handleDaoWithdrawCher: (_mount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: DaoProjectFactory) => Promise<void>;
   handleApproveCherToProjectPool: (_projectAddress: string, _cherAmount: ethers.BigNumberish) => Promise<void>;
 };
@@ -106,8 +106,8 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     }
   }, [daoPoolContract]);
 
-  const handleChargeCher = useCallback(
-    async (amount: string) => {
+  const handleDaoChargeCher = useCallback(
+    async (amount: number) => {
       try {
         if (!daoPoolContract) return;
         const chargeCherTxn = await daoPoolContract.chargeCher(amount);
@@ -121,8 +121,8 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     [daoPoolContract],
   );
 
-  const handleWithdrawCher = useCallback(
-    async (amount: string) => {
+  const handleDaoWithdrawCher = useCallback(
+    async (amount: number) => {
       try {
         if (!daoPoolContract) return;
         const withdrawCherTxn = await daoPoolContract.withdrawCher(amount);
@@ -229,8 +229,8 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     allChallengeProjects,
     totalCher,
     mining,
-    handleChargeCher,
-    handleWithdrawCher,
+    handleDaoChargeCher,
+    handleDaoWithdrawCher,
     handleNewProjectFactory,
     handleApproveCherToProjectPool,
   };

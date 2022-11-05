@@ -17,6 +17,7 @@ type ReturnUseCherFaucet = {
   handleSetCHER: (_CHERAddress: string) => void;
   handleFaucet: () => void;
   handleWithdraw: () => void;
+  handleExchange:(_cherAmount:number) => void;
 };
 
 export const useCherFaucetContract = ({}: Props): ReturnUseCherFaucet => {
@@ -85,11 +86,24 @@ export const useCherFaucetContract = ({}: Props): ReturnUseCherFaucet => {
     }
   }, [cherFaucetContract]);
 
+  const handleExchange = useCallback(async (cherAmount: number) => {
+    try {
+      if (!cherFaucetContract) return;
+      const exchange = await cherFaucetContract.exchange(cherAmount);
+      setMining(true);
+      await exchange.wait();
+      setMining(false);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [cherFaucetContract]);
+
   return {
     mining,
     handleSetOwner,
     handleSetCHER,
     handleFaucet,
     handleWithdraw,
+    handleExchange
   };
 };

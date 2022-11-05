@@ -4,6 +4,7 @@ import { BuyCher, SellCher, SendCher, Withdraw } from '@/components/pages/myProf
 import { ChallengeProjects, CheerProjects } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
+import { useCherContract } from '@/hooks/contracts/useCherContract';
 
 type Props = {
   ownerAddress: string;
@@ -22,12 +23,14 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   const { daoPoolAddress, daoName } = useDaoPoolContract({ daoOwnerAddress });
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
   const projectOwnerAddress = myPoolAddress;
+  const address = myPoolAddress;
+  const { cherBalance } = useCherContract({ address });
 
   const setPoolType = useCallback(() => {
-    if (userPoolAddress != '') {
-      setPoolAddressType({ type: 'user', name: userName, poolAddress: userPoolAddress });
-    } else if (daoPoolAddress != '') {
-      setPoolAddressType({ type: 'dao', name: daoName, poolAddress: daoPoolAddress });
+    if (userPoolAddress !== '') {
+      setPoolAddressType({ type: 'User', name: userName, poolAddress: userPoolAddress });
+    } else if (daoPoolAddress !== '') {
+      setPoolAddressType({ type: 'Dao', name: daoName, poolAddress: daoPoolAddress });
     } else {
       setPoolAddressType({ type: '', name: '', poolAddress: '' });
     }
@@ -46,15 +49,15 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
             <div>Name: {poolAddressType.name}</div>
             <div>Wallet Address: {ownerAddress}</div>
             <div>Pool Address: {poolAddressType.poolAddress}</div>
-            <div>Total CHER: {}</div>
+            <div>Total CHER: {cherBalance}</div>
             <div className="my-8">
               <BuyCher />
             </div>
             <div className="my-8">
-              <SendCher />
+              <SendCher ownerAddress={ownerAddress} />
             </div>
             <div className="my-8">
-              <Withdraw id={poolAddressType.poolAddress} />
+              <Withdraw ownerAddress={ownerAddress} />
             </div>
             <div className="my-8">
               <SellCher />

@@ -47,4 +47,21 @@ contract CherFaucet {
     bool sent = cher.transfer(msg.sender, balance);
     require(sent, 'CHER could not be sent.');
   }
+
+  function exchange(uint256 cherAmount) external {
+    require(msg.sender == tx.origin, 'EOA only');
+
+    uint256 cherAllowance = cher.allowance(msg.sender, address(this));
+    require(cherAllowance >= cherAmount, 'CHER allowance is required to receive Native token');
+
+    uint256 ethAmount = cherAmount / 1000;
+    require(ethAmount > 0, "Need more Cher allowance");
+    require(address(this).balance >= ethAmount, 'No Native token');
+
+    bool sentCher = cher.transferFrom(msg.sender, address(this), cherAmount);
+    require(sentCher, 'CHER could not be sent.');
+
+    (bool sentEth, ) = msg.sender.call{value: ethAmount}('');
+    require(sentEth, 'Native token could not be sent.');
+  }
 }

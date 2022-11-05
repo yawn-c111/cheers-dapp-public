@@ -1,0 +1,75 @@
+import { useCallback, useMemo, useState, useEffect } from 'react';
+
+import { ethers } from 'ethers';
+
+import CherContractABI from '@/libs/hardhat/artifacts/contracts/interfaces/IERC20.sol/IERC20.json';
+import type { CHERToken as CHERTokenType } from '@/libs/hardhat/types';
+import { getEthereumSafety } from '@/utils';
+
+const CONTRACT_ADDRESS = '0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d';
+const CONTRACT_ABI = CherContractABI.abi;
+
+type Props = {
+  address?: string;
+};
+
+type ReturnUseCherContract = {
+  mining: boolean;
+  cherBalance: number;
+  handleTransfer: (_toAddress: string, _amount: number) => void;
+};
+
+export const useCherContract = ({ address }: Props): ReturnUseCherContract => {
+  const [cherBalance, setCherBalance] = useState<number>(0);
+  const [mining, setMining] = useState<boolean>(false);
+  const ethereum = getEthereumSafety();
+
+  const cherContract: CHERTokenType | null = useMemo(() => {
+    if (!ethereum) return null;
+    // @ts-ignore:
+    const provider = new ethers.providers.Web3Provider(ethereum);
+    const signer = provider.getSigner();
+    return new ethers.Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer) as CHERTokenType;
+  }, [ethereum]);
+
+  const handleBalanceOf = useCallback(async () => {
+    try {
+      if (!cherContract) return;
+      if (!address) return;
+      const balanceOf = await cherContract.balanceOf(address);
+      const balanceOfNumber = Number(balanceOf) / 1_000_000_000_000_000_000;
+      setCherBalance(balanceOfNumber);
+    } catch (error) {
+      console.error(error);
+    }
+  }, [address, cherContract]);
+
+  const handleTransfer = useCallback(
+    async (toAddress: string, amount: number) => {
+      try {
+        if (!cherContract) return;
+        const transfer = await cherContract.transfer(toAddress, amount);
+        setMining(true);
+        await transfer.wait();
+        setMining(false);
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [cherContract],
+  );
+
+  useEffect(() => {
+    handleBalanceOf();
+  }, [handleBalanceOf]);
+
+  useEffect(() => {
+    handleBalanceOf();
+  }, [handleBalanceOf]);
+
+  return {
+    mining,
+    cherBalance,
+    handleTransfer,
+  };
+};
