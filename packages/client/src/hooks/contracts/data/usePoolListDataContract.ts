@@ -6,7 +6,7 @@ import PoolListDataContractABI from '@/libs/hardhat/artifacts/contracts/data/Poo
 import type { PoolListData as PoolListDataType } from '@/libs/hardhat/types';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '';
+const CONTRACT_ADDRESS = '0xf244F1d6A605797721f2d000107a4d129996adFa';
 const CONTRACT_ABI = PoolListDataContractABI.abi;
 
 type Props = {
