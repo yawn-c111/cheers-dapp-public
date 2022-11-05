@@ -15,8 +15,7 @@ const Profile = () => {
   const handleSetOwnerAddress = useCallback(() => {
     walletContext?.currentAccount && setOwnerAddress(walletContext.currentAccount);
   }, [walletContext?.currentAccount]);
-  // const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
- const myPoolAddress = 'aaa'
+  const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
   useEffect(() => {
     handleSetOwnerAddress();
   }, [handleSetOwnerAddress]);
