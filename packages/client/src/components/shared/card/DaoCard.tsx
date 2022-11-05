@@ -4,7 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Level } from '@/components/shared/parts';
-import { useProjectsDataContract } from '@/hooks/contracts/data'
+import { useCherContract } from '@/hooks/contracts'
+import { usePoolListDataContract, useProjectsDataContract } from '@/hooks/contracts/data'
 import { DaoType } from '@/types/struct';
 
 type Props = {
@@ -12,8 +13,12 @@ type Props = {
 };
 
 const DaoCard = ({ daoData }: Props) => {
-  const projectOwnerAddress = daoData.daoAddress
+  const projectOwnerAddress = daoData.daoWalletAddress
   const {eachProjectList} = useProjectsDataContract({projectOwnerAddress})
+  const ownerAddress = projectOwnerAddress
+  const {myPoolAddress} = usePoolListDataContract({ownerAddress})
+  const address = myPoolAddress
+  const {cherBalance} = useCherContract({address})
 
   return (
     <div className="min-w-72 w-72 mr-12 p-4 break-words bg-white bg-opacity-5 border border-secondary rounded-lg">
@@ -39,7 +44,7 @@ const DaoCard = ({ daoData }: Props) => {
           <div className="text-xl">🗡️</div>
           <div className="text-xs">challenger</div>
         </div>
-        <Level ex={1000} />
+        <Level ex={cherBalance} />
       </div>
       {/* level
       cheer */}
@@ -48,10 +53,10 @@ const DaoCard = ({ daoData }: Props) => {
           <div className="text-2xl">🛡️</div>
           <div className="text-xs">cheer</div>
         </div>
-        <Level ex={1000} />
+        <Level ex={cherBalance} />
       </div>
       {/* to profile */}
-      <Link href={`/daoProfile/${daoData.daoAddress}`}>
+      <Link href={`/daoProfile/${daoData.daoWalletAddress}`}>
         <button className="w-full h-12 rounded-md bg-cherGreen">Go to profile</button>
       </Link>
     </div>

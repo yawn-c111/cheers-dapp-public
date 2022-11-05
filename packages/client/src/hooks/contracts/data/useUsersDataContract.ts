@@ -17,7 +17,7 @@ type ReturnUsersDataContract = {
 
 export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
   const [allUserList, setAllUserList] = useState<UserType[]>([
-    { userAddress: '', userName: '', userProfile: '', userIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
+    { userWalletAddress: '', userName: '', userProfile: '', userIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
   ]);
   const ethereum = getEthereumSafety();
 
@@ -35,7 +35,7 @@ export const useUsersDataContract = ({}: Props): ReturnUsersDataContract => {
       const getAllUserList = await usersDataContract.getAllUserList();
       const allUserListOrganize = getAllUserList.map((user) => {
         return {
-          userAddress: user.userAddress,
+          userWalletAddress: user.userAddress,
           userName: user.userName,
           userProfile: user.userProfile,
           userIcon: user.userIcon,

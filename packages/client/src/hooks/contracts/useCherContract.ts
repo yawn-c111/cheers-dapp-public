@@ -15,12 +15,12 @@ type Props = {
 
 type ReturnUseCherContract = {
   mining: boolean;
-  cherBalance: number;
+  cherBalance: string;
   handleTransfer: (_toAddress: string, _amount: number) => void;
 };
 
 export const useCherContract = ({ address }: Props): ReturnUseCherContract => {
-  const [cherBalance, setCherBalance] = useState<number>(0);
+  const [cherBalance, setCherBalance] = useState<string>('');
   const [mining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
@@ -37,8 +37,8 @@ export const useCherContract = ({ address }: Props): ReturnUseCherContract => {
       if (!cherContract) return;
       if (!address) return;
       const balanceOf = await cherContract.balanceOf(address);
-      const balanceOfNumber = Number(balanceOf) / 1_000_000_000_000_000_000;
-      setCherBalance(balanceOfNumber);
+      const balanceOfNumber = balanceOf;
+      setCherBalance(balanceOfNumber.toString());
     } catch (error) {
       console.error(error);
     }

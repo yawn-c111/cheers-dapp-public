@@ -31,7 +31,7 @@ const UserProfileCard = ({ userOwnerAddress }: Props) => {
   const getUserData = useCallback(async () => {
     if (!allUserList) return;
     allUserList.map((user) => {
-      if (userOwnerAddress == user.userAddress) {
+      if (userOwnerAddress == user.userWalletAddress) {
         setUserList(user);
       }
     });

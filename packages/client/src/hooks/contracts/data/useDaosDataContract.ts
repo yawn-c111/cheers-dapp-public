@@ -18,7 +18,7 @@ type ReturnUseDaosDataContract = {
 
 export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
   const [allDaoList, setAllDaoList] = useState<DaoType[]>([
-    { daoAddress: '', daoName: '', daoProfile: '', daoIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
+    { daoWalletAddress: '', daoName: '', daoProfile: '', daoIcon: '', timestamp: new Date(2022, 11 - 1, 6) },
   ]);
   const ethereum = getEthereumSafety();
 
@@ -36,7 +36,7 @@ export const useDaosDataContract = ({}: Props): ReturnUseDaosDataContract => {
       const getAllDaoList = await daosDataContract.getAllDaoList();
       const allDaoListOrganize = getAllDaoList.map((dao) => {
         return {
-          daoAddress: dao.daoAddress,
+          daoWalletAddress: dao.daoAddress,
           daoName: dao.daoName,
           daoProfile: dao.daoProfile,
           daoIcon: dao.daoIcon,

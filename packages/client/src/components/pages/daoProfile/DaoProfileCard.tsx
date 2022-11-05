@@ -18,7 +18,7 @@ const DaoProfileCard = ({ daoOwnerAddress }: Props) => {
   const getDaoData = useCallback(async () => {
     if (!allDaoList) return;
     allDaoList.map((dao) => {
-      if (daoOwnerAddress == dao.daoAddress) {
+      if (daoOwnerAddress == dao.daoWalletAddress) {
         setDaoList(dao);
       }
     });
