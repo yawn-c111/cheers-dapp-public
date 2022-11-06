@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { BeforeCreatePool, DaosInfo, UsersInfo } from '@/components/pages/home';
+import { AllProjects } from '@/components/shared/card';
 import { Nodata } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
 import { useUsersDataContract, useDaosDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
@@ -28,10 +29,12 @@ const AfterLogin = () => {
         </>
       ) : (
         <>
-          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT USER</div>
+          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">ALL USER</div>
           {allUserList ? <UsersInfo usersData={allUserList} /> : <Nodata />}
-          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">HOT DAO</div>
+          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">ALL DAO</div>
           {allDaoList ? <DaosInfo daosData={allDaoList} /> : <Nodata />}
+          <div className="text-2xl ml-4 mt-12 mb-4 font-bold">ALL PROJECTS</div>
+          <AllProjects />
         </>
       )}
     </div>

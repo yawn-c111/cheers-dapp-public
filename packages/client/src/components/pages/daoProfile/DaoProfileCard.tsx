@@ -71,17 +71,6 @@ const DaoProfileCard = ({ daoOwnerAddress }: Props) => {
                   <Level ex={totalCher} />
                 </div>
               </div>
-              <div className="col-start-3 row-start-3 col-span-2 row-span-2 flex flex-col justify-start items-left py-8 px-12">
-                <div className="text-xl mb-2">Belong DAO:</div>
-                <div className="flex">
-                  <div className="flex justify-center items-center p-2 rounded-md bg-cherBlue mr-2">
-                    <div className="text-xs">UNCHAIN</div>
-                  </div>
-                  <div className="flex justify-center items-center p-2 rounded-md bg-cherBlue">
-                    <div className="text-xs">cheers</div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
