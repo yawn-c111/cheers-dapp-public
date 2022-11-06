@@ -6,7 +6,7 @@ import CherFaucetABI from '@/libs/hardhat/artifacts/contracts/CherFaucet.sol/Che
 import type { CherFaucet as CherFaucetType } from '@/libs/hardhat/types';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '0xAb5AF21D84C3eFe35A36922Ecfe7268d9192635B';
+const CONTRACT_ADDRESS = '0x1ECC8FF6d3530Cf6f4911aDC8298AeAb2DBf24be';
 const CONTRACT_ABI = CherFaucetABI.abi;
 
 type Props = {};
