@@ -19,7 +19,7 @@ contract ProjectPool is IProjectPool {
   string public projectContents;
   string public projectReword;
   // Alchemy testnet goerli deploy
-  address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
+  address CHER_CONTRACT_ADDRESS = 0xc87D7FE5E5Af9cfEDE29F8d362EEb1a788c539cf;
 
   uint256 public totalCher;
 
@@ -29,9 +29,9 @@ contract ProjectPool is IProjectPool {
   }
 
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS = 0x6AEe0B9c3a1e91556Dc1c0d9F9D72788212F6C3A; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0x35FA06F351ED31f8eAd5DcDF1E586e47fc064376; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
-  address CHEERLISTDATA_CONTRACT_ADDRESS = 0xA2a79E5fd747756E71333Fd68EA117F6191Ec314; // = cheerDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address CHEERLISTDATA_CONTRACT_ADDRESS = 0xcE9aDb57464657D74d8A8260b29B29bD07e2c3eb; // = cheerDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   ICheerListData public cheerListData;
 
   constructor(

@@ -7,10 +7,10 @@ import './interfaces/IUserPoolFactory.sol';
 
 contract Cheers is ICheers {
   // DAO_POOL_FACTORY
-  address DAO_POOL_FACTORY_CONTRACT_ADDRESS = 0xDdFb33e5660D0EaA249D1c4551e4db34A97B9CdA; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address DAO_POOL_FACTORY_CONTRACT_ADDRESS = 0xa8474D6642a5C98E7BE8563E3D85e7FFa28805f7; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IDaoPoolFactory public daoPoolFactory;
   // USER_POOL_FACTORY
-  address USER_POOL_FACTORY_CONTRACT_ADDRESS = 0x13cc7cd3Aa59a0c4e36A1F17516E4095533E73A5; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address USER_POOL_FACTORY_CONTRACT_ADDRESS = 0x25FbD1291de7CA6d89CfD054d9184051787fCCA8; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IUserPoolFactory public userPoolFactory;
 
   constructor() {

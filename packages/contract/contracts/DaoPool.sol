@@ -10,7 +10,7 @@ import './ProjectPool.sol';
 
 contract DaoPool is IDaoPool {
   // PROJECT
-  address PROJECTSDATA_CONTRACT_ADDRESS = 0x321Be5e440792341367C628C8F150be686845aDc; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
+  address PROJECTSDATA_CONTRACT_ADDRESS = 0x5CE46cA237c357970ee6DCe0e64d1d3dF506514d; // = projectsDataコントラクトアドレス 先にDaoDataコントラクトをdeploy
   IProjectsData public projectsData;
 
   IERC20 public cher;
@@ -22,7 +22,7 @@ contract DaoPool is IDaoPool {
   string public daoProfile;
   string public daoIcon;
   // Alchemy testnet goerli deploy
-  address CHER_CONTRACT_ADDRESS = 0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d;
+  address CHER_CONTRACT_ADDRESS = 0xc87D7FE5E5Af9cfEDE29F8d362EEb1a788c539cf;
 
   // cheerProjectリスト
   address[] cheerProjectList;

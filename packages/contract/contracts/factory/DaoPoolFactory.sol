@@ -7,11 +7,11 @@ import '../DaoPool.sol';
 
 contract DaoPoolFactory {
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS = 0x6AEe0B9c3a1e91556Dc1c0d9F9D72788212F6C3A; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0x35FA06F351ED31f8eAd5DcDF1E586e47fc064376; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
 
   // USER
-  address DAOS_DATA_CONTRACT_ADDRESS = 0x8469630D9f204b2F55FfABB27eDf9ecb25400763; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address DAOS_DATA_CONTRACT_ADDRESS = 0xa1c94AE2029Ef112386707A9DbD5501FCAfD37c4; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IDaosData public daosData;
 
   constructor() {
