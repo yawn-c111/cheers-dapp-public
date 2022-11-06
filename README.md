@@ -85,7 +85,11 @@ USERかDAOを選択し、プロフィールを設定
 
 ![capture5](https://user-images.githubusercontent.com/69970183/200177694-b7277c21-ca8c-48dc-8c06-9ff8a2410ce3.JPG)
 
+プロジェクトを作成
+
 ![capture6](https://user-images.githubusercontent.com/69970183/200178201-2d72bc8c-8378-44da-991e-634bdd357d1a.JPG)
+
+プロジェクトを応援
 
 ![capture7](https://user-images.githubusercontent.com/69970183/200178244-14fe1d23-6cf7-42f3-9de5-1f3134908746.JPG)
 
