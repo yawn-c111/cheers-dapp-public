@@ -35,9 +35,9 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
   const { cherBalance } = useCherContract({ address });
 
   const setPoolType = useCallback(() => {
-    if (userPoolAddress !== '') {
+    if (userPoolAddress !== '0x0000000000000000000000000000000000000000') {
       setPoolAddressType({ type: 'User', name: userName, poolAddress: userPoolAddress });
-    } else if (daoPoolAddress !== '') {
+    } else if (daoPoolAddress !== '0x0000000000000000000000000000000000000000') {
       setPoolAddressType({ type: 'Dao', name: daoName, poolAddress: daoPoolAddress });
     } else {
       setPoolAddressType({ type: '', name: '', poolAddress: '' });
