@@ -10,16 +10,23 @@ const UserPoolCreate = () => {
   const [userProfile, setUserProfile] = useState<string>('');
   const { mining, handleNewUserPoolFactory } = useCheersContract({});
 
+  
+
+  const setClearState = useCallback(async () => {
+    setUserName('');
+    setUserIcon('');
+    setUserProfile('');
+  }, []);
+
   const onClickEvent = useCallback(async () => {
     try {
       await handleNewUserPoolFactory({ userName, userIcon, userProfile });
-      setUserName('');
-      setUserIcon('');
-      setUserProfile('');
+      setClearState()
     } catch (error) {
       alert(error);
     }
-  }, [handleNewUserPoolFactory, userIcon, userName, userProfile]);
+  }, [handleNewUserPoolFactory, setClearState, userIcon, userName, userProfile]);
+
 
   return (
     <div className="flex flex-col justify-center items-center pt-12">

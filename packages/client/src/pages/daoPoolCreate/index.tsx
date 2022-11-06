@@ -10,16 +10,21 @@ const DaoPoolCreate = () => {
   const [daoProfile, setDaoProfile] = useState<string>('');
   const { mining, handleNewDaoPoolFactory } = useCheersContract({});
 
+  const setClearState = useCallback(async () => {
+    setDaoName('');
+    setDaoIcon('');
+    setDaoProfile('');
+  }, []);
+
   const onClickEvent = useCallback(async () => {
     try {
       await handleNewDaoPoolFactory({ daoName, daoIcon, daoProfile });
-      setDaoName('');
-      setDaoIcon('');
-      setDaoProfile('');
+      setClearState();
     } catch (error) {
       alert(error);
     }
-  }, [daoIcon, daoName, daoProfile, handleNewDaoPoolFactory]);
+  }, [daoIcon, daoName, daoProfile, handleNewDaoPoolFactory, setClearState]);
+
   return (
     <div className="flex flex-col justify-center items-center pt-12">
       <Mining mining={mining} />
