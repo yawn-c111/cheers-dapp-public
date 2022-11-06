@@ -66,6 +66,8 @@ https://mumbai.polygonscan.com/address/0x4711313De918B66661fC826497e228526Cbc106
 ## 審査やテストのためにプロジェクトにアクセスする方法など
 [https://cheers-dapp-o9cc2wfo5-junya-thinkactive.vercel.app/](https://cheers-dapp-o9cc2wfo5-junya-thinkactive.vercel.app/)
 
+https://www.youtube.com/watch?v=RHMZS3Z6rBU&ab_channel=TsukasaKato
+
 
 ![capture1](https://user-images.githubusercontent.com/69970183/200176536-fa020b4d-e207-400e-a703-27a3e6fa831b.JPG)
 
@@ -75,6 +77,7 @@ https://mumbai.polygonscan.com/address/0x4711313De918B66661fC826497e228526Cbc106
 
 ![capture4](https://user-images.githubusercontent.com/69970183/200177410-57d6f470-c1d8-4692-b67c-87587573333e.JPG)
 
+![capture5](https://user-images.githubusercontent.com/69970183/200177505-87434b16-32f7-4d37-b83e-db758a05c4c2.JPG)
 
 
 ---
