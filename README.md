@@ -69,16 +69,25 @@ https://mumbai.polygonscan.com/address/0x4711313De918B66661fC826497e228526Cbc106
 https://www.youtube.com/watch?v=RHMZS3Z6rBU&ab_channel=TsukasaKato
 
 
+画面右上でウォレットと接続
+
 ![capture1](https://user-images.githubusercontent.com/69970183/200176536-fa020b4d-e207-400e-a703-27a3e6fa831b.JPG)
+
+
+USERかDAOを選択し、プロフィールを設定
 
 ![capture2](https://user-images.githubusercontent.com/69970183/200176653-d2d8e7ca-80c0-493b-a8f9-63357731639a.JPG)
 
 ![capture3](https://user-images.githubusercontent.com/69970183/200177226-9f8ca441-3cbb-4183-a1dc-878f7f6af086.JPG)
 
+
 ![capture4](https://user-images.githubusercontent.com/69970183/200177410-57d6f470-c1d8-4692-b67c-87587573333e.JPG)
 
 ![capture5](https://user-images.githubusercontent.com/69970183/200177694-b7277c21-ca8c-48dc-8c06-9ff8a2410ce3.JPG)
 
+![capture6](https://user-images.githubusercontent.com/69970183/200178201-2d72bc8c-8378-44da-991e-634bdd357d1a.JPG)
+
+![capture7](https://user-images.githubusercontent.com/69970183/200178244-14fe1d23-6cf7-42f3-9de5-1f3134908746.JPG)
 
 
 ---
