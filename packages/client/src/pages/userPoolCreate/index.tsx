@@ -11,7 +11,14 @@ const UserPoolCreate = () => {
   const { mining, handleNewUserPoolFactory } = useCheersContract({});
 
   const onClickEvent = useCallback(async () => {
-    handleNewUserPoolFactory({ userName, userIcon, userProfile });
+    try {
+      await handleNewUserPoolFactory({ userName, userIcon, userProfile });
+      setUserName('');
+      setUserIcon('');
+      setUserProfile('');
+    } catch (error) {
+      alert(error);
+    }
   }, [handleNewUserPoolFactory, userIcon, userName, userProfile]);
 
   return (

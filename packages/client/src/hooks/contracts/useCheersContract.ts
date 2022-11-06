@@ -52,7 +52,7 @@ export const useCheersContract = ({}: Props): ReturnUseCheersContract => {
     async (inputUser: UserFactory) => {
       try {
         if (!cheersContract) return;
-        const newUserPoolFactoryTxn = await cheersContract.newDaoPoolFactory(
+        const newUserPoolFactoryTxn = await cheersContract.newUserPoolFactory(
           inputUser.userName,
           inputUser.userProfile,
           inputUser.userIcon,
