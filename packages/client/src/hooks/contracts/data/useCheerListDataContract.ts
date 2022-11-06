@@ -7,7 +7,7 @@ import type { CheerListData as CheerListDataTypes } from '@/libs/hardhat/types';
 import { CheerType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '0xA2a79E5fd747756E71333Fd68EA117F6191Ec314';
+const CONTRACT_ADDRESS = '0xcE9aDb57464657D74d8A8260b29B29bD07e2c3eb';
 const CONTRACT_ABI = CheerListDataContractABI.abi;
 
 type Props = {

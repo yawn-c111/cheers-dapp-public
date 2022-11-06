@@ -7,7 +7,7 @@ import type { DaosData as DaosDataType } from '@/libs/hardhat/types';
 import { DaoType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '0x8469630D9f204b2F55FfABB27eDf9ecb25400763';
+const CONTRACT_ADDRESS = '0xa1c94AE2029Ef112386707A9DbD5501FCAfD37c4';
 const CONTRACT_ABI = DaosDataContractABI.abi;
 
 type Props = {};

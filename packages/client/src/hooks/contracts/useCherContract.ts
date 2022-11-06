@@ -6,7 +6,7 @@ import CherContractABI from '@/libs/hardhat/artifacts/contracts/interfaces/IERC2
 import type { CHERToken as CHERTokenType } from '@/libs/hardhat/types';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '0x38D4172DDE4E50a8CdD8b39ABc572443d18ad72d';
+const CONTRACT_ADDRESS = '0xc87D7FE5E5Af9cfEDE29F8d362EEb1a788c539cf';
 const CONTRACT_ABI = CherContractABI.abi;
 
 type Props = {
