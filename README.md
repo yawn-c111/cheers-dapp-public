@@ -11,13 +11,7 @@ cheers-dAppは、DAOに特化した分散型クラウドファンディングと
 挑戦者が自ら考えたプロジェクトを公開し、その内容に対して応援者が応援メッセージや独自トークンCHERによる経済的支援などを送ることができるシステムとなっています。
 また、支援金額や早期支援といった様々な評価軸から、支援の内容によってDAOと応援者にそれぞれリターンが戻ってくる仕組みとなっています。
 
-
 ![cheers-dapp](https://user-images.githubusercontent.com/69970183/200175719-9ba1648f-fcc7-41b8-bda6-ef5ce29c10b1.png)
-
-![capture1](https://user-images.githubusercontent.com/69970183/200176536-fa020b4d-e207-400e-a703-27a3e6fa831b.JPG)
-
-![capture2](https://user-images.githubusercontent.com/69970183/200176653-d2d8e7ca-80c0-493b-a8f9-63357731639a.JPG)
-
 
 ## tech stacks
 ### client
@@ -70,7 +64,13 @@ https://mumbai.polygonscan.com/address/0x4711313De918B66661fC826497e228526Cbc106
 
 
 ## 審査やテストのためにプロジェクトにアクセスする方法など
-https://cheers-dapp-o9cc2wfo5-junya-thinkactive.vercel.app/
+[https://cheers-dapp-o9cc2wfo5-junya-thinkactive.vercel.app/](https://cheers-dapp-o9cc2wfo5-junya-thinkactive.vercel.app/)
+
+
+![capture1](https://user-images.githubusercontent.com/69970183/200176536-fa020b4d-e207-400e-a703-27a3e6fa831b.JPG)
+
+![capture2](https://user-images.githubusercontent.com/69970183/200176653-d2d8e7ca-80c0-493b-a8f9-63357731639a.JPG)
+
 ---
 ## development environment
 ```bash
