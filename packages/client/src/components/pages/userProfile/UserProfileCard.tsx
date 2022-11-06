@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
+import Image from 'next/image'
+
 import { ChangeBelongDaoName, Level, Nodata } from '@/components/shared/parts';
 import { useUserPoolContract } from '@/hooks/contracts';
 import { useUsersDataContract, useProjectsDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
@@ -49,7 +51,9 @@ const UserProfileCard = ({ userOwnerAddress }: Props) => {
           <div className="w-full h-full rounded-xl bg-gradient-to-r from-cherGreen to-cherBlue p-[3px]">
             <div className="w-full h-full bg-secondary rounded-xl grid grid-cols-4 grid-rows-4">
               <div className="col-span-2 row-span-2 py-8 px-12">
-                <div className="w-full h-full bg-cherBlue"></div>
+                <div className="relative w-full h-full">
+                <Image src={userList.userIcon} layout="fill" objectFit="cover" alt="user icon" className="rounded-lg" />
+                </div>
               </div>
               <div className="row-start-3 col-span-2 row-span-2 flex flex-col justify-between py-8 px-12 text-lg">
                 <div className=" flex justify-left items-baseline border-b">

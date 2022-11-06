@@ -4,10 +4,11 @@ import { CheerCard } from '@/components/shared/card';
 import { useCheerListDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
 
 type Props = {
-  ownerAddress: string;
+  ownerWalletAddress: string;
 };
 
-const CheerProjects = ({ ownerAddress }: Props) => {
+const CheerProjects = ({ ownerWalletAddress }: Props) => {
+  const ownerAddress = ownerWalletAddress;
   const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
   const cheerPoolAddress = myPoolAddress;
   const { myPoolCheerDataList } = useCheerListDataContract({ cheerPoolAddress });
