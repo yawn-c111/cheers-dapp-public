@@ -16,7 +16,14 @@ const CreateProjectDao = ({ daoOwnerAddress }: Props) => {
   const { daoMining, handleNewProjectFactory } = useDaoPoolContract({ daoOwnerAddress });
 
   const onClickEvent = useCallback(async () => {
-    handleNewProjectFactory({ projectName, projectContents, projectReword });
+    try {
+      await handleNewProjectFactory({ projectName, projectContents, projectReword });
+      setProjectName('');
+      setProjectContents('');
+      setProjectReword('');
+    } catch (error) {
+      alert(error);
+    }
   }, [handleNewProjectFactory, projectContents, projectName, projectReword]);
 
   return (

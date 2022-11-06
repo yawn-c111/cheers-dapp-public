@@ -30,10 +30,15 @@ const Withdraw = ({ ownerAddress }: Props) => {
   };
 
   const onClickEvent = useCallback(async () => {
-    if (userPoolAddress !== '') {
-      handleUserWithdrawCher(form.amount);
-    } else if (daoPoolAddress !== '') {
-      handleDaoWithdrawCher(form.amount);
+    try {
+      if (userPoolAddress !== '') {
+        await handleUserWithdrawCher(form.amount);
+      } else if (daoPoolAddress !== '') {
+        await handleDaoWithdrawCher(form.amount);
+      }
+      setForm({ amount: 0 });
+    } catch (error) {
+      alert(error);
     }
   }, [daoPoolAddress, form.amount, handleDaoWithdrawCher, handleUserWithdrawCher, userPoolAddress]);
 

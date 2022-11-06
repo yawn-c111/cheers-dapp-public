@@ -11,7 +11,14 @@ const DaoPoolCreate = () => {
   const { mining, handleNewDaoPoolFactory } = useCheersContract({});
 
   const onClickEvent = useCallback(async () => {
-    handleNewDaoPoolFactory({ daoName, daoIcon, daoProfile });
+    try {
+      await handleNewDaoPoolFactory({ daoName, daoIcon, daoProfile });
+      setDaoName('');
+      setDaoIcon('');
+      setDaoProfile('');
+    } catch (error) {
+      alert(error);
+    }
   }, [daoIcon, daoName, daoProfile, handleNewDaoPoolFactory]);
   return (
     <div className="flex flex-col justify-center items-center pt-12">

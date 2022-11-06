@@ -30,10 +30,15 @@ const SendCher = ({ ownerAddress }: Props) => {
   };
 
   const onClickEvent = useCallback(async () => {
-    if (userPoolAddress !== '') {
-      handleUserChargeCher(form.amount);
-    } else if (daoPoolAddress !== '') {
-      handleDaoChargeCher(form.amount);
+    try {
+      if (userPoolAddress !== '') {
+        await handleUserChargeCher(form.amount);
+      } else if (daoPoolAddress !== '') {
+        await handleDaoChargeCher(form.amount);
+      }
+      setForm({ amount: 0 });
+    } catch (error) {
+      alert(error);
     }
   }, [daoPoolAddress, form.amount, handleDaoChargeCher, handleUserChargeCher, userPoolAddress]);
 

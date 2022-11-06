@@ -23,7 +23,10 @@ const SellCher = () => {
   };
 
   const onClickEvent = useCallback(async () => {
-    handleExchange(form.amount);
+    try {
+      await handleExchange(form.amount);
+      setForm({ amount: 0 });
+    } catch (error) {}
   }, [form.amount, handleExchange]);
 
   return (
