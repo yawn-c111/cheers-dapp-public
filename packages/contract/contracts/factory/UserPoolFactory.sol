@@ -7,12 +7,12 @@ import '../UserPool.sol';
 
 contract UserPoolFactory {
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS = 0xf244F1d6A605797721f2d000107a4d129996adFa;
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0x6AEe0B9c3a1e91556Dc1c0d9F9D72788212F6C3A;
   // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
 
   // USER
-  address USERS_DATA_CONTRACT_ADDRESS = 0x56853f3bF537a055FcBFCdE1f784048148440aee; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address USERS_DATA_CONTRACT_ADDRESS = 0xB0B8D5346A93D73513AFAf165bD882f58055c81B; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IUsersData public usersData;
 
   constructor() {
@@ -22,17 +22,18 @@ contract UserPoolFactory {
 
   // Userプール作成
   function newUserPoolFactory(
+    address _userAddress,
     string memory _userName,
     string memory _userProfile,
     string memory _userIcon
   ) external returns (address) {
-    require(address(poolListData.getMyPoolAddress(msg.sender)) == address(0), 'already created!');
+    require(address(poolListData.getMyPoolAddress(_userAddress)) == address(0), 'already created!');
 
-    UserPool userPool = new UserPool(msg.sender, _userName, _userProfile, _userIcon, address(this));
-    usersData.addUsers(msg.sender, _userName, _userProfile, _userIcon);
-    poolListData.addMyPoolAddress(msg.sender, address(userPool));
+    UserPool userPool = new UserPool(_userAddress, _userName, _userProfile, _userIcon, address(this));
+    usersData.addUsers(_userAddress, _userName, _userProfile, _userIcon);
+    poolListData.addMyPoolAddress(_userAddress, address(userPool));
 
-    return poolListData.getMyPoolAddress(msg.sender);
+    return poolListData.getMyPoolAddress(_userAddress);
   }
 
   function setPoolListData(address poolListDataAddress) public {

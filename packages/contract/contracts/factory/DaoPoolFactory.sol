@@ -7,11 +7,11 @@ import '../DaoPool.sol';
 
 contract DaoPoolFactory {
   // POOl
-  address POOLLISTDATA_CONTRACT_ADDRESS = 0xf244F1d6A605797721f2d000107a4d129996adFa; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
+  address POOLLISTDATA_CONTRACT_ADDRESS = 0x6AEe0B9c3a1e91556Dc1c0d9F9D72788212F6C3A; // = poolListDataコントラクトアドレス 先にPoolListDataコントラクトをdeploy
   IPoolListData public poolListData;
 
   // USER
-  address DAOS_DATA_CONTRACT_ADDRESS = 0xCcC09563b7A69CadfF4b770cC76cb4452858b89C; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address DAOS_DATA_CONTRACT_ADDRESS = 0x8469630D9f204b2F55FfABB27eDf9ecb25400763; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IDaosData public daosData;
 
   constructor() {
@@ -21,17 +21,18 @@ contract DaoPoolFactory {
 
   // Daoプール作成
   function newDaoPoolFactory(
+    address _daoAddress,
     string memory _daoName,
     string memory _daoProfile,
     string memory _daoIcon
   ) external returns (address) {
-    require(address(poolListData.getMyPoolAddress(msg.sender)) == address(0), 'already created!');
+    require(address(poolListData.getMyPoolAddress(_daoAddress)) == address(0), 'already created!');
 
-    DaoPool daoPool = new DaoPool(msg.sender, _daoName, _daoProfile, _daoIcon, address(this));
-    daosData.addDaos(msg.sender, _daoName, _daoProfile, _daoIcon);
-    poolListData.addMyPoolAddress(msg.sender, address(daoPool));
+    DaoPool daoPool = new DaoPool(_daoAddress, _daoName, _daoProfile, _daoIcon, address(this));
+    daosData.addDaos(_daoAddress, _daoName, _daoProfile, _daoIcon);
+    poolListData.addMyPoolAddress(_daoAddress, address(daoPool));
 
-    return poolListData.getMyPoolAddress(msg.sender);
+    return poolListData.getMyPoolAddress(_daoAddress);
   }
 
   function setPoolListData(address poolListDataAddress) public {

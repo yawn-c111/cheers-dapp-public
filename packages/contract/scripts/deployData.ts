@@ -3,7 +3,7 @@ import { CherFaucet, CheerListData, UsersData, DaosData, ProjectsData, PoolListD
 
 async function main() {
     
-  let cherFaucet: CherFaucet;
+  // let cherFaucet: CherFaucet;
 
   let cheerListData: CheerListData;
   let usersData: UsersData;
@@ -11,10 +11,10 @@ async function main() {
   let projectsData: ProjectsData;
   let poolListData: PoolListData;
         
-  const cherFaucetFactory = await ethers.getContractFactory("CherFaucet");
-  cherFaucet = await cherFaucetFactory.deploy();
-  await cherFaucet.deployed();
-  console.log("CherFaucet deployed to:", cherFaucet.address);
+  // const cherFaucetFactory = await ethers.getContractFactory("CherFaucet");
+  // cherFaucet = await cherFaucetFactory.deploy();
+  // await cherFaucet.deployed();
+  // console.log("CherFaucet deployed to:", cherFaucet.address);
 
 
   const cheerListDataFactory = await ethers.getContractFactory("CheerListData");

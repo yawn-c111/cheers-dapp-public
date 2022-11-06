@@ -7,10 +7,10 @@ import './interfaces/IUserPoolFactory.sol';
 
 contract Cheers is ICheers {
   // DAO_POOL_FACTORY
-  address DAO_POOL_FACTORY_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address DAO_POOL_FACTORY_CONTRACT_ADDRESS = 0xDdFb33e5660D0EaA249D1c4551e4db34A97B9CdA; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IDaoPoolFactory public daoPoolFactory;
   // USER_POOL_FACTORY
-  address USER_POOL_FACTORY_CONTRACT_ADDRESS; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
+  address USER_POOL_FACTORY_CONTRACT_ADDRESS = 0x13cc7cd3Aa59a0c4e36A1F17516E4095533E73A5; // = usersDataコントラクトアドレス 先にUserDataコントラクトをdeploy
   IUserPoolFactory public userPoolFactory;
 
   constructor() {
@@ -24,7 +24,7 @@ contract Cheers is ICheers {
     string memory _daoProfile,
     string memory _daoIcon
   ) public {
-    daoPoolFactory.newDaoPoolFactory(_daoName, _daoProfile, _daoIcon);
+    daoPoolFactory.newDaoPoolFactory(msg.sender, _daoName, _daoProfile, _daoIcon);
   }
 
   // Userプール作成
@@ -33,7 +33,7 @@ contract Cheers is ICheers {
     string memory _userProfile,
     string memory _userIcon
   ) public {
-    userPoolFactory.newUserPoolFactory(_userName, _userProfile, _userIcon);
+    userPoolFactory.newUserPoolFactory(msg.sender, _userName, _userProfile, _userIcon);
   }
 
   function setDaoPoolFactory(address daoPoolFactoryAddress) public {
