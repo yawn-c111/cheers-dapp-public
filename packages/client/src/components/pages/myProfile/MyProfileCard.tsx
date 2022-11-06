@@ -85,7 +85,7 @@ const MyProfileCard = ({ ownerAddress }: Props) => {
       </div>
       <div className="col-span-1">
         <ChallengeProjects projectOwnerAddress={projectOwnerAddress} />
-        <CheerProjects ownerAddress={ownerAddress} />
+        <CheerProjects ownerWalletAddress={ownerAddress} />
       </div>
     </>
   );
