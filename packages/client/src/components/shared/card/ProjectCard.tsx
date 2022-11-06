@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
+import { useCherContract } from '@/hooks/contracts/useCherContract';
 import { ProjectType } from '@/types/struct';
 
 type Props = {
@@ -9,9 +10,19 @@ type Props = {
 };
 
 const ProjectCard = ({ project }: Props) => {
+  const [address, setAddress] = useState<string>('');
+  const handleSetAddress = useCallback(async () => {
+    setAddress(project.projectAddress);
+  }, [project.projectAddress]);
+  const { cherBalance } = useCherContract({ address });
+
+  useEffect(() => {
+    handleSetAddress();
+  }, [handleSetAddress]);
+
   return (
     <>
-      <Link href={`./project/${project.projectAddress}`}>
+      <Link href={`/projectContents/${address}`}>
         <div className="w-80 p-4 mx-4 my-4 rounded-lg bg-secondary cursor-pointer">
           <div className="flex items-center text-xs mb-2">
             <div className="p-1 bg-cherBlue rounded-lg">{project.belongDaoAddress}</div>
@@ -25,8 +36,8 @@ const ProjectCard = ({ project }: Props) => {
           <div className="flex items-center text-lg">
             <div>💰</div>
             <div className="flex items-end">
-              <div className="translate-y-0.5">{1000}</div>
-              <div className="ml-1 text-sm">CHER</div>
+              <div className="translate-y-0.5">{cherBalance}</div>
+              <div className="ml-1 text-sm">CHER: {cherBalance ? cherBalance : 0}</div>
             </div>
           </div>
         </div>

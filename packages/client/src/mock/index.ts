@@ -4,7 +4,7 @@ import type { CheerType, ProjectType, UserType } from '../types/struct';
 
 export const usersData: UserType[] = [
   {
-    userWalletAddress:"0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18",
+    userWalletAddress: '0x9Ce7042FBf0595775913Cca1D71501fEA1fA2C18',
     userName: 'junya',
     userProfile: '楽観的でとりあえず特攻でいくCheersの零戦',
     userIcon: 'https://pbs.twimg.com/profile_images/1503885298194792450/RM0bAxAQ_400x400.png',

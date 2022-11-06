@@ -30,7 +30,7 @@ const OpenedMessageColumn = ({ projectPoolAddress }: Props) => {
         }}
       />
       <InputCher setCher={setCher} />
-      <div className="mb-4 px-4 py-2 bg-cherGreen">SET CHER: {cher}</div>
+      <div className="my-4 px-4 py-2 bg-cherGreen">SET CHER: {cher}</div>
       <ButtonRed buttonName="CHEER" onClickEvent={sendMintCheer} />
     </div>
   );

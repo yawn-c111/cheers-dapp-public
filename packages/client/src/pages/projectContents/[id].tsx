@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import { useRouter } from 'next/router';
 
@@ -10,10 +10,18 @@ import { useWalletContext } from '@/context/state';
 import { useProjectsDataContract } from '@/hooks/contracts/data';
 
 const Project = () => {
+  const [projectPoolAddress, setProjectPoolAddress] = useState<string>('');
   const walletContext = useWalletContext();
   const router = useRouter();
   const id = router.query.id?.toString() || '';
-  const projectPoolAddress = id;
+  const handleSetProjectPoolAddress = useCallback(async () => {
+    setProjectPoolAddress(id);
+  }, [id]);
+
+  useEffect(() => {
+    handleSetProjectPoolAddress();
+  }, [handleSetProjectPoolAddress]);
+
   const { projectAddressToProjectData } = useProjectsDataContract({ projectPoolAddress });
   return (
     <>
