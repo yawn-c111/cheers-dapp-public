@@ -33,7 +33,11 @@ const EtherSubmitForm = ({ buttonName, onClickEvent }: Props) => {
     <form onSubmit={handleSubmit}>
       <div className="flex justify-center items-center">
         <InputNumber value={form.amount} onChange={handleChangeAmount} onInvalidNumber={handleInvalidAmount} />
-        {errors?.amount ? <p className='text-cherRed'>{errors.amount}</p> : <Button buttonName={buttonName} onClickEvent={onClickEvent} />}
+        {errors?.amount ? (
+          <p className="text-cherRed">{errors.amount}</p>
+        ) : (
+          <Button buttonName={buttonName} onClickEvent={onClickEvent} />
+        )}
       </div>
     </form>
   );

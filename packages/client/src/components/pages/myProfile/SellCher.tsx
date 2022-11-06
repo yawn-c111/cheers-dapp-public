@@ -1,11 +1,12 @@
 import React, { useCallback, useState } from 'react';
 
+import { Mining } from '@/components/shared/layouts';
 import { Button, InputNumber } from '@/components/shared/parts';
 import { useCherFaucetContract } from '@/hooks/contracts';
 import { Form, FormErrors } from '@/types/form';
 
 const SellCher = () => {
-  const { handleExchange } = useCherFaucetContract({});
+  const { mining, handleExchange } = useCherFaucetContract({});
 
   const [errors, setErrors] = useState<FormErrors>();
   const [form, setForm] = useState<Form>({
@@ -27,6 +28,7 @@ const SellCher = () => {
 
   return (
     <div className="flex flex-col justify-center items-start">
+      <Mining mining={mining} />
       <div className="mb-2">
         CHERをETHと交換する
         <span className="text-sm text-cherPink">Change CHER</span>

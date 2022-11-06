@@ -1,7 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-import { BuyCher, CreateProjectDao, CreateProjectUser, SellCher, SendCher, Withdraw } from '@/components/pages/myProfile';
-import { ChallengeProjects, CheerProjects } from '@/components/shared/parts';
+import {
+  BuyCher,
+  ChallengeProjects,
+  CheerProjects,
+  CreateProjectDao,
+  CreateProjectUser,
+  SellCher,
+  SendCher,
+  Withdraw,
+} from '@/components/pages/myProfile';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
 import { useCherContract } from '@/hooks/contracts/useCherContract';

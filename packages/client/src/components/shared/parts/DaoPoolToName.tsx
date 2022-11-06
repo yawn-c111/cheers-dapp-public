@@ -1,19 +1,17 @@
-import React from 'react'
+import React from 'react';
 
 import { useDaoPoolContract } from '@/hooks/contracts';
 import { usePoolListDataContract } from '@/hooks/contracts/data';
 
 type Props = {
-  poolAddress:string;
-}
+  poolAddress: string;
+};
 
-const DaoPoolToName = ({poolAddress}:Props) => {
-  const {myWalletAddress} = usePoolListDataContract({poolAddress})
-  const daoOwnerAddress =myWalletAddress;
-  const {daoName} =useDaoPoolContract({daoOwnerAddress})
-  return (
-    <div>{daoName}</div>
-  )
-}
+const DaoPoolToName = ({ poolAddress }: Props) => {
+  const { myWalletAddress } = usePoolListDataContract({ poolAddress });
+  const daoOwnerAddress = myWalletAddress;
+  const { daoName } = useDaoPoolContract({ daoOwnerAddress });
+  return <div>{daoName}</div>;
+};
 
-export default DaoPoolToName
+export default DaoPoolToName;

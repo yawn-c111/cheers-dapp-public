@@ -9,15 +9,15 @@ type Props = {
 };
 
 const ProjectCheers = ({ projectPoolAddress }: Props) => {
-  const {myProjectCheerDataList} =useCheerListDataContract({projectPoolAddress})
+  const { myProjectCheerDataList } = useCheerListDataContract({ projectPoolAddress });
 
   return (
     <div className="p-12">
       <div className="text-4xl mb-12">Cheer Projects</div>
       <div className="flex flex-wrap">
         {myProjectCheerDataList.map((cheerData, i) => (
-            <CheerCardForProject key={i} cheerData={cheerData} />
-          ))}
+          <CheerCardForProject key={i} cheerData={cheerData} />
+        ))}
       </div>
     </div>
   );

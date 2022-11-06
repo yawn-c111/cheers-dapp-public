@@ -7,7 +7,7 @@ import type { ProjectsData as ProjectsDataType } from '@/libs/hardhat/types';
 import { ProjectType } from '@/types/struct';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '0xD511eDC5b6F9f6fcd1135cd9F55857fB7cf606A8';
+const CONTRACT_ADDRESS = '0x321Be5e440792341367C628C8F150be686845aDc';
 const CONTRACT_ABI = ProjectsDataContractABI.abi;
 
 type Props = {

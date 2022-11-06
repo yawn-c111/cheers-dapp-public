@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
+import { Mining } from '@/components/shared/layouts';
 import { Button, InputNumber } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
 import { Form, FormErrors } from '@/types/form';
@@ -10,9 +11,9 @@ type Props = {
 
 const SendCher = ({ ownerAddress }: Props) => {
   const userOwnerAddress = ownerAddress;
-  const { userPoolAddress, handleUserChargeCher } = useUserPoolContract({ userOwnerAddress });
+  const { userMining, userPoolAddress, handleUserChargeCher } = useUserPoolContract({ userOwnerAddress });
   const daoOwnerAddress = ownerAddress;
-  const { daoPoolAddress, handleDaoChargeCher } = useDaoPoolContract({ daoOwnerAddress });
+  const { daoMining, daoPoolAddress, handleDaoChargeCher } = useDaoPoolContract({ daoOwnerAddress });
 
   const [errors, setErrors] = useState<FormErrors>();
   const [form, setForm] = useState<Form>({
@@ -38,6 +39,8 @@ const SendCher = ({ ownerAddress }: Props) => {
 
   return (
     <div className="flex flex-col justify-center items-start">
+      <Mining mining={userMining} />
+      <Mining mining={daoMining} />
       <div className="mb-2">
         CHERをPOOLにチャージする <span className="text-sm text-cherBlue">Charge Pool</span>
       </div>

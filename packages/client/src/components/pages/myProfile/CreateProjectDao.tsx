@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react';
 
+import { Mining } from '@/components/shared/layouts';
 import { Button } from '@/components/shared/parts';
 import { useDaoPoolContract } from '@/hooks/contracts';
 
@@ -12,7 +13,7 @@ const CreateProjectDao = ({ daoOwnerAddress }: Props) => {
   const [projectContents, setProjectContents] = useState<string>('');
   const [projectReword, setProjectReword] = useState<string>('');
 
-  const { handleNewProjectFactory } = useDaoPoolContract({ daoOwnerAddress });
+  const { daoMining, handleNewProjectFactory } = useDaoPoolContract({ daoOwnerAddress });
 
   const onClickEvent = useCallback(async () => {
     handleNewProjectFactory({ projectName, projectContents, projectReword });
@@ -20,6 +21,7 @@ const CreateProjectDao = ({ daoOwnerAddress }: Props) => {
 
   return (
     <div className="flex justify-start items-start pt-12">
+      <Mining mining={daoMining} />
       <div className="flex flex-col justify-center items-center">
         <div className="text-4xl text-cherRed">PROJECT FACTORY</div>
         <div className="flex flex-col justify-center items-center mt-12">

@@ -1,10 +1,11 @@
 import React from 'react';
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
 import { BeforeLogin } from '@/components/pages/home';
+import { ChallengeProjects, CheerProjects } from '@/components/pages/myProfile';
 import { UserProfileCard } from '@/components/pages/userProfile';
-import { ChallengeProjects, CheerProjects, PageTitle } from '@/components/shared/parts';
+import { PageTitle } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
 
 const UserProfile = () => {

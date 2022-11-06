@@ -3,7 +3,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 
 import { BeforeLogin } from '@/components/pages/home';
-import { CheerThisProject } from '@/components/pages/project'
+import { CheerThisProject } from '@/components/pages/project';
 import { ProjectMainCard } from '@/components/shared/card';
 import { ProjectCheers } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';

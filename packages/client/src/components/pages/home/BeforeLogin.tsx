@@ -13,8 +13,8 @@ const BeforeLogin = () => {
           <div className="px-4 py-2 bg-gradient-to-r from-cherGreen to-cherBlue text-8xl">CHEERS</div>
         </div>
       </div>
-      <div className='mt-12 text-4xl text-cherPink text-center'>PLEASE CONNECTED WALLET</div>
-      </div>
+      <div className="mt-12 text-4xl text-cherPink text-center">PLEASE CONNECTED WALLET</div>
+    </div>
   );
 };
 

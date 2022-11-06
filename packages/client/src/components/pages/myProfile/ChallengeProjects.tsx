@@ -1,10 +1,9 @@
 import React from 'react';
 
 import { ProjectCard } from '@/components/shared/card';
-
 // import { projectsData } from '@/mock';
-import { useProjectsDataContract } from '../../../hooks/contracts/data/useProjectsDataContract';
-import Nodata from './Nodata';
+import { Nodata } from '@/components/shared/parts';
+import { useProjectsDataContract } from '@/hooks/contracts/data';
 
 type Props = {
   projectOwnerAddress: string;

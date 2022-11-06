@@ -30,12 +30,12 @@ const config: HardhatUserConfig = {
   paths: {
     artifacts: '../client/src/libs/hardhat/artifacts',
   },
-  networks: {
-    mumbai: {
-      url: `${process.env.API_URL}`,
-      accounts: [`${process.env.PRIVATE_KEY}`],
-    },
-  },
+  // networks: {
+  //   mumbai: {
+  //     url: `${process.env.API_URL}`,
+  //     accounts: [`${process.env.PRIVATE_KEY}`],
+  //   },
+  // },
   // gasReporter: {
   //   enabled: process.env.REPORT_GAS ? true : false,
   //   currency: "JPY",

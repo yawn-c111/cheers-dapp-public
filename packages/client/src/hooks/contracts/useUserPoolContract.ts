@@ -24,7 +24,7 @@ type ReturnUseUserPoolContract = {
   userIcon: string;
   allChallengeProjects: ProjectType[];
   totalCher: string;
-  mining: boolean;
+  userMining: boolean;
   handleUserChargeCher: (_amount: number) => Promise<void>;
   handleUserWithdrawCher: (_amount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: UserProjectFactory) => Promise<void>;
@@ -44,7 +44,7 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
   const [userIcon, setUserIcon] = useState<string>('');
   const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>([]);
   const [totalCher, setTotalCher] = useState<string>('');
-  const [mining, setMining] = useState<boolean>(false);
+  const [userMining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
   const userPoolContract: UserPoolTypes | null = useMemo(() => {
@@ -229,7 +229,7 @@ export const useUserPoolContract = ({ userOwnerAddress }: Props): ReturnUseUserP
     userIcon,
     allChallengeProjects,
     totalCher,
-    mining,
+    userMining,
     handleUserChargeCher,
     handleUserWithdrawCher,
     handleNewProjectFactory,

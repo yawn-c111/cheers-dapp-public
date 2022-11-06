@@ -2,35 +2,34 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import dayjs from 'dayjs';
 
-import { DaoPoolToName } from '@/components/shared/parts'
+import { DaoPoolToName } from '@/components/shared/parts';
 import { useDaoPoolContract, useUserPoolContract } from '@/hooks/contracts';
-import { ProjectType } from '@/types/struct'
+import { ProjectType } from '@/types/struct';
 
 type Props = {
-  projectData:ProjectType
-}
+  projectData: ProjectType;
+};
 
+const ProjectMainCard = ({ projectData }: Props) => {
+  const [name, setName] = useState<string>('');
+  const userOwnerAddress = projectData.projectOwnerAddress;
+  const daoOwnerAddress = projectData.projectOwnerAddress;
+  const { userName, userPoolAddress } = useUserPoolContract({ userOwnerAddress });
+  const { daoName, daoPoolAddress } = useDaoPoolContract({ daoOwnerAddress });
 
-const ProjectMainCard = ({projectData}:Props) => {
-  const [name,setName] =useState<string>('')
-  const userOwnerAddress = projectData.projectOwnerAddress
-  const daoOwnerAddress = projectData.projectOwnerAddress
-  const {userName,userPoolAddress} = useUserPoolContract({userOwnerAddress})
-  const {daoName,daoPoolAddress} = useDaoPoolContract({daoOwnerAddress})
-
-  const setProjectOwnerName = useCallback(async() =>{
-    if(userPoolAddress!= '') {
+  const setProjectOwnerName = useCallback(async () => {
+    if (userPoolAddress != '') {
       setName(userName);
-    }else if(daoPoolAddress!=''){
+    } else if (daoPoolAddress != '') {
       setName(daoName);
     } else {
-      setName('')
+      setName('');
     }
-  },[daoName, daoPoolAddress, userName, userPoolAddress])
+  }, [daoName, daoPoolAddress, userName, userPoolAddress]);
 
-  useEffect(()=>{
-    setProjectOwnerName()
-  },[setProjectOwnerName])
+  useEffect(() => {
+    setProjectOwnerName();
+  }, [setProjectOwnerName]);
 
   return (
     <div className="flex justify-center">
@@ -45,7 +44,9 @@ const ProjectMainCard = ({projectData}:Props) => {
               <div>Project Owner:</div>
               <div>{name}</div>
             </div>
-            <div>Belong Dao: <DaoPoolToName poolAddress= {projectData.belongDaoAddress} /></div>
+            <div>
+              Belong Dao: <DaoPoolToName poolAddress={projectData.belongDaoAddress} />
+            </div>
             <div>Project Name: {projectData.projectName}</div>
             <div>Project Contents: {projectData.projectContents}</div>
             <div>Project Reword: {projectData.projectReword}</div>

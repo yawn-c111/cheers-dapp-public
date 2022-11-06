@@ -12,31 +12,31 @@ type Props = {
 };
 
 const CheerCardForProject = ({ cheerData }: Props) => {
-  const poolAddress = cheerData.cheerPoolAddress
-  const {myWalletAddress} =usePoolListDataContract({poolAddress})
-  const userOwnerAddress = myWalletAddress
-  const daoOwnerAddress = myWalletAddress
-  const {userName,userIcon,userPoolAddress} = useUserPoolContract({ userOwnerAddress });
-  const {daoName,daoIcon,daoPoolAddress} = useDaoPoolContract({daoOwnerAddress})
-  const [name,setName] = useState<string>('')
-  const [icon,setIcon] = useState<string>('')
+  const poolAddress = cheerData.cheerPoolAddress;
+  const { myWalletAddress } = usePoolListDataContract({ poolAddress });
+  const userOwnerAddress = myWalletAddress;
+  const daoOwnerAddress = myWalletAddress;
+  const { userName, userIcon, userPoolAddress } = useUserPoolContract({ userOwnerAddress });
+  const { daoName, daoIcon, daoPoolAddress } = useDaoPoolContract({ daoOwnerAddress });
+  const [name, setName] = useState<string>('');
+  const [icon, setIcon] = useState<string>('');
 
-  const setCheerData = useCallback(async()=>{
-    if(userPoolAddress != ''){
+  const setCheerData = useCallback(async () => {
+    if (userPoolAddress != '') {
       setName(userName);
       setIcon(userIcon);
-    } else if(daoPoolAddress != ''){
+    } else if (daoPoolAddress != '') {
       setName(daoName);
       setIcon(daoIcon);
     } else {
-      setName('')
-      setIcon('')
+      setName('');
+      setIcon('');
     }
-  },[daoIcon, daoName, daoPoolAddress, userIcon, userName, userPoolAddress])
+  }, [daoIcon, daoName, daoPoolAddress, userIcon, userName, userPoolAddress]);
 
-  useEffect(()=>{
+  useEffect(() => {
     setCheerData();
-  },[setCheerData])
+  }, [setCheerData]);
 
   return (
     <>
@@ -46,13 +46,7 @@ const CheerCardForProject = ({ cheerData }: Props) => {
             <div className="col-span-1 flex flex-col justify-center items-center bg-primary p-1 border">
               <div className="text-xs mb-1 text-cherRed">Cheer</div>
               <div className="relative w-10 h-10 my-1">
-                <Image
-                  src={icon}
-                  layout="fill"
-                  objectFit="contain"
-                  alt="challenger icon"
-                  className="rounded-full"
-                />
+                <Image src={icon} layout="fill" objectFit="contain" alt="challenger icon" className="rounded-full" />
               </div>
               <div className="text-xs text-cherRed">{name}</div>
             </div>

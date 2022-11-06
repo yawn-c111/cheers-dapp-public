@@ -24,7 +24,7 @@ type ReturnUseDaoPoolContract = {
   daoIcon: string;
   allChallengeProjects: ProjectType[];
   totalCher: string;
-  mining: boolean;
+  daoMining: boolean;
   handleDaoChargeCher: (_amount: number) => Promise<void>;
   handleDaoWithdrawCher: (_mount: number) => Promise<void>;
   handleNewProjectFactory: (_inputProject: DaoProjectFactory) => Promise<void>;
@@ -44,7 +44,7 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
   const [daoIcon, setDaoIcon] = useState<string>('');
   const [allChallengeProjects, setAllChallengeProjects] = useState<ProjectType[]>([]);
   const [totalCher, setTotalCher] = useState<string>('');
-  const [mining, setMining] = useState<boolean>(false);
+  const [daoMining, setMining] = useState<boolean>(false);
   const ethereum = getEthereumSafety();
 
   const daoPoolContract: DaoPoolTypes | null = useMemo(() => {
@@ -228,7 +228,7 @@ export const useDaoPoolContract = ({ daoOwnerAddress }: Props): ReturnUseDaoPool
     daoIcon,
     allChallengeProjects,
     totalCher,
-    mining,
+    daoMining,
     handleDaoChargeCher,
     handleDaoWithdrawCher,
     handleNewProjectFactory,

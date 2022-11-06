@@ -5,8 +5,6 @@ export { default as Button } from './Button';
 export { default as ButtonRed } from './ButtonRed';
 export { default as NumberSubmitForm } from './NumberSubmitForm';
 export { default as InputNumber } from './InputNumber';
-export { default as ChallengeProjects } from './ChallengeProjects';
-export { default as CheerProjects } from './CheerProjects';
 export { default as Nodata } from './Nodata';
 export { default as ChangeBelongDaoName } from './ChangeBelongDaoName';
 export { default as ProjectCheers } from './ProjectCheers';

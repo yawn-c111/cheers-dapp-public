@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import { Level, Nodata } from '@/components/shared/parts';
 import { useDaoPoolContract } from '@/hooks/contracts';
-import { useDaosDataContract} from '@/hooks/contracts/data';
+import { useDaosDataContract } from '@/hooks/contracts/data';
 import { DaoType } from '@/types/struct';
 
 type Props = {

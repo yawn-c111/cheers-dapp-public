@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import { Level } from '@/components/shared/parts';
-import { useCherContract } from '@/hooks/contracts'
+import { useCherContract } from '@/hooks/contracts';
 import { usePoolListDataContract, useProjectsDataContract } from '@/hooks/contracts/data';
 import { UserType } from '@/types/struct';
 
@@ -14,11 +14,11 @@ type Props = {
 
 const UserCard = ({ userData }: Props) => {
   const projectOwnerAddress = userData.userWalletAddress;
-  const ownerAddress = userData.userWalletAddress
+  const ownerAddress = userData.userWalletAddress;
   const { eachProjectList } = useProjectsDataContract({ projectOwnerAddress });
-  const {myPoolAddress} = usePoolListDataContract({ownerAddress})
-  const address = myPoolAddress
-  const {cherBalance} = useCherContract({address})
+  const { myPoolAddress } = usePoolListDataContract({ ownerAddress });
+  const address = myPoolAddress;
+  const { cherBalance } = useCherContract({ address });
 
   return (
     <div className="min-w-72 w-72 mr-12 p-4 break-words bg-white bg-opacity-5 border border-secondary rounded-lg">

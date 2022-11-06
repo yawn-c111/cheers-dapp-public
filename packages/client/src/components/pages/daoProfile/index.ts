@@ -1,1 +1,1 @@
-export {default as DaoProfileCard} from './DaoProfileCard'
+export { default as DaoProfileCard } from './DaoProfileCard';

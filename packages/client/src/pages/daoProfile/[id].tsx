@@ -4,7 +4,8 @@ import { useRouter } from 'next/router';
 
 import { DaoProfileCard } from '@/components/pages/daoProfile';
 import { BeforeLogin } from '@/components/pages/home';
-import { ChallengeProjects, CheerProjects, PageTitle } from '@/components/shared/parts';
+import { ChallengeProjects, CheerProjects } from '@/components/pages/myProfile';
+import { PageTitle } from '@/components/shared/parts';
 import { useWalletContext } from '@/context/state';
 
 const Profile = () => {

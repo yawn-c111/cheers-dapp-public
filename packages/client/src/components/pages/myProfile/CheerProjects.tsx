@@ -1,8 +1,7 @@
 import React from 'react';
 
-import { useCheerListDataContract } from '../../../hooks/contracts/data/useCheerListDataContract';
-import { usePoolListDataContract } from '../../../hooks/contracts/data/usePoolListDataContract';
-import { CheerCard } from '../card';
+import { CheerCard } from '@/components/shared/card';
+import { useCheerListDataContract, usePoolListDataContract } from '@/hooks/contracts/data';
 
 type Props = {
   ownerAddress: string;
@@ -18,8 +17,8 @@ const CheerProjects = ({ ownerAddress }: Props) => {
       <div className="text-4xl mb-12">Cheer Projects</div>
       <div className="flex flex-wrap">
         {myPoolCheerDataList.map((cheerData, i) => (
-            <CheerCard key={i} cheerData={cheerData} />
-          ))}
+          <CheerCard key={i} cheerData={cheerData} />
+        ))}
       </div>
     </div>
   );

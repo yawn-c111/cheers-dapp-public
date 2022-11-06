@@ -7,7 +7,7 @@ import type { Cheers as CheersType } from '@/libs/hardhat/types';
 import { DaoFactory, UserFactory } from '@/types/contractTypes';
 import { getEthereumSafety } from '@/utils';
 
-const CONTRACT_ADDRESS = '0x4711313De918B66661fC826497e228526Cbc1067';
+const CONTRACT_ADDRESS = '0xd8A5b91744F0a1A07D4ADC35ff5fd206Cfe045B3';
 const CONTRACT_ABI = CheersContractABI.abi;
 
 type Props = {};
