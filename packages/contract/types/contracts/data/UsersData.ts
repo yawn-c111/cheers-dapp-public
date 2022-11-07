@@ -45,11 +45,16 @@ export interface UsersDataInterface extends utils.Interface {
   functions: {
     "addUsers(address,string,string,string)": FunctionFragment;
     "getAllUserList()": FunctionFragment;
+    "removeUser(address)": FunctionFragment;
     "users(uint256)": FunctionFragment;
   };
 
   getFunction(
-    nameOrSignatureOrTopic: "addUsers" | "getAllUserList" | "users"
+    nameOrSignatureOrTopic:
+      | "addUsers"
+      | "getAllUserList"
+      | "removeUser"
+      | "users"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -66,6 +71,10 @@ export interface UsersDataInterface extends utils.Interface {
     values?: undefined
   ): string;
   encodeFunctionData(
+    functionFragment: "removeUser",
+    values: [PromiseOrValue<string>]
+  ): string;
+  encodeFunctionData(
     functionFragment: "users",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
@@ -75,6 +84,7 @@ export interface UsersDataInterface extends utils.Interface {
     functionFragment: "getAllUserList",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "removeUser", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "users", data: BytesLike): Result;
 
   events: {};
@@ -119,6 +129,11 @@ export interface UsersData extends BaseContract {
       overrides?: CallOverrides
     ): Promise<[SharedStruct.UserStructOutput[]]>;
 
+    removeUser(
+      _userAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<ContractTransaction>;
+
     users(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -145,6 +160,11 @@ export interface UsersData extends BaseContract {
     overrides?: CallOverrides
   ): Promise<SharedStruct.UserStructOutput[]>;
 
+  removeUser(
+    _userAddress: PromiseOrValue<string>,
+    overrides?: Overrides & { from?: PromiseOrValue<string> }
+  ): Promise<ContractTransaction>;
+
   users(
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
@@ -170,6 +190,11 @@ export interface UsersData extends BaseContract {
     getAllUserList(
       overrides?: CallOverrides
     ): Promise<SharedStruct.UserStructOutput[]>;
+
+    removeUser(
+      _userAddress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<void>;
 
     users(
       arg0: PromiseOrValue<BigNumberish>,
@@ -198,6 +223,11 @@ export interface UsersData extends BaseContract {
 
     getAllUserList(overrides?: CallOverrides): Promise<BigNumber>;
 
+    removeUser(
+      _userAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<BigNumber>;
+
     users(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -214,6 +244,11 @@ export interface UsersData extends BaseContract {
     ): Promise<PopulatedTransaction>;
 
     getAllUserList(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+
+    removeUser(
+      _userAddress: PromiseOrValue<string>,
+      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    ): Promise<PopulatedTransaction>;
 
     users(
       arg0: PromiseOrValue<BigNumberish>,

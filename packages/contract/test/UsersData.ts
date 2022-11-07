@@ -84,4 +84,55 @@ describe('UsersData', function () {
       expect(getAllUserList[1][3]).to.equal('USER2_Icon');
     });
   });
+
+  describe('removeUsers test', function () {
+    it('Should remove user', async () => {
+      const { usersData, user1, user2 } = await loadFixture(fixture);
+
+      let getAllUserList;
+      let addUsers;
+
+      getAllUserList = await usersData.connect(user1.address).getAllUserList();
+      expect(getAllUserList).to.deep.equal([]);
+
+      addUsers = await usersData.addUsers(user1.address, 'USER1_Name', 'USER1_Profile', 'USER1_Icon');
+      await addUsers.wait();
+
+      addUsers = await usersData.addUsers(user2.address, 'USER2_Name', 'USER2_Profile', 'USER2_Icon');
+      await addUsers.wait();
+
+      getAllUserList = await usersData.connect(user1.address).getAllUserList();
+
+      expect(getAllUserList.length).to.equal(2);
+
+      expect(getAllUserList[0][0]).to.equal(user1.address);
+      expect(getAllUserList[0][1]).to.equal('USER1_Name');
+      expect(getAllUserList[0][2]).to.equal('USER1_Profile');
+      expect(getAllUserList[0][3]).to.equal('USER1_Icon');
+
+      expect(getAllUserList[1][0]).to.equal(user2.address);
+      expect(getAllUserList[1][1]).to.equal('USER2_Name');
+      expect(getAllUserList[1][2]).to.equal('USER2_Profile');
+      expect(getAllUserList[1][3]).to.equal('USER2_Icon');
+
+      let removeUser = await usersData.removeUser(user1.address);
+      await removeUser.wait();
+
+      getAllUserList = await usersData.connect(user1.address).getAllUserList();
+
+      expect(getAllUserList.length).to.equal(2);
+
+      expect(getAllUserList[0][0]).to.equal(ethers.constants.AddressZero);
+      expect(getAllUserList[0][1]).to.equal('');
+      expect(getAllUserList[0][2]).to.equal('');
+      expect(getAllUserList[0][3]).to.equal('');
+      expect(getAllUserList[0][4]).to.equal(0);
+
+      expect(getAllUserList[1][0]).to.equal(user2.address);
+      expect(getAllUserList[1][1]).to.equal('USER2_Name');
+      expect(getAllUserList[1][2]).to.equal('USER2_Profile');
+      expect(getAllUserList[1][3]).to.equal('USER2_Icon');
+
+    });
+  });
 });

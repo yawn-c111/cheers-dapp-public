@@ -24,7 +24,7 @@ import type {
 
 export interface IDaoPoolFactoryInterface extends utils.Interface {
   functions: {
-    "newDaoPoolFactory(string,string,string)": FunctionFragment;
+    "newDaoPoolFactory(address,string,string,string)": FunctionFragment;
   };
 
   getFunction(nameOrSignatureOrTopic: "newDaoPoolFactory"): FunctionFragment;
@@ -32,6 +32,7 @@ export interface IDaoPoolFactoryInterface extends utils.Interface {
   encodeFunctionData(
     functionFragment: "newDaoPoolFactory",
     values: [
+      PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>,
       PromiseOrValue<string>
@@ -74,6 +75,7 @@ export interface IDaoPoolFactory extends BaseContract {
 
   functions: {
     newDaoPoolFactory(
+      _daoAddress: PromiseOrValue<string>,
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
@@ -82,6 +84,7 @@ export interface IDaoPoolFactory extends BaseContract {
   };
 
   newDaoPoolFactory(
+    _daoAddress: PromiseOrValue<string>,
     _daoName: PromiseOrValue<string>,
     _daoProfile: PromiseOrValue<string>,
     _daoIcon: PromiseOrValue<string>,
@@ -90,6 +93,7 @@ export interface IDaoPoolFactory extends BaseContract {
 
   callStatic: {
     newDaoPoolFactory(
+      _daoAddress: PromiseOrValue<string>,
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
@@ -101,6 +105,7 @@ export interface IDaoPoolFactory extends BaseContract {
 
   estimateGas: {
     newDaoPoolFactory(
+      _daoAddress: PromiseOrValue<string>,
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,
@@ -110,6 +115,7 @@ export interface IDaoPoolFactory extends BaseContract {
 
   populateTransaction: {
     newDaoPoolFactory(
+      _daoAddress: PromiseOrValue<string>,
       _daoName: PromiseOrValue<string>,
       _daoProfile: PromiseOrValue<string>,
       _daoIcon: PromiseOrValue<string>,

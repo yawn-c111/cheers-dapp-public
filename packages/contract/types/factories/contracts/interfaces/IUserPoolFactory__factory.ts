@@ -13,6 +13,11 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "_userAddress",
+        type: "address",
+      },
+      {
         internalType: "string",
         name: "_userName",
         type: "string",

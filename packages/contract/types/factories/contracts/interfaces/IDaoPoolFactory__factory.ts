@@ -13,6 +13,11 @@ const _abi = [
   {
     inputs: [
       {
+        internalType: "address",
+        name: "_daoAddress",
+        type: "address",
+      },
+      {
         internalType: "string",
         name: "_daoName",
         type: "string",
